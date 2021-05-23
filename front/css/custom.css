@@ -1,6 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
 html {
   scroll-behavior: smooth;
 }
+
+* {
+	font-size: 100%;
+ 	font-family: 'Poppins', sans-serif;
+}
+
 
 header{
 	min-height: 100vh;
