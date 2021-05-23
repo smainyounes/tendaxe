@@ -1,0 +1,52 @@
+html {
+  scroll-behavior: smooth;
+}
+
+header{
+	min-height: 100vh;
+	background: url(../img/bg.png) no-repeat center center;
+	background-size: cover;
+}
+
+.btn-primary{
+	background-color: #11A3AB;
+	border-color: #11A3AB;
+}
+
+.btn-primary:hover {
+	background-color: #16cfd9;
+	border-color: #16cfd9;
+}
+
+.text-primary{
+	color: #11A3AB !important;
+}
+
+.bold{
+	font-weight: bold;
+}
+
+.bg-light{
+	background-color: #E5E5E5!important;
+}
+
+.bg-dark{
+	background-color: #333333!important;
+}
+
+.bg-dark-flou{
+	background-color: rgb(51 51 51 / 63%);
+}
+
+a:hover {
+	color: #16cfd9 !important;
+	text-decoration: none;
+}
+
+.opacity{
+	opacity: 50%;
+}
+
+.shadow{
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.55)!important;
+}
