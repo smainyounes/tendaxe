@@ -69,7 +69,7 @@
 				</div>
 			</div>
 			<div class="container mx-auto text-white text-center">
-				<h3 class="bold">pourquoi TendAxe</h3>
+				<h3 class="bold">Pourquoi TendAxe?</h3>
 				<p>Avec l’abonnement a notre site internet, vous pouvez consulter tous les appels d’offres nationaux et internationaux dans votre domain d’activite et optenu tout les informations relatives a l’appel d’offre, ses resultats, ses delais, et egalement optenir les coupies certifiees conformes qui serons publiees dans la press national et le BOMOT</p>
 				<p>Avec l’abonnement a notre site internet, vous pouvez consulter tous les appels d’offres nationaux et internationaux dans votre domain d’activite et optenu tout les informations relatives a l’appel </p>
 			</div>
@@ -85,13 +85,13 @@
 						</small>
 					</div>
 					<div class="d-flex mt-4">
-						<img src="img/icons/msg.png" width="40px" height="40px">
+						<img src="img/icons/msg.png" width="40px" height="33px">
 						<small class="ml-3">
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 						</small>
 					</div>
 					<div class="d-flex mt-4">
-						<img src="img/icons/msg.png" width="40px" height="40px">
+						<img src="img/icons/msg.png" width="40px" height="33px">
 						<small class="ml-3">
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 						</small>
@@ -422,7 +422,7 @@
 					<a href="" class="text-primary">Aide | Documents utiles | CGU</a>
 				</div>
 				<div class="offset-md-3 col-md-3">
-					<h3 class="text-white">Contact</h3>
+					<h3 class="text-white text-center text-md-left">Contact</h3>
 					<div class="my-3 mt-4">
 						<img src="img/icons/phone.png"> <span class="ml-3 text-white"> 02 67 43 56 65 </span>
 					</div>
@@ -437,6 +437,29 @@
 		</footer>
 
     	<script type="text/javascript" src="js/main.js"></script>
+    	<script type="text/javascript">
+    		$(window).scroll(function (event) {
+    			var height = $(window).scrollTop();
 
+    			    if(height <= 0) {
+    			        $(".navbar").removeClass("bg-light");
+    			        $(".navbar").removeClass("shadow");
+    			        $(".navbar").removeClass("navbar-light");
+    			        $(".navbar").addClass("navbar-dark");
+
+    			        $("#logo").addClass("text-white");
+    			        $("#logo").removeClass("text-black");
+    			    }else{
+    			    	$(".navbar").addClass("bg-light");
+    			    	$(".navbar").addClass("shadow");
+    			    	$(".navbar").addClass("navbar-light");
+    			    	$(".navbar").removeClass("navbar-dark");
+
+    			    	$("#logo").addClass("text-black");
+    			        $("#logo").removeClass("text-white");
+    			    }
+
+    		});
+    	</script>
   	</body>
 </html>
