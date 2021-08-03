@@ -26,6 +26,16 @@ header{
 	border-color: #16cfd9;
 }
 
+.btn-primary:not(:disabled):not(.disabled):active{
+	color: #fff;
+	background-color: #0f8d94;
+	border-color: #0c777d;
+}
+
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgb(69 164 172 / 63%)!important;
+}
+
 .text-primary{
 	color: #11A3AB !important;
 }
@@ -40,6 +50,30 @@ header{
 
 .bg-dark{
 	background-color: #333333!important;
+}
+
+.bg-light-gray{
+	background-color: #C4C4C4!important;
+}
+
+.bg-orange{
+	background-color: #F2994A!important;
+}
+
+.bg-yellow{
+	background-color: #F2C94C!important;
+}
+
+.bg-red{
+	background-color: #EB5757!important;
+}
+
+.bg-blue{
+	background-color: #2F80ED!important;
+}
+
+.text-green{
+	color: #219653!important;
 }
 
 .text-dark{
@@ -64,5 +98,25 @@ a.text-primary:hover {
 }
 
 .main{
-	margin-top: 120px;
+	margin-top: 90px;
+}
+
+@media only screen and (max-width: 768px) {
+	.hide-md{
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 768px){
+	#navbarSupportedContent {
+	    position: fixed;
+	    top: 75px;
+	    right: 0;
+	    z-index: 1;
+	    width: 70%; /*example + never use min-width with this solution */
+	    height: 100%;
+	    background-color: #E5E5E5!important;
+	    text-align: center;
+	}
+
 }

@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    font-size: 100%;
+    font-family: "Poppins", sans-serif;
+}
+
+header {
+    min-height: 100vh;
+    background: url(../img/bg.png) no-repeat center center;
+    background-size: cover;
+}
+
+.btn-primary {
+    background-color: #11a3ab;
+    border-color: #11a3ab;
+}
+
+.btn-primary:hover {
+    background-color: #16cfd9;
+    border-color: #16cfd9;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+    color: #fff;
+    background-color: #0f8d94;
+    border-color: #0c777d;
+}
+
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgb(69 164 172 / 63%) !important;
+}
+
+.text-primary {
+    color: #11a3ab !important;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.bg-light {
+    background-color: #e5e5e5 !important;
+}
+
+.bg-primary {
+    background-color: #11a3ab !important;
+}
+
+.bg-dark {
+    background-color: #333333 !important;
+}
+
+.bg-light-gray {
+    background-color: #c4c4c4 !important;
+}
+
+.bg-orange {
+    background-color: #f2994a !important;
+}
+
+.bg-yellow {
+    background-color: #f2c94c !important;
+}
+
+.bg-red {
+    background-color: #eb5757 !important;
+}
+
+.bg-blue {
+    background-color: #2f80ed !important;
+}
+
+.text-green {
+    color: #219653 !important;
+}
+
+.text-dark {
+    color: #333333 !important;
+}
+
+.bg-dark-flou {
+    background-color: rgb(51 51 51 / 63%);
+}
+
+a.text-primary:hover {
+    color: #16cfd9 !important;
+    text-decoration: none;
+}
+
+.opacity {
+    opacity: 50%;
+}
+
+.shadow {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.55) !important;
+}
+
+.main {
+    margin-top: 90px;
+}
+
+.inner {
+    max-height: 340px !important;
+}
+
+.btn-light {
+    background-color: #e5e5e5 !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .hide-md {
+        display: none;
+    }
+    .dropdown-menu {
+        overflow: scroll !important;
+    }
+
+    .inner {
+        position: absolute;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #navbarSupportedContent {
+        position: fixed;
+        top: 75px;
+        right: 0;
+        z-index: 1;
+        width: 70%; /*example + never use min-width with this solution */
+        height: 100%;
+        background-color: #e5e5e5 !important;
+        text-align: center;
+    }
+    .nav-link {
+        color: rgba(0, 0, 0, 0.5) !important;
+    }
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #11a3ab;
+}
+
+a {
+    color: #45a4ac;
+}
+
+a:hover {
+    color: #237e86;
+}
+
+.inner {
+    width: 100%;
+}
+
+.pagination {
+    justify-content: center !important;
+}
+
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #11a3ab;
+    border-color: #11a3ab;
+}
