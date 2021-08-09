@@ -10,21 +10,23 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        // get current user offers
-        $offres = Offre::where('user_id', Auth::id())->latest()->paginate(5);
+        return view('user.profile');
 
-        // get etablissement img
-        $etab = Auth::user()->etablissement;
+        // // get current user offers
+        // $offres = Offre::where('user_id', Auth::id())->latest()->paginate(5);
 
-        $img = null;
+        // // get etablissement img
+        // $etab = Auth::user()->etablissement;
 
-        if($etab && $etab->category === "AUTRE"){
-            $img = $etab->logo;
-        }
+        // $img = null;
 
-        return view('profile', [
-            'offres' => $offres,
-            'logo' => $img,
-        ]);
+        // if($etab && $etab->category === "AUTRE"){
+        //     $img = $etab->logo;
+        // }
+
+        // return view('user.profile', [
+        //     'offres' => $offres,
+        //     'logo' => $img,
+        // ]);
     }
 }

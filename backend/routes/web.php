@@ -28,6 +28,10 @@ use App\Http\Controllers\Auth\SettingsController;
 //     return base_path();
 // });
 
+Route::get('/test', function () {
+    return view('user.notif');
+});
+
 Route::get('/suspended', function () {
     return view('suspended');
 })->name('suspended');
