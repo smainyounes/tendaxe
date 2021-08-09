@@ -56,6 +56,6 @@ class LoginController extends Controller
         //     return redirect()->route('suspended');
         // }
 
-        return redirect()->route('profile');
+        return redirect()->route('search');
     }
 }

@@ -75,7 +75,7 @@
 						</a>
 						<form method="POST" action="{{ route('logout') }}" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
 							@csrf
-							<a class="dropdown-item" href="{{ route('profile') }}">profile</a>
+							<a class="dropdown-item" href="{{ route('profile') }}">Parametres</a>
 							<button type="submit" class="dropdown-item">se deconnecter</button>
 						</form>
 
