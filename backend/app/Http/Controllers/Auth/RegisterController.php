@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Abonnement;
 use Illuminate\Http\Request;
 use App\Models\Etablissement;
 use App\Http\Controllers\Controller;
@@ -60,15 +61,21 @@ class RegisterController extends Controller
                 'commune' => $request->commune,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'exp' => Carbon::now()->addDays(3),
+            ]);
+
+            $abonnement = Abonnement::create([
+                'user_id' => $user->id,
+                'nom_abonnement' => 'gratuit',
+                'date_debut' => Carbon::now(),
+                'date_fin' => Carbon::now()->addDays(3),
             ]);
             
             // login and redirect to profile
             Auth::attempt($request->only('email', 'password'));
-            return redirect()->route('profile');
+            return redirect()->route('search');
 
             // redirect
-            return redirect()->route('login');
+            // return redirect()->route('login');
         }   
         
         // createur de contenu

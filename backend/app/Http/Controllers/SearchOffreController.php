@@ -12,6 +12,7 @@ class SearchOffreController extends Controller
 {
     public function index(Request $request)
     {
+        // dd(Auth::user()->current_abonnement);
         $expired = true;
         if(Auth::check()){
             if(Auth::user()->type_user === "content"){
@@ -21,8 +22,12 @@ class SearchOffreController extends Controller
                 $expired = false;
                 $secteurs = Secteur::all();
             }else{
-                $secteurs = Auth::user()->secteur;
-                $expired = ((Auth::user()->etat === "desactive") || (Carbon::createFromFormat('Y-m-d', Auth::user()->exp)->isPast()));
+                $expired = ((Auth::user()->etat === "desactive") || !(Auth::user()->current_abonnement));
+                if($expired || Auth::user()->current_abonnement->nom_abonnement === 'gratuit'){
+                    $secteurs = Secteur::all();
+                }else{
+                    $secteurs = Auth::user()->current_abonnement->secteurs;
+                }
             }
         }else{
             $secteurs = Secteur::all();
@@ -175,7 +180,10 @@ class SearchOffreController extends Controller
 
         // check expiration date
         if(Auth::check()){
-            $expired = Carbon::createFromFormat('Y-m-d', Auth::user()->exp)->isPast();
+            $expired = !(Auth::user()->current_abonnement);
+            if($expired || Auth::user()->current_abonnement->nom_abonnement === "gratuit"){
+                return $expired;
+            }
         }
 
         // check sectors

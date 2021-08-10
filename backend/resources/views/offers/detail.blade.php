@@ -93,18 +93,20 @@
                     <h4 class="bold text-dark">{{ $offre->titre }}</h4>
                 </div>
                 @auth
-                <form class="col-sm-1" method="POST" action="{{ route('favorit.toggle', $offre) }}">
-                    @csrf
-                    @if ($offre->isFavorited())
-                        <button class="text-sm-right" style="background: none; border: none;">
-                            <img src="{{ asset('img/icons/starfill.png') }}">
-                        </button>
-                    @else
-                        <button class="text-sm-right" style="background: none; border: none;">
-                            <img src="{{ asset('img/icons/star.png') }}">
-                        </button>
-                    @endif
-                </form>
+                @if (!$expired)
+                    <form class="col-sm-1" method="POST" action="{{ route('favorit.toggle', $offre) }}">
+                        @csrf
+                        @if ($offre->isFavorited())
+                            <button class="text-sm-right" style="background: none; border: none;">
+                                <img src="{{ asset('img/icons/starfill.png') }}">
+                            </button>
+                        @else
+                            <button class="text-sm-right" style="background: none; border: none;">
+                                <img src="{{ asset('img/icons/star.png') }}">
+                            </button>
+                        @endif
+                    </form>
+                @endif
                 @endauth
             </div>
             <div class="">
