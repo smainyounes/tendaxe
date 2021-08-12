@@ -46,7 +46,7 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->phone }}</td>
                     <td>{{ $user->created_at }}</td>
-                    <td>{{ $user->exp }}</td>
+                    <td>{{ ($user->current_abonnement) ? $user->current_abonnement->date_fin : ''}}</td>
                     <td>{{ $user->type_user }}</td>
                     
                 </tr>

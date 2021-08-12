@@ -26,7 +26,6 @@ class CreateUsersTable extends Migration
             $table->string('wilaya')->nullable();
             $table->string('commune')->nullable();
             $table->string('type_user')->default('abonné');
-            $table->date('exp')->nullable();
             $table->string('etat')->default('desactive');
             $table->rememberToken();
             $table->timestamps();

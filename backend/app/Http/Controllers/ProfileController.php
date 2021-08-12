@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offre;
+use App\Models\Secteur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,5 +29,38 @@ class ProfileController extends Controller
         //     'offres' => $offres,
         //     'logo' => $img,
         // ]);
+    }
+
+    public function abonnement()
+    {
+        $secteurs = null;
+
+        $current = Auth::user()->current_abonnement;
+
+        $progressbar = 0;
+
+        if($current){
+            if($current->nom_abonnement === "gratuit"){
+                $secteurs = Secteur::All();
+            }else{
+                $secteurs = $current->secteur;
+            }
+
+            $progressbar =(int) ((time() - strtotime($current->date_debut)) / (strtotime($current->date_fin) - strtotime($current->date_debut)) * 100);
+        }
+
+        
+
+        return view('user.abonnement', [
+            'current' => $current,
+            'list' => Auth::user()->abonnement,
+            'secteurs' => $secteurs,
+            'progress' => $progressbar,
+        ]);
+    }
+
+    public function notif()
+    {
+        # code...
     }
 }

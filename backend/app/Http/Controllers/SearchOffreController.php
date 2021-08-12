@@ -12,6 +12,7 @@ class SearchOffreController extends Controller
 {
     public function index(Request $request)
     {
+        // dd(Auth::user()->current_abonnement);
         $expired = true;
         if(Auth::check()){
             if(Auth::user()->type_user === "content"){
@@ -21,8 +22,12 @@ class SearchOffreController extends Controller
                 $expired = false;
                 $secteurs = Secteur::all();
             }else{
-                $secteurs = Auth::user()->secteur;
-                $expired = ((Auth::user()->etat === "desactive") || (Carbon::createFromFormat('Y-m-d', Auth::user()->exp)->isPast()));
+                $expired = ((Auth::user()->etat === "desactive") || !(Auth::user()->current_abonnement));
+                if($expired || Auth::user()->current_abonnement->nom_abonnement === 'gratuit'){
+                    $secteurs = Secteur::all();
+                }else{
+                    $secteurs = Auth::user()->current_abonnement->secteur;
+                }
             }
         }else{
             $secteurs = Secteur::all();
@@ -174,29 +179,37 @@ class SearchOffreController extends Controller
         }
 
         // check expiration date
-        if(Auth::check()){
-            $expired = Carbon::createFromFormat('Y-m-d', Auth::user()->exp)->isPast();
-        }
+        if(Auth::check() && Auth::user()->type_user === 'abonné'){
+            
+            $current = Auth::user()->current_abonnement;
 
-        // check sectors
-        if($offre && !$expired && Auth::check()){
-            // get user sectors
-            $user_sec = [];
-            foreach(Auth::user()->secteur as $sec){
-                $user_sec[] = $sec->id;
-            }
+            if($current){
+                if($current->nom_abonnement === "gratuit"){
+                    return false;
+                }
 
-            // get offre sectors
-            $offre_sec = [];
-            foreach($offre->secteur as $sec){
-                $offre_sec[] = $sec->id;
-            }
+                if($offre){
 
-            if(count(array_intersect($user_sec,$offre_sec)) > 0){
-                $expired = false;
+                    // get current use secteurs
+                    $user_sec = [];
+                    foreach($current->secteur as $sec){
+                        $user_sec[] = $sec->id;
+                    }
+
+                    // get offre sectors
+                    $offre_sec = [];
+                    foreach($offre->secteur as $sec){
+                        $offre_sec[] = $sec->id;
+                    }
+
+                    // check if he can see or not
+                    return count(array_intersect($user_sec,$offre_sec)) <= 0;
+
+                }
+
             }else{
-                $expired = true;
-            }
+                return false;
+            }            
         }
 
         return $expired;

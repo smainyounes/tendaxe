@@ -13,7 +13,7 @@ class FavoritController extends Controller
         $offres = Auth::user()->favorite(Offre::class);
         return view('offers.favoris', [
             'offres' => $offres,
-            'expired' => Auth::user()->Expired(),
+            'expired' => !(Auth::user()->current_abonnement),
         ]);
     }
 

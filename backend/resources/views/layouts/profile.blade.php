@@ -27,15 +27,15 @@
 
         <div class="row">
             <div class="col-md-3">
-                <a class="d-flex align-items-center" href="#" style="text-decoration: none;">
+                <a class="d-flex align-items-center" href="{{ route('profile') }}" style="text-decoration: none;">
                     <img width="25px" class="img-fluid mr-2" src="{{ asset('img/icons/user3.png') }}" alt="">
                     <span class="m-2 ml-3 text-dark h5">Mon Profile</span>
                 </a>
-                <a class="d-flex align-items-center" href="#" style="text-decoration: none;">
+                <a class="d-flex align-items-center" href="{{ route('abonnement') }}" style="text-decoration: none;">
                     <img width="25px" class="img-fluid mr-2" src="{{ asset('img/icons/doc2.png') }}" alt="">
                     <span class="m-2 ml-3 text-dark h5">Mes Abonnements</span>
                 </a>
-                <a class="d-flex align-items-center" href="#" style="text-decoration: none;">
+                <a class="d-flex align-items-center" href="{{ route('notification') }}" style="text-decoration: none;">
                     <img width="25px" class="img-fluid mr-2" src="{{ asset('img/icons/notifbell.png') }}" alt="">
                     <span class="m-2 ml-3 text-dark h5">Notification</span>
                 </a>
