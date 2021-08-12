@@ -45,56 +45,54 @@ class UsersController extends Controller
             $etab = $user->etablissement;
         }
 
-        $secteurs = null;
+        $date_debut = date('Y-m-d');
 
         if($user->type_user === 'abonné'){
-            $secteurs = $user->secteur->pluck('id')->toArray();
+            $a = $user->abonnement->last();
+            if(!Carbon::createFromFormat('Y-m-d', $a->date_fin)->isPast()){
+                $date_debut = $a->date_fin;
+            }
         }
-
-
-        // dd($secteurs);
 
         return view('admin.userdetail', [
             'user' => $user,
             'etab' => $etab,
-            'secteurs' => $secteurs,
+            'date_debut' => $date_debut,
         ]);
     }
 
-    public function update_secteurs(Request $request, User $user)
-    {
-        // dd($user);
-
-        $this->validate($request, [
-            'secteur' => 'array',
-        ]);
-
-        $user->secteur()->detach();
-        $user->secteur()->sync($request->secteur);
-
-        return back()->with('success', 'secteurs changé avec succés');
-    }
-
-    public function update_exp(Request $request, User $user)
+    public function update_details(User $user, Request $request)
     {
         $this->validate($request, [
-            'exp_choice' => 'required|in:year,autre',
-            'exp_custom' => 'date',
-        ]);
-
-        if($request->exp_choice === "year"){
-            if(Carbon::createFromFormat('Y-m-d', $user->exp)->isPast()){
-                $user->exp = Carbon::now()->addYear();
-            }else{
-                $user->exp = Carbon::createFromFormat('Y-m-d', $user->exp)->addYear();
-            }
-        }else{
-            $user->exp = $request->exp_custom;
-        }
+            'nom' => 'nullable|max:255',
+            'prenom' => 'nullable|max:255',
+            'nom_entreprise' => 'nullable|max:255',
+            'phone' => 'nullable|max:255|unique:users',
+            'wilaya' => 'nullable|max:255',
+            'email' => 'nullable|email|max:255|unique:users',
+            ]);
+        
+        if($request->nom)
+            $user->nom = $request->nom;
+        
+        if($request->prenom)
+            $user->prenom = $request->prenom;
+        
+        if($request->email)
+            $user->email = $request->email;
+        
+        if($request->phone)
+            $user->phone = $request->phone;
+        
+        if($request->wilaya)
+            $user->wilaya = $request->wilaya;
+        
+        if($request->nom_entreprise)
+            $user->nom_entreprise = $request->nom_entreprise;
 
         $user->save();
 
-        return back()->with('success', 'date exp changé avec succés');
+        return back()->with('success', 'les infos de l\'utilisateur ont été changé avec succès');
     }
 
     public function update_etat(Request $request, User $user)

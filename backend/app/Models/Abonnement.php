@@ -15,4 +15,9 @@ class Abonnement extends Model
         'date_debut',
         'date_fin',
     ];
+
+    public function secteur()
+    {
+        return $this->belongsToMany(Secteur::class, 'abonnement_secteur');
+    }
 }

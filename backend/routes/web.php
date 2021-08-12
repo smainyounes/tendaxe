@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\SearchOffreController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SettingsController;
+use App\Http\Controllers\Admin\AbonnementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +53,9 @@ Route::middleware(['auth'])->group(function () {
 
     // Route::delete('/offre',[AddOffreController::class, 'destroy'])->name('offre.destroy');
 
-    Route::get('/profile',[ProfileController::class, 'index'])->name('profile');
+    Route::get('/settings/profile',[ProfileController::class, 'index'])->name('profile');
+    Route::get('/settings/abonnement',[ProfileController::class, 'abonnement'])->name('abonnement');
+    Route::get('/settings/notification',[ProfileController::class, 'notif'])->name('notification');
 
     Route::post('/chang_pswd',[SettingsController::class, 'EditPassword'])->name('user.password');
 
@@ -103,11 +106,16 @@ Route::group(['prefix' => 'admin',  'middleware' => 'adminpanel'], function()
 Route::group(['prefix' => 'admin',  'middleware' => 'admin'], function() {
     Route::get('/users',[UsersController::class, 'index'])->name('admin.users');
 
-    Route::post('/users/secteur/{user}',[UsersController::class, 'update_secteurs'])->name('admin.user.secteurs');
-    Route::post('/users/exp/{user}',[UsersController::class, 'update_exp'])->name('admin.user.exp');
     Route::post('/users/etat/{user}',[UsersController::class, 'update_etat'])->name('admin.user.etat');
     Route::post('/users/password/{user}',[UsersController::class, 'update_password'])->name('admin.user.password');
-    
+    Route::post('/users/detail/{user}',[UsersController::class, 'update_details'])->name('admin.user.details');
+    Route::delete('/abonnement',[AbonnementController::class, 'destroy'])->name('admin.abonnement.destroy');
+    Route::post('/abonnement/add/{user}',[AbonnementController::class, 'store'])->name('admin.abonnement.store');
+    Route::post('/abonnement/edit',[AbonnementController::class, 'edit'])->name('admin.abonnement.edit');
+   
+    Route::get('/abonnement/{abonnement}',[AbonnementController::class, 'detail'])->name('admin.abonnement.detail');
+
+
     Route::get('/users/add',[UsersController::class, 'addform'])->name('admin.user.add');
     Route::post('/users/add',[UsersController::class, 'store']);
 
