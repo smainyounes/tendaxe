@@ -50,13 +50,13 @@
             autre infos:
             <ul>
                 @if ($etab->fax)
-                    <li>fax : $etab->fax</li>
+                    <li>fax : {{ $etab->fax }}</li>
                 @endif
                 @if ($etab->fix)
-                    <li>fix : $etab->fix</li>
+                    <li>fix : {{ $etab->fix }}</li>
                 @endif
                 @if ($etab->email)
-                    <li>email ou site : $etab->email</li>
+                    <li>email ou site : {{ $etab->email }}</li>
                 @endif
             </ul>
             <hr>
