@@ -161,8 +161,9 @@
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label for="">Abonnement choisi</label>
-                        <select class="form-control selectpicker" name="nom_abonnement" id="">
-                            <option value="bronze">Bronze</option>
+                        <select class="form-control selectpicker" name="nom_abonnement" onchange="abonnement_check(this, 'new')" id="">
+                            <option value="gratuit">gratuit</option>
+                            <option value="bronze" selected>Bronze</option>
                             <option value="silver">Silver</option>
                             <option value="gold">Gold</option>
                             <option value="platine">Platine</option>
@@ -171,7 +172,7 @@
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="">Secteurs</label>
-                        <select name="secteurs[]" class="form-control mb-2 selectpicker" multiple title="Secteur" data-live-search="true" required>
+                        <select name="secteurs[]" class="form-control mb-2 selectpicker" multiple title="Secteur" data-live-search="true" id="new_sec" required>
                             @foreach (App\Models\Secteur::All() as $sect)
                                 <option value="{{ $sect->id }}" data-tokens="{{ $sect->secteur }}">{{ $sect->secteur }}</option>
                             @endforeach
@@ -228,7 +229,7 @@
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label for="">Abonnement choisi</label>
-                            <select class="form-control" name="nom_abonnement" id="nom_abonnement">
+                            <select class="form-control selectpicker" name="nom_abonnement" onchange="abonnement_check(this, 'old')" id="nom_abonnement">
                                 <option value="bronze">Bronze</option>
                                 <option value="silver">Silver</option>
                                 <option value="gold">Gold</option>
@@ -255,6 +256,7 @@
                     </div>
                     <div class="text-right">
                         <button class="btn btn-info">Modifier</button>
+                        <a class="btn btn-secondary" data-toggle="collapse" href="#edit_form" role="button" aria-expanded="false" aria-controls="edit_form">Annuler</a>
                     </div>
 
                 </form>
@@ -282,7 +284,7 @@
               <form method="POST" action="{{ route('admin.abonnement.destroy') }}">
                   @csrf
                   @method('DELETE')
-                  <input type="number" name="abonnement" id="abonnement_id" hidden>
+                  <input type="number" name="abonnement" id="abonnement" hidden>
                   <button class="btn btn-info">Oui</button>
               </form>
             </div>
@@ -294,8 +296,8 @@
         $('#exampleModalCenter').on('show.bs.modal', function (event) {
 			var button = $(event.relatedTarget) // Button that triggered the modal
 			var id = button.data('id') 
-            
-			$('#abonnement_id').val(id);
+
+            $('#abonnement').val(id);
 		});
 
         wilaya1();
@@ -313,6 +315,7 @@
                     // fill the form
                     $('#abonnement_id').val(data.id);
                     $('#nom_abonnement').val(data.nom_abonnement);
+                    $('#nom_abonnement').selectpicker('refresh');
                     $('#date_debut').val(data.date_debut);
                     $('#date_fin').val(data.date_fin);
                     
@@ -327,6 +330,29 @@
                 }
             });            
 
+        }
+
+        function abonnement_check(e, type) {
+            console.log(e.value);
+            if(type === 'new'){
+                var target = $('#new_sec');
+                var target_select = $('#new_sec option');
+            }else{
+                var target = $('#secteurs');
+                var target_select = $('#secteurs option');
+            }
+
+            if(e.value === "gratuit" || e.value === 'ultra'){
+                // select all secteurs 
+                target_select.prop("selected", "selected");
+                target.selectpicker('refresh');
+
+            }else{
+                // deselect all 
+                target_select.prop("selected", false);
+                target.selectpicker('refresh');
+
+            }
         }
 
     </script>
