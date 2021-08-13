@@ -207,7 +207,9 @@
                         <td>{{ $abonnement->date_debut }}</td>
                         <td>{{ $abonnement->date_fin }}</td>
                         <td>
-                            <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#exampleModalCenter" data-id="{{ $abonnement->id }}">Supprimer</a>
+                            @if ($abonnement->nom_abonnement !== "gratuit")
+                                <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#exampleModalCenter" data-id="{{ $abonnement->id }}">Supprimer</a>
+                            @endif
                             @if (new DateTime($abonnement->date_fin) >= new DateTime())
                                 <button class="btn btn-warning" data-id="{{ $abonnement->id }}" onclick="edit_abonnement(this)">Edit</button>
                             @endif
