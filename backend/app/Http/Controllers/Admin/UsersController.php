@@ -51,6 +51,10 @@ class UsersController extends Controller
 
         $etab = null;
 
+        if($user->type_user === 'admin'){
+            return abort(403);
+        }
+
         if($user->type_user === 'content' && $user->etablissement_id){
             $etab = $user->etablissement;
         }
