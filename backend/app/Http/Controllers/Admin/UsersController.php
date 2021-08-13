@@ -13,23 +13,33 @@ class UsersController extends Controller
 {
     public function index(Request $request)
     {
-        $users = new User();
+        $this->validate($request, [
+            'keyword' => 'max:255',
+            'type_user' => 'in:all,content,abonné',
+        ]);
+        $users = User::where([
+            ['type_user', '<>' , 'admin'],
+            ['type_user', '<>' , 'publisher'],
+        ]);
 
-        if($request->has('keyword')){
+        if($request->type_user && $request->type_user !== 'all'){
+            $users = $users->where([
+                ['type_user', '<>' , 'admin'],
+                ['type_user', '<>' , 'publisher'],
+                ['type_user', $request->type_user],
+            ]);
+        }
+
+        if($request->keyword){
             $users = $users->where('email', 'LIKE', "%{$request->keyword}%")
                     ->orWhere('nom', 'LIKE', "%{$request->keyword}%")
                     ->orWhere('prenom', 'LIKE', "%{$request->keyword}%")
                     ->orWhere('phone', 'LIKE', "%{$request->keyword}%");
         }
 
-        if($request->has('type_user') && $request->type_user !== 'all'){
-
-            $users = $users->orWhere('type_user', '=' , $request->type_user);
-        }else{
-            $users = $users->orWhere('type_user', '!=' , 'admin');
-        }
-
         $users = $users->latest()->paginate(10);
+
+        session()->flashInput($request->input());
 
         return view('admin.users', [
             'users' => $users,
