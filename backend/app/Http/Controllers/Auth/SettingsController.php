@@ -30,4 +30,36 @@ class SettingsController extends Controller
             return back()->with('error' , 'mauvais mot de passe');
         }
     }
+
+    public function editemail(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email|unique:users',
+        ]);
+
+        $user = Auth::user();
+
+
+        $user->email = $request->email;
+
+        $user->save();
+
+        return back()->with('success', 'email a été changé avec succés');
+    }
+
+    public function editphone(Request $request)
+    {
+        $this->validate($request, [
+            'phone' => 'required|numeric|unique:users',
+        ]);
+
+        $user = Auth::user();
+
+
+        $user->phone = $request->phone;
+
+        $user->save();
+
+        return back()->with('success', 'telephone a été changé avec succés');
+    }
 }

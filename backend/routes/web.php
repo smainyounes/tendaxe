@@ -58,6 +58,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/settings/notification',[ProfileController::class, 'notif'])->name('notification');
 
     Route::post('/chang_pswd',[SettingsController::class, 'EditPassword'])->name('user.password');
+    Route::post('/chang_email',[SettingsController::class, 'editemail'])->name('user.email');
+    Route::post('/chang_phone',[SettingsController::class, 'editphone'])->name('user.phone');
 
     Route::post('/favorit/{offre}',[FavoritController::class, 'toggle'])->name('favorit.toggle');
     Route::get('/favorit',[FavoritController::class, 'index'])->name('offre.favorit');
