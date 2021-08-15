@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Wilaya;
+use App\Models\Keyword;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -109,7 +111,7 @@ class SettingsController extends Controller
         if($request->secteur){
             $existing_id = $notif->secteur()->whereIn('secteurs.id', $request->secteur)->pluck('secteur_id');
             if($existing_id){
-                $notif->secteur()->attach($existing_id->diff($request->secteur));
+                $notif->secteur()->attach(array_diff($request->secteur, $existing_id->all()));
             }else{
                 $notif->secteur()->attach($request->secteur);
             }
@@ -119,5 +121,32 @@ class SettingsController extends Controller
 
         return back()->with('success', 'données enregistrer avec succés');
 
+    }
+
+    public function deleteWilaya(Wilaya $wilaya)
+    {
+        if($wilaya->delete()){
+            return 'success';
+        }else{
+            return 'error';
+        }
+    }
+
+    public function deleteSecteur($id)
+    {
+        if(Auth::user()->notif->secteur()->detach($id)){
+            return 'success';
+        }else{
+            return 'error';
+        }
+    }
+
+    public function deleteKeyword(Keyword $keyword)
+    {
+        if($keyword->delete()){
+            return 'success';
+        }else{
+            return 'error';
+        }
     }
 }

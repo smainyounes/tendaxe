@@ -65,6 +65,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/favorit',[FavoritController::class, 'index'])->name('offre.favorit');
 
     Route::post('/settings/notif/',[SettingsController::class, 'Editnotif'])->name('user.notif');
+    Route::delete('/settings/notif/wilaya/{wilaya}',[SettingsController::class, 'deleteWilaya'])->name('user.notif.wilaya');
+    Route::delete('/settings/notif/sect/{secteur}',[SettingsController::class, 'deleteSecteur'])->name('user.notif.secteur');
+    Route::delete('/settings/notif/keyword/{keyword}',[SettingsController::class, 'deleteKeyword'])->name('user.notif.keyword');
 
 
 });

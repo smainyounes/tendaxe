@@ -43,7 +43,7 @@
                                 {{-- display notif keywords --}}
                                 @foreach ($notif->keyword as $item)
                                     <li>
-                                        <button type="button" data-id="{{ $item->id }}" class="p-0" onclick="keyword($(this))" style="border: none; background: none;">
+                                        <button type="button" data-id="{{ $item->id }}" class="p-0" onclick="keyword2($(this))" style="border: none; background: none;">
                                             <img class="" src="{{ asset('img/icons/delete.png') }}" alt="">
                                         </button>
                                         <span class="mr-2">
@@ -99,7 +99,7 @@
                             <ul class="pl-3" style="list-style: none;">
                                 @foreach ($notif->wilaya as $item)
                                     <li>
-                                        <button class="p-0" data-id="{{ $item->id }}" onclick="wilaya($(this))" style="border: none; background: none;">
+                                        <button type="button" class="p-0" data-id="{{ $item->id }}" onclick="wilaya($(this))" style="border: none; background: none;">
                                             <img class="" src="{{ asset('img/icons/delete.png') }}" alt="">
                                         </button>
                                         <span class="mr-2">
@@ -145,11 +145,14 @@
 
         function sect(e) {
             var id = e.data('id'); 
-            var url = "/notif/sect/" + id;
+            var url = "/settings/notif/sect/" + id;
             // send delete request 
             $.ajax({
                 url: url,
                 type: 'DELETE',
+                data: {
+                    "_token" : "{{ csrf_token() }}"
+                },
                 success: function(status) {
                     // Do something with the result
                     if(status === 'success'){
@@ -160,13 +163,16 @@
 
         }
 
-        function keyword(e) {
+        function keyword2(e) {
             var id = e.data('id'); 
-            var url = "/notif/keyword/" + id;
+            var url = "/settings/notif/keyword/" + id;
             // send delete request 
             $.ajax({
                 url: url,
                 type: 'DELETE',
+                data: {
+                    "_token" : "{{ csrf_token() }}"
+                },
                 success: function(status) {
                     // Do something with the result
                     if(status === 'success'){
@@ -178,11 +184,14 @@
 
         function wilaya(e) {
             var id = e.data('id'); 
-            var url = "/notif/wilaya/" + id;
+            var url = "/settings/notif/wilaya/" + id;
             // send delete request 
             $.ajax({
                 url: url,
                 type: 'DELETE',
+                data: {
+                    "_token" : "{{ csrf_token() }}"
+                },
                 success: function(status) {
                     // Do something with the result
                     if(status === 'success'){
