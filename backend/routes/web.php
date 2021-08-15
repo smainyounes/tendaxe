@@ -64,6 +64,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/favorit/{offre}',[FavoritController::class, 'toggle'])->name('favorit.toggle');
     Route::get('/favorit',[FavoritController::class, 'index'])->name('offre.favorit');
 
+    Route::post('/settings/notif/',[SettingsController::class, 'Editnotif'])->name('user.notif');
+
+
 });
 
 Route::middleware(['guest'])->group(function () {
