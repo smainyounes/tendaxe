@@ -140,6 +140,10 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin'], function() {
 
     Route::get('/offers/pending',[OffreController::class, 'pending'])->name('admin.pending');
     Route::post('/offers/accept',[OffreController::class, 'accept'])->name('admin.offre.accept');
+
+    Route::post('/admin/notif/{notif}',[UsersController::class, 'Editnotif'])->name('admin.notif');
+    Route::delete('/notif/sect/{user}/{secteur}',[UsersController::class, 'deleteSecteur'])->name('admin.notif.secteur');
+
 });
 
 Route::group(['prefix' => 'representant',  'middleware' => 'ContentCreator'], function()
