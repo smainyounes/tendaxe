@@ -56,7 +56,7 @@
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="">Secteurs</label>
-                    <select name="secteur[]" class="form-control mb-2 selectpicker" multiple title="Secteur" data-live-search="true" required>
+                    <select name="secteur[]" class="form-control mb-2 selectpicker" multiple title="Secteur" data-live-search="true" data-size="5" required>
                         @foreach (App\Models\Secteur::All() as $sect)
                             <option value="{{ $sect->id }}" data-tokens="{{ $sect->secteur }}" >{{ \Illuminate\Support\Str::limit($sect->secteur, 50, $end='...') }}</option>
                         @endforeach
@@ -64,7 +64,7 @@
                 </div>
                 <div class="col-md-6 form-group">
                     <label for="">Statut</label>
-                    <select name="statut" class="form-control mb-2 selectpicker" title="statut" data-live-search="true" required>
+                    <select name="statut" class="form-control mb-2 selectpicker" title="statut" data-live-search="true" data-size="5" required>
                         <option value="Mise en demeure et résiliation" data-tokens="Mise en demeure et résiliation">Mise en demeure et résiliation</option>
                         <option value="Adjudication" data-tokens="Adjudication">Adjudication</option>
                         <option value="Vente aux enchères" data-tokens="Vente aux enchères">Vente aux enchères</option>
@@ -89,7 +89,7 @@
                 <div class="col-md-6 form-group">
                     <img class="mx-auto" width="100px" height="50px" src="{{ asset('img/fr.jpg') }}" alt="">
                     <label for="">Journal FR</label>
-                    <select class="form-control selectpicker" data-live-search="true" onchange="fr(this)" name="journal_fr" id="">
+                    <select class="form-control selectpicker" data-live-search="true" onchange="fr(this)" data-size="5" name="journal_fr" id="">
                         <option value="-1" selected>Aucun</option>
                         <option value="0">Autre</option>
                         {{-- get list of fr newspaperes --}}
@@ -116,7 +116,7 @@
                 <div class="col-md-6 form-group">
                     <img class="mx-auto" width="100px" height="50px" src="{{ asset('img/ar.jpg') }}" alt="">
                     <label for="">Journal AR</label>
-                    <select class="form-control selectpicker" data-live-search="true" onchange="ar(this)" name="journal_ar" id="">
+                    <select class="form-control selectpicker" data-live-search="true" onchange="ar(this)" data-size="5" name="journal_ar" id="">
                         <option value="-1" selected>Aucun</option>
                         <option value="0">Autre</option>
                         {{-- get list of ar newspaperes --}}
@@ -162,18 +162,19 @@
                 @if (Auth::user()->type_user !== 'content')
                 <div class="col-md-6 form-group">
                     <label for="">etablissement</label>
-                    <select class="form-control selectpicker" name="etab" onchange="loadEtab(this)" id="" title="etablissement" data-live-search="true">
+                    <select class="form-control selectpicker" name="etab" onchange="loadEtab(this)" id="" title="etablissement" data-live-search="true" data-size="5">
                         <option value="0">Autre</option>
                         {{-- get all etabs inserted by the admin --}}
                         @foreach (App\Models\Adminetab::All() as $etab)
-                        <option value="{{ $etab->id }}">{{ \Illuminate\Support\Str::limit($etab->nom_etablissement, 50, $end='...') }}</option>
+                        {{-- <option value="{{ $etab->id }}">{{ \Illuminate\Support\Str::limit($etab->nom_etablissement, 50, $end='...') }}</option> --}}
+                        <option value="{{ $etab->id }}">{{ $etab->nom_etablissement }}</option>
                         @endforeach
                     </select>
                 </div>
                 @endif
                 <div class="col-md-6 form-group">
                     <label for="">Wilaya offre</label>
-                    <select class="wil1 form-control selectpicker" name="wilaya_offre" data-live-search="true">
+                    <select class="wil1 form-control selectpicker" name="wilaya_offre" data-live-search="true" data-size="5">
                         <option data-id="0" value="etab" selected>Wilaya d'etablissement</option>
                     </select>
                 </div>
@@ -213,7 +214,7 @@
                     <div class="col-md-6 form-group">
                         <label>Commune</label>
                         <div class="com-container">
-                            <select name="commune_etab" required class="form-control mb-2 selectpicker com1" data-live-search="true">
+                            <select name="commune_etab" required class="form-control mb-2 selectpicker com1" data-size="5" data-live-search="true">
                             <option data-id="0" selected>Aucun</option>
                             </select>
                         </div>

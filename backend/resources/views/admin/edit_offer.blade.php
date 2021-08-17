@@ -55,15 +55,15 @@
             </div>
             <div class="col-md-6 form-group">
                 <label for="">Secteurs</label>
-                <select name="secteur[]" class="form-control mb-2 selectpicker" multiple title="Secteur" data-live-search="true" required>
+                <select name="secteur[]" class="form-control mb-2 selectpicker" multiple title="Secteur" data-live-search="true" data-size="5" required>
                     @foreach (App\Models\Secteur::All() as $sect)
-                        <option value="{{ $sect->id }}" data-tokens="{{ $sect->secteur }}" {{ (in_array($sect->id, $secteurs)) ? "selected" : "" }}>{{ \Illuminate\Support\Str::limit($sect->secteur, 50, $end='...') }}</option>
+                        <option value="{{ $sect->id }}" data-tokens="{{ $sect->secteur }}" {{ (in_array($sect->id, $secteurs)) ? "selected" : "" }}>{{ $sect->secteur }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="col-md-6 form-group">
                 <label for="">Statut</label>
-                <select name="statut" class="form-control mb-2 selectpicker" title="statut" data-live-search="true" required>
+                <select name="statut" class="form-control mb-2 selectpicker" title="statut" data-live-search="true" data-size="5" required>
                     <option value="Mise en demeure et résiliation" data-tokens="Mise en demeure et résiliation" {{ ($offre->statut === "Mise en demeure et résiliation") ? "selected" : "" }}>Mise en demeure et résiliation</option>
                     <option value="Adjudication" data-tokens="Adjudication" {{ ($offre->statut === "Adjudication") ? "selected" : "" }}>Adjudication</option>
                     <option value="Vente aux enchères" data-tokens="Vente aux enchères" {{ ($offre->statut === "Vente aux enchères") ? "selected" : "" }}>Vente aux enchères</option>
@@ -76,7 +76,7 @@
             </div>
             <div class="col-md-6 form-group">
                 <label for="">Type</label>
-                <select name="type" class="form-control mb-2 selectpicker" required>
+                <select name="type" class="form-control mb-2 selectpicker" data-size="5" required>
                     <option value="national" {{ ($offre->type === "national") ? "selected" : "" }}>national</option>
                     <option value="international" {{ ($offre->type === "international") ? "selected" : "" }}>international</option>
                 </select>
@@ -113,7 +113,7 @@
             </div>
             <div class="col-md-6 form-group">
                 <label for="">Journal AR</label>
-                <select class="form-control selectpicker" onchange="ar(this)" name="journal_ar" id="">
+                <select class="form-control selectpicker" onchange="ar(this)" name="journal_ar" data-size="5" id="">
                     <option value="-1" selected>Aucun</option>
                     <option value="0">Autre</option>
                     {{-- get list of ar newspaperes --}}
@@ -139,7 +139,7 @@
             @if ($user_type === "admin" || $user_type === "publisher")
             <div class="col-md-6 form-group">
                 <label for="">etablissement</label>
-                <select class="form-control selectpicker" name="etab" onchange="loadEtab(this)" id="" title="etablissement" data-live-search="true">
+                <select class="form-control selectpicker" name="etab" onchange="loadEtab(this)" id="" title="etablissement" data-size="5" data-live-search="true">
                     <option value="0">Autre</option>
                     {{-- get all etabs inserted by the admin --}}
                     @foreach (App\Models\Adminetab::All() as $etab)
@@ -151,7 +151,7 @@
 
             <div class="col-md-6 form-group">
                 <label for="">Wilaya offre</label>
-                <select class="wil1 form-control selectpicker" id="wilaya_offre" name="wilaya_offre" data-live-search="true">
+                <select class="wil1 form-control selectpicker" id="wilaya_offre" name="wilaya_offre" data-size="5" data-live-search="true">
                     <option data-id="0">Wilaya d'etablissement</option>
                 </select>
             </div>
@@ -214,14 +214,14 @@
                 </div> --}}
                 <div class="col-md-6 form-group">
                     <label>Wilaya</label>
-                    <select onchange="test()" id="wilaya_etab" name="wilaya_etab" required class="wil1 form-control mb-2 selectpicker" data-live-search="true">
+                    <select onchange="test()" id="wilaya_etab" name="wilaya_etab" required class="wil1 form-control mb-2 selectpicker" data-size="5" data-live-search="true">
                         <option data-id="0" selected>Aucun</option>
                     </select>
                 </div>
                 <div class="col-md-6 form-group">
                     <label>Commune</label>
                     <div class="com-container">
-                        <select name="commune_etab" required class="form-control mb-2 selectpicker com1" data-live-search="true">
+                        <select name="commune_etab" required class="form-control mb-2 selectpicker com1" data-size="5" data-live-search="true">
                         <option data-id="0" selected>Aucun</option>
                         </select>
                     </div>

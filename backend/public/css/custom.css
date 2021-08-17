@@ -112,7 +112,7 @@ a.text-primary:hover {
     background-color: #e5e5e5 !important;
 }
 
-@media only screen and (max-width: 768px) {
+/* @media only screen and (max-width: 768px) {
     .hide-md {
         display: none;
     }
@@ -123,7 +123,7 @@ a.text-primary:hover {
     .inner {
         position: absolute;
     }
-}
+} */
 
 @media only screen and (max-width: 768px) {
     #navbarSupportedContent {
@@ -172,4 +172,8 @@ a:hover {
 
 .pagination {
     flex-wrap: wrap !important;
+}
+
+.dropdown-menu {
+    max-width: 60%;
 }
