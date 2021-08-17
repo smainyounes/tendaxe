@@ -125,11 +125,11 @@ class SettingsController extends Controller
 
     public function deleteWilaya(Wilaya $wilaya)
     {
-        if($wilaya->delete()){
+        if(Auth::user()->notif->id == $wilaya->notif_id && $wilaya->delete()){
             return 'success';
-        }else{
-            return 'error';
         }
+        
+        return 'error';
     }
 
     public function deleteSecteur($id)
@@ -143,10 +143,10 @@ class SettingsController extends Controller
 
     public function deleteKeyword(Keyword $keyword)
     {
-        if($keyword->delete()){
+        if(Auth::user()->notif->id == $keyword->notif_id && $keyword->delete()){
             return 'success';
-        }else{
-            return 'error';
         }
+
+        return 'error';
     }
 }
