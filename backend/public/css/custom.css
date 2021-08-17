@@ -169,3 +169,7 @@ a:hover {
     background-color: #11a3ab;
     border-color: #11a3ab;
 }
+
+.pagination {
+    flex-wrap: wrap !important;
+}
