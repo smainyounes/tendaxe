@@ -29,4 +29,9 @@ class Notif extends Model
     {
         return $this->hasMany(Keyword::class);
     }
+
+    public function statut()
+    {
+        return $this->hasMany(Statut::class);
+    }
 }

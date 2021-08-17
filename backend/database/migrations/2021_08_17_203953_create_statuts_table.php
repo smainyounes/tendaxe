@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMailNotifsTable extends Migration
+class CreateStatutsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateMailNotifsTable extends Migration
      */
     public function up()
     {
-        Schema::create('notifs', function (Blueprint $table) {
+        Schema::create('statuts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('frequence')->default('none');
-            $table->timestamps();
+            $table->foreignId('notif_id')->constrained()->onDelete('cascade');
+            $table->string('statut');
         });
     }
 
@@ -28,6 +27,6 @@ class CreateMailNotifsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifs');
+        Schema::dropIfExists('statuts');
     }
 }

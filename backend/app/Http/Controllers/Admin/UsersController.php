@@ -225,12 +225,26 @@ class UsersController extends Controller
             'keyword' => 'nullable|string|max:255',
             'secteur' => 'nullable|array',
             'wilaya' => 'nullable|array',
-            'statut' => 'nullable|string|max:255',
+            'statut' => 'nullable|array',
         ]);
 
         // start editing
         $notif->frequence = $request->frequence;
-        $notif->statut = $request->statut;
+        
+        if($request->statut){
+            $statuts = $notif->statut()->whereIn('statuts.statut', $request->statut)->pluck('statut');
+            if($statuts){
+                $statuts = array_diff($request->statut, $statuts->all());
+            }
+            $data = [];
+            foreach($statuts as $statut){
+                $data[] = ['statut' => $statut];
+            }
+
+            if($data){
+                $notif->statut()->createMany($data);
+            }
+        }
         
         if($request->wilaya){
             $wilayas = $notif->wilaya()->whereIn('wilayas.wilaya', $request->wilaya)->pluck('wilaya');

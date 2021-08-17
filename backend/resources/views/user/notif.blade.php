@@ -115,16 +115,32 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-4">
-                        <select name="statut" class="form-control mb-2 selectpicker" title="statut" data-live-search="true">
-                            <option value="Mise en demeure et résiliation" data-tokens="Mise en demeure et résiliation" {{ ($notif->statut === 'Mise en demeure et résiliation') ? 'selected' : '' }}>Mise en demeure et résiliation</option>
-                            <option value="Adjudication" data-tokens="Adjudication" {{ ($notif->statut === 'Adjudication') ? 'selected' : '' }}>Adjudication</option>
-                            <option value="Vente aux enchères" data-tokens="Vente aux enchères" {{ ($notif->statut === 'Vente aux enchères') ? 'selected' : '' }}>Vente aux enchères</option>
-                            <option value="Infructuosité" data-tokens="Infructuosité" {{ ($notif->statut === 'Infructuosité') ? 'selected' : '' }}>Infructuosité</option>
-                            <option value="Annulation" data-tokens="Annulation" {{ ($notif->statut === 'Annulation') ? 'selected' : '' }}>Annulation</option>
-                            <option value="Attribution de marché" data-tokens="Attribution de marché" {{ ($notif->statut === 'Attribution de marché') ? 'selected' : '' }}>Attribution de marché</option>
-                            <option value="Prorogation de délai" data-tokens="Prorogation de délai" {{ ($notif->statut === 'Prorogation de délai') ? 'selected' : '' }}>Prorogation de délai</option>
-                            <option value="Appel d'offres & Consultation" data-tokens="Appel d'offres & Consultation" {{ ($notif->statut === 'Appel d\'offres & Consultation') ? 'selected' : '' }}>Appel d'offres & Consultation</option>
+                        <select name="statut[]" class="form-control mb-2 selectpicker" multiple title="statut" data-live-search="true">
+                            <option value="Mise en demeure et résiliation" data-tokens="Mise en demeure et résiliation">Mise en demeure et résiliation</option>
+                            <option value="Adjudication" data-tokens="Adjudication">Adjudication</option>
+                            <option value="Vente aux enchères" data-tokens="Vente aux enchères">Vente aux enchères</option>
+                            <option value="Infructuosité" data-tokens="Infructuosité">Infructuosité</option>
+                            <option value="Annulation" data-tokens="Annulation">Annulation</option>
+                            <option value="Attribution de marché" data-tokens="Attribution de marché">Attribution de marché</option>
+                            <option value="Prorogation de délai" data-tokens="Prorogation de délai">Prorogation de délai</option>
+                            <option value="Appel d'offres & Consultation" data-tokens="Appel d'offres & Consultation">Appel d'offres & Consultation</option>
                         </select>
+                    </div>
+                    <div class="col-md-8">
+                        @if ($notif->statut)
+                            <ul class="pl-3" style="list-style: none;">
+                                @foreach ($notif->statut as $item)
+                                    <li>
+                                        <button type="button" class="p-0" data-id="{{ $item->id }}" onclick="statut($(this))" style="border: none; background: none;">
+                                            <img class="" src="{{ asset('img/icons/delete.png') }}" alt="">
+                                        </button>
+                                        <span class="mr-2">
+                                            {{ $item->statut }}
+                                        </span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
                     </div>
                 </div>
 
@@ -185,6 +201,25 @@
         function wilaya(e) {
             var id = e.data('id'); 
             var url = "/settings/notif/wilaya/" + id;
+            // send delete request 
+            $.ajax({
+                url: url,
+                type: 'DELETE',
+                data: {
+                    "_token" : "{{ csrf_token() }}"
+                },
+                success: function(status) {
+                    // Do something with the result
+                    if(status === 'success'){
+                        e.parent('li').remove();
+                    }
+                }
+            });
+        }
+
+        function statut(e) {
+            var id = e.data('id'); 
+            var url = "/settings/notif/statut/" + id;
             // send delete request 
             $.ajax({
                 url: url,

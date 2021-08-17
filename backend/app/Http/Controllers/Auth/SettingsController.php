@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Statut;
 use App\Models\Wilaya;
 use App\Models\Keyword;
 use Illuminate\Http\Request;
@@ -72,7 +73,7 @@ class SettingsController extends Controller
             'keyword' => 'nullable|string|max:255',
             'secteur' => 'nullable|array',
             'wilaya' => 'nullable|array',
-            'statut' => 'nullable|string|max:255',
+            'statut' => 'nullable|array',
         ]);
 
         // creating notif if doesnt exist
@@ -87,7 +88,21 @@ class SettingsController extends Controller
 
         // start editing
         $notif->frequence = $request->frequence;
-        $notif->statut = $request->statut;
+        
+        if($request->statut){
+            $statuts = $notif->statut()->whereIn('statuts.statut', $request->statut)->pluck('statut');
+            if($statuts){
+                $statuts = array_diff($request->statut, $statuts->all());
+            }
+            $data = [];
+            foreach($statuts as $statut){
+                $data[] = ['statut' => $statut];
+            }
+
+            if($data){
+                $notif->statut()->createMany($data);
+            }
+        }
         
         if($request->wilaya){
             $wilayas = $notif->wilaya()->whereIn('wilayas.wilaya', $request->wilaya)->pluck('wilaya');
@@ -152,6 +167,19 @@ class SettingsController extends Controller
         }
 
         if(Auth::user()->notif->id == $keyword->notif_id && $keyword->delete()){
+            return 'success';
+        }
+
+        return 'error';
+    }
+
+    public function deleteStatut(Statut $statut)
+    {
+        if(Auth::user()->type_user === 'admin' && $statut->delete()){
+            return 'success';
+        }
+
+        if(Auth::user()->notif->id == $statut->notif_id && $statut->delete()){
             return 'success';
         }
 
