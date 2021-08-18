@@ -16,7 +16,7 @@ class CreateOffresTable extends Migration
         Schema::create('offres', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('titre');
+            $table->text('titre');
             $table->string('img_offre')->nullable();
             $table->string('img_offre2')->nullable();
             $table->text('description')->nullable();
