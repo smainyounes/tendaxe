@@ -374,7 +374,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-4">
-                        <select name="statut[]" class="form-control mb-2 selectpicker" title="statut" data-live-search="true">
+                        <select name="statut[]" class="form-control mb-2 selectpicker" title="statut" data-live-search="true" multiple>
                             <option value="Mise en demeure et résiliation" data-tokens="Mise en demeure et résiliation">Mise en demeure et résiliation</option>
                             <option value="Adjudication" data-tokens="Adjudication">Adjudication</option>
                             <option value="Vente aux enchères" data-tokens="Vente aux enchères">Vente aux enchères</option>
