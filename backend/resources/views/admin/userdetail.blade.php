@@ -270,21 +270,21 @@
                 {{-- frequence --}}
                 <div class="row">
                     <div class="col-md-3">
-                        <h6 class="mt-2">Frequence d'envoi</h6>
+                        <h6 class="mt-2">Etat</h6>
                     </div>
                     <div class="col-md-9 d-flex justify-content-between">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="frequence" id="inlineRadio1" checked value="none">
-                            <label class="form-check-label" for="inlineRadio1">Aucun</label>
+                            <label class="form-check-label" for="inlineRadio1">Desactivé</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="frequence" id="inlineRadio2" {{ ($notif->frequence === 'everyday') ? 'checked' : '' }} value="everyday">
-                            <label class="form-check-label" for="inlineRadio2">Journalier</label>
+                            <label class="form-check-label" for="inlineRadio2">Active</label>
                         </div>
-                        <div class="form-check form-check-inline">
+                        {{-- <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="frequence" id="inlineRadio3" {{ ($notif->frequence === 'weekly') ? 'checked' : '' }} value="weekly">
                             <label class="form-check-label" for="inlineRadio3">Hebdomadaire</label>
-                        </div>                  
+                        </div>                   --}}
                     </div>
                 </div>
 
