@@ -46,7 +46,7 @@ class NotifMailCommand extends Command
         
         if($notifs->count() > 0){
             foreach($notifs as $notif){
-                $offres = Offre::whereDate('created_at', Carbon::today());
+                $offres = Offre::whereDate('created_at', Carbon::yesterday());
                 // $offres = new Offre();
 
                 if($notif->wilaya){
