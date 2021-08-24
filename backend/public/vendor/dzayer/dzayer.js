@@ -1575,7 +1575,7 @@ var wilayas = [
    {zip:"4837", name:"Zemmora",wilaya:48 }] ;
   
    function wilaya1(ab) {
-        var outp = '<option data-id="0" selected>Aucun</option>';
+        var outp = '<option data-id="0" value="Aucun" selected>Aucun</option>';
         for (var i = 0; i < wilayas.length; i++) {
            if ((i+1)==ab) {
             outp +=  '<option data-id="'+wilayas[i].id+'" value="'+wilayas[i].name+'" selected="selected" >'+wilayas[i].id+"-"+wilayas[i].name+'</option>';

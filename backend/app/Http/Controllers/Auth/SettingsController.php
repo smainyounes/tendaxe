@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Statut;
+use App\Models\Wilaya;
+use App\Models\Keyword;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -61,5 +64,125 @@ class SettingsController extends Controller
         $user->save();
 
         return back()->with('success', 'telephone a été changé avec succés');
+    }
+
+    public function Editnotif(Request $request)
+    {
+        $this->validate($request, [
+            'frequence' => 'required|in:none,everyday,weekly',
+            'keyword' => 'nullable|string|max:255',
+            'secteur' => 'nullable|array',
+            'wilaya' => 'nullable|array',
+            'statut' => 'nullable|array',
+        ]);
+
+        // creating notif if doesnt exist
+        if(!Auth::user()->notif){
+            // notif doesnt exist yet so create it
+            $notif = Notif::create([
+                'user_id' => Auth::id(),
+            ]);
+        }else{
+            $notif = Auth::user()->notif;
+        }
+
+        // start editing
+        $notif->frequence = $request->frequence;
+        
+        if($request->statut){
+            $statuts = $notif->statut()->whereIn('statuts.statut', $request->statut)->pluck('statut');
+            if($statuts){
+                $statuts = array_diff($request->statut, $statuts->all());
+            }
+            $data = [];
+            foreach($statuts as $statut){
+                $data[] = ['statut' => $statut];
+            }
+
+            if($data){
+                $notif->statut()->createMany($data);
+            }
+        }
+        
+        if($request->wilaya){
+            $wilayas = $notif->wilaya()->whereIn('wilayas.wilaya', $request->wilaya)->pluck('wilaya');
+            if($wilayas){
+                $wilayas = array_diff($request->wilaya, $wilayas->all());
+            }
+            $data = [];
+            foreach($wilayas as $wilaya){
+                $data[] = ['wilaya' => $wilaya];
+            }
+
+            if($data){
+                $notif->wilaya()->createMany($data);
+            }
+        }
+
+        if($request->keyword){
+            $notif->keyword()->updateOrCreate(['keyword' => $request->keyword], ['keyword' => $request->keyword]);
+        }
+
+        if($request->secteur){
+            $existing_id = $notif->secteur()->whereIn('secteurs.id', $request->secteur)->pluck('secteur_id');
+            if($existing_id){
+                $notif->secteur()->attach(array_diff($request->secteur, $existing_id->all()));
+            }else{
+                $notif->secteur()->attach($request->secteur);
+            }
+        }
+
+        $notif->save();
+
+        return back()->with('success', 'données enregistrer avec succés');
+
+    }
+
+    public function deleteWilaya(Wilaya $wilaya)
+    {
+        if(Auth::user()->type_user === 'admin' && $wilaya->delete()){
+            return 'success';
+        }
+
+        if(Auth::user()->notif->id == $wilaya->notif_id && $wilaya->delete()){
+            return 'success';
+        }
+        
+        return 'error';
+    }
+
+    public function deleteSecteur($id)
+    {
+        if(Auth::user()->notif->secteur()->detach($id)){
+            return 'success';
+        }else{
+            return 'error';
+        }
+    }
+
+    public function deleteKeyword(Keyword $keyword)
+    {
+        if(Auth::user()->type_user === 'admin' && $keyword->delete()){
+            return 'success';
+        }
+
+        if(Auth::user()->notif->id == $keyword->notif_id && $keyword->delete()){
+            return 'success';
+        }
+
+        return 'error';
+    }
+
+    public function deleteStatut(Statut $statut)
+    {
+        if(Auth::user()->type_user === 'admin' && $statut->delete()){
+            return 'success';
+        }
+
+        if(Auth::user()->notif->id == $statut->notif_id && $statut->delete()){
+            return 'success';
+        }
+
+        return 'error';
     }
 }

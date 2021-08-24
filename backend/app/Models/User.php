@@ -78,4 +78,9 @@ class User extends Authenticatable
     {
         return $this->belongsto(Etablissement::class);
     }
+
+    public function notif()
+    {
+        return $this->hasOne(Notif::class)->latest();
+    }
 }

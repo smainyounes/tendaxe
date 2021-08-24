@@ -70,6 +70,11 @@ class RegisterController extends Controller
                 'date_fin' => Carbon::now()->addDays(3),
             ]);
             
+            // create an empty notif
+            $notif = Notif::create([
+                'user_id' => $user->id,
+            ]);
+
             // login and redirect to profile
             Auth::attempt($request->only('email', 'password'));
             return redirect()->route('search');

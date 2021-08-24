@@ -64,6 +64,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/favorit/{offre}',[FavoritController::class, 'toggle'])->name('favorit.toggle');
     Route::get('/favorit',[FavoritController::class, 'index'])->name('offre.favorit');
 
+    Route::post('/settings/notif/',[SettingsController::class, 'Editnotif'])->name('user.notif');
+    Route::delete('/settings/notif/wilaya/{wilaya}',[SettingsController::class, 'deleteWilaya'])->name('user.notif.wilaya');
+    Route::delete('/settings/notif/sect/{secteur}',[SettingsController::class, 'deleteSecteur'])->name('user.notif.secteur');
+    Route::delete('/settings/notif/keyword/{keyword}',[SettingsController::class, 'deleteKeyword'])->name('user.notif.keyword');
+    Route::delete('/settings/notif/statut/{statut}',[SettingsController::class, 'deletestatut'])->name('user.notif.statut');
+
+
 });
 
 Route::middleware(['guest'])->group(function () {
@@ -134,6 +141,10 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin'], function() {
 
     Route::get('/offers/pending',[OffreController::class, 'pending'])->name('admin.pending');
     Route::post('/offers/accept',[OffreController::class, 'accept'])->name('admin.offre.accept');
+
+    Route::post('/admin/notif/{notif}',[UsersController::class, 'Editnotif'])->name('admin.notif');
+    Route::delete('/notif/sect/{user}/{secteur}',[UsersController::class, 'deleteSecteur'])->name('admin.notif.secteur');
+
 });
 
 Route::group(['prefix' => 'representant',  'middleware' => 'ContentCreator'], function()

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notif;
 use App\Models\Offre;
 use App\Models\Secteur;
 use Illuminate\Http\Request;
@@ -61,6 +62,17 @@ class ProfileController extends Controller
 
     public function notif()
     {
-        # code...
+        if(!Auth::user()->notif){
+            // notif doesnt exist yet so create it
+            $notif = Notif::create([
+                'user_id' => Auth::id(),
+            ]);
+        }else{
+            $notif = Auth::user()->notif;
+        }
+
+        return view('user.notif',[
+            'notif' => $notif,
+        ]);
     }
 }

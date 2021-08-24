@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Notif;
 use Illuminate\Http\Request;
 use App\Models\Etablissement;
 use App\Http\Controllers\Controller;
@@ -72,6 +73,7 @@ class UsersController extends Controller
             'user' => $user,
             'etab' => $etab,
             'date_debut' => $date_debut,
+            'notif' => $user->notif,
         ]);
     }
 
@@ -214,5 +216,75 @@ class UsersController extends Controller
         }
 
         return redirect()->route('admin.users')->with('success', 'representant a été bien ajouté');
+    }
+
+    public function EditNotif(Request $request, Notif $notif)
+    {
+        $this->validate($request, [
+            'frequence' => 'required|in:none,everyday,weekly',
+            'keyword' => 'nullable|string|max:255',
+            'secteur' => 'nullable|array',
+            'wilaya' => 'nullable|array',
+            'statut' => 'nullable|array',
+        ]);
+
+        // start editing
+        $notif->frequence = $request->frequence;
+        
+        if($request->statut){
+            $statuts = $notif->statut()->whereIn('statuts.statut', $request->statut)->pluck('statut');
+            if($statuts){
+                $statuts = array_diff($request->statut, $statuts->all());
+            }
+            $data = [];
+            foreach($statuts as $statut){
+                $data[] = ['statut' => $statut];
+            }
+
+            if($data){
+                $notif->statut()->createMany($data);
+            }
+        }
+        
+        if($request->wilaya){
+            $wilayas = $notif->wilaya()->whereIn('wilayas.wilaya', $request->wilaya)->pluck('wilaya');
+            if($wilayas){
+                $wilayas = array_diff($request->wilaya, $wilayas->all());
+            }
+            $data = [];
+            foreach($wilayas as $wilaya){
+                $data[] = ['wilaya' => $wilaya];
+            }
+
+            if($data){
+                $notif->wilaya()->createMany($data);
+            }
+        }
+
+        if($request->keyword){
+            $notif->keyword()->updateOrCreate(['keyword' => $request->keyword], ['keyword' => $request->keyword]);
+        }
+
+        if($request->secteur){
+            $existing_id = $notif->secteur()->whereIn('secteurs.id', $request->secteur)->pluck('secteur_id');
+            if($existing_id){
+                $notif->secteur()->attach(array_diff($request->secteur, $existing_id->all()));
+            }else{
+                $notif->secteur()->attach($request->secteur);
+            }
+        }
+
+        $notif->save();
+
+        return back()->with('success', 'données enregistrer avec succés');
+    }
+
+    public function deleteSecteur(User $user, $id)
+    {
+        if($user->notif->secteur()->detach($id)){
+            return 'success';
+        }else{
+            return 'error';
+        }
     }
 }
