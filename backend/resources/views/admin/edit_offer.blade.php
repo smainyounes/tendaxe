@@ -136,7 +136,7 @@
                     </div>
                 </div>
             </div>
-            @if ($user_type === "admin" || $user_type === "publisher")
+            @if ($user_type !== "content")
             <div class="col-md-6 form-group">
                 <label for="">etablissement</label>
                 <select class="form-control selectpicker" name="etab" onchange="loadEtab(this)" id="" title="etablissement" data-size="5" data-live-search="true">
@@ -186,7 +186,7 @@
                 </div>
             </div>
         </div>
-        @if ($user_type === "admin" || $user_type === "publisher")
+        @if ($user_type !== "content")
         <div class="bg-white" id="last" style="display: none;">
             <h6 class="bold mb-3">Les informations sur l’établissment</h6>
             <div class="row">
