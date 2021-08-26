@@ -37,6 +37,11 @@
 
 		<!-- selectpicker bootstrap js -->
 	    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+		
+		{{-- datepicker --}}
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+		<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 	    <title>TendAxe | @yield('title')</title>
   	</head>
@@ -78,6 +83,8 @@
 							<a class="dropdown-item" href="{{ route('profile') }}">Parametres</a>
 							<a class="dropdown-item" href="{{ route('abonnement') }}">Abonnement</a>
 							<a class="dropdown-item" href="{{ route('notification') }}">Notification</a>
+							<a class="dropdown-item" href="{{ route('user.offers') }}">Mes Offres</a>
+							<div class="dropdown-divider"></div>
 							<button type="submit" class="dropdown-item">se deconnecter</button>
 						</form>
 

@@ -39,6 +39,10 @@
                     <img width="25px" class="img-fluid mr-2" src="{{ asset('img/icons/notifbell.png') }}" alt="">
                     <span class="m-2 ml-3 text-dark h5">Notification</span>
                 </a>
+                <a class="d-flex align-items-center" href="{{ route('user.offers') }}" style="text-decoration: none;">
+                    <img width="25px" class="img-fluid mr-2" src="{{ asset('img/icons/annouce.png') }}" alt="">
+                    <span class="m-2 ml-3 text-dark h5">Mes Offres</span>
+                </a>
             </div>
             <div class="col-md-9 bg-white border px-2 py-3 mb-3">
                 @yield('profile')
