@@ -13,9 +13,7 @@
                     <img class="img-fluid mb-4" src="{{ asset('img/icons/lock3.png') }}">
                     <h6 class="bold mb-4">Réservé aux abonnés</h6>
                 @else
-                    @if ($offre->user->type_user === "abonné")
-                        <img class="img-fluid mb-4" src="{{ asset('img/user.png') }}">
-                    @elseif($img === "default")
+                    @if($img === "default")
                         <img class="img-fluid mb-4" src="{{ asset('img/2.png') }}">
                         <h6 class="bold mb-4">{{ $etab->nom_etablissement }}</h6>
                     @elseif ($img)

@@ -116,11 +116,14 @@ class SearchOffreController extends Controller
         if(Auth::check() && Auth::user()->type_user === "admin"){
             $offre = Offre::withTrashed()->where('id', $offre_id)->with('secteur','user')->first();
         }else{
-            $offre = Offre::where('etat', 'active')->where('id', $offre_id)->with('secteur','user')->first();
+            $offre = Offre::where('id', $offre_id)->with('secteur','user')->first();
         }
 
-        if(!$offre)
-            return abort(404);
+        if($offre->etat === "desactive"){
+            if(Auth::check() && Auth::id() != $offre->user_id){
+                return abort(404);
+            }
+        }
 
         $img = null;
         $etab = null;
@@ -135,7 +138,7 @@ class SearchOffreController extends Controller
             $etab = $offre->user->etablissement;
         }
 
-        if($offre->user->type_user === "admin" || $offre->user->type_user === "publisher"){
+        if($offre->user->type_user !== "content"){
             if( $offre->adminetab->category === "AUTRE"){
                 $img = $offre->adminetab->logo;
             }else{
@@ -181,6 +184,10 @@ class SearchOffreController extends Controller
         // check expiration date
         if(Auth::check() && Auth::user()->type_user === 'abonné'){
             
+            if($offre && $offre->user_id == Auth::id()){
+                return false;
+            }
+
             $current = Auth::user()->current_abonnement;
 
             if($current){
