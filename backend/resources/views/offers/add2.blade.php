@@ -49,19 +49,16 @@
                         <div class="col-md-6 form-group">
                             <label for="">Statut</label>
                             <select name="statut" class="form-control bg-light mb-2 selectpicker" data-size="5" title="statut" data-live-search="true" required>
-                                <option value="Mise en demeure et résiliation" data-tokens="Mise en demeure et résiliation">Mise en demeure et résiliation</option>
+                                <option value="Appel d'offres & Consultation" data-tokens="Appel d'offres & Consultation" selected>Appel d'offres & Consultation</option>
+                                <option value="Attribution de marché" data-tokens="Attribution de marché">Attribution de marché</option>
+                                <option value="Sous-traitance" data-tokens="Sous-traitance">Sous-traitance</option>
+                                <option value="Prorogation de délai" data-tokens="Prorogation de délai">Prorogation de délai</option>
+                                <option value="Annulation" data-tokens="Annulation">Annulation</option>
+                                <option value="Infructuosité" data-tokens="Infructuosité">Infructuosité</option>
                                 <option value="Adjudication" data-tokens="Adjudication">Adjudication</option>
                                 <option value="Vente aux enchères" data-tokens="Vente aux enchères">Vente aux enchères</option>
-                                <option value="Infructuosité" data-tokens="Infructuosité">Infructuosité</option>
-                                <option value="Annulation" data-tokens="Annulation">Annulation</option>
-                                <option value="Attribution de marché" data-tokens="Attribution de marché">Attribution de marché</option>
-                                <option value="Prorogation de délai" data-tokens="Prorogation de délai">Prorogation de délai</option>
-                                <option value="Appel d'offres & Consultation" data-tokens="Appel d'offres & Consultation" selected>Appel d'offres & Consultation</option>
+                                <option value="Mise en demeure et résiliation" data-tokens="Mise en demeure et résiliation">Mise en demeure et résiliation</option>
                             </select>
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label for="">Prix de caller de charge</label>
-                            <input class="form-control bg-light" type="number" name="prix">
                         </div>
 
                         <div class="col-md-6 form-group">

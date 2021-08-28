@@ -138,7 +138,6 @@ class AddOffreController extends Controller
                 'secteur' => 'required|array',
                 'statut' => 'required|max:255',
                 'wilaya_offre' => 'max:255',
-                'prix' => 'nullable|numeric',
                 'photo' => 'required_if:description,value|mimes:jpeg,jpg,png|max:100000', // max 10000kb
                 ]);
             
@@ -233,7 +232,6 @@ class AddOffreController extends Controller
                 'statut' => $request->statut,
                 'type' => "national",
                 'wilaya' => $wilaya,
-                'prix' => $request->prix,
                 'description' => $request->description,
                 'date_pub' => $request->date_pub,
                 'date_limit' => $request->date_lim,
