@@ -104,9 +104,9 @@ a.text-primary:hover {
     margin-top: 90px;
 }
 
-.inner {
+/* .inner {
     max-height: 340px !important;
-}
+} */
 
 .btn-light {
     background-color: #e5e5e5 !important;
@@ -176,4 +176,11 @@ a:hover {
 
 .dropdown-menu {
     max-width: 60%;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #40a3b9;
 }

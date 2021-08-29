@@ -64,14 +64,15 @@
             <div class="col-md-6 form-group">
                 <label for="">Statut</label>
                 <select name="statut" class="form-control mb-2 selectpicker" title="statut" data-live-search="true" data-size="5" required>
-                    <option value="Mise en demeure et résiliation" data-tokens="Mise en demeure et résiliation" {{ ($offre->statut === "Mise en demeure et résiliation") ? "selected" : "" }}>Mise en demeure et résiliation</option>
-                    <option value="Adjudication" data-tokens="Adjudication" {{ ($offre->statut === "Adjudication") ? "selected" : "" }}>Adjudication</option>
-                    <option value="Vente aux enchères" data-tokens="Vente aux enchères" {{ ($offre->statut === "Vente aux enchères") ? "selected" : "" }}>Vente aux enchères</option>
-                    <option value="Infructuosité" data-tokens="Infructuosité" {{ ($offre->statut === "Infructuosité") ? "selected" : "" }}>Infructuosité</option>
-                    <option value="Annulation" data-tokens="Annulation" {{ ($offre->statut === "Annulation") ? "selected" : "" }}>Annulation</option>
-                    <option value="Attribution de marché" data-tokens="Attribution de marché" {{ ($offre->statut === "Attribution de marché") ? "selected" : "" }}>Attribution de marché</option>
-                    <option value="Prorogation de délai" data-tokens="Prorogation de délai" {{ ($offre->statut === "Prorogation de délai") ? "selected" : "" }}>Prorogation de délai</option>
                     <option value="Appel d'offres & Consultation" data-tokens="Appel d'offres & Consultation" {{ ($offre->statut === "Appel d'offres & Consultation") ? "selected" : "" }}>Appel d'offres & Consultation</option>
+                    <option value="Attribution de marché" data-tokens="Attribution de marché" {{ ($offre->statut === "Attribution de marché") ? "selected" : "" }}>Attribution de marché</option>
+                    <option value="Sous-traitance" data-tokens="Sous-traitance" {{ ($offre->statut === "Sous-traitance") ? "selected" : "" }}>Sous-traitance</option>
+                    <option value="Annulation" data-tokens="Annulation" {{ ($offre->statut === "Annulation") ? "selected" : "" }}>Annulation</option>
+                    <option value="Infructuosité" data-tokens="Infructuosité" {{ ($offre->statut === "Infructuosité") ? "selected" : "" }}>Infructuosité</option>
+                    <option value="Adjudication" data-tokens="Adjudication" {{ ($offre->statut === "Adjudication") ? "selected" : "" }}>Adjudication</option>
+                    <option value="Mise en demeure et résiliation" data-tokens="Mise en demeure et résiliation" {{ ($offre->statut === "Mise en demeure et résiliation") ? "selected" : "" }}>Mise en demeure et résiliation</option>
+                    <option value="Vente aux enchères" data-tokens="Vente aux enchères" {{ ($offre->statut === "Vente aux enchères") ? "selected" : "" }}>Vente aux enchères</option>
+                    <option value="Prorogation de délai" data-tokens="Prorogation de délai" {{ ($offre->statut === "Prorogation de délai") ? "selected" : "" }}>Prorogation de délai</option>
                 </select>
             </div>
             <div class="col-md-6 form-group">
@@ -86,6 +87,7 @@
                 <input class="form-control" type="number" value="{{ $offre->prix }}" name="prix">
             </div>
             <div class="col-md-6 form-group">
+                <img class="mx-auto" width="100px" height="50px" src="{{ asset('img/fr.jpg') }}" alt="">
                 <label for="">Journal FR</label>
                 <select class="form-control selectpicker" onchange="fr(this)" name="journal_fr" id="">
                     <option value="-1" selected>Aucun</option>
@@ -112,6 +114,7 @@
                 </div>
             </div>
             <div class="col-md-6 form-group">
+                <img class="mx-auto" width="100px" height="50px" src="{{ asset('img/ar.jpg') }}" alt="">
                 <label for="">Journal AR</label>
                 <select class="form-control selectpicker" onchange="ar(this)" name="journal_ar" data-size="5" id="">
                     <option value="-1" selected>Aucun</option>
@@ -136,7 +139,38 @@
                     </div>
                 </div>
             </div>
-            @if ($user_type === "admin" || $user_type === "publisher")
+
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="">Fichier de publication AR</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile" name="photo">
+                        <label class="custom-file-label" for="customFile">Choisir fichier</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    @if ($offre->img_offre)
+                        fichier Ar
+                        <img class="img-fluid" src="{{ asset('storage/' . $offre->img_offre) }}">
+                    @endif
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="">Fichier de publication FR</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFile" name="photo2">
+                        <label class="custom-file-label" for="customFile">Choisir fichier</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    @if ($offre->img_offre2)
+                    fichier Fr
+                    <img class="img-fluid" src="{{ asset('storage/' . $offre->img_offre2) }}">
+                    @endif
+                </div>
+                
+            </div>
+
+            @if ($user_type !== "content")
             <div class="col-md-6 form-group">
                 <label for="">etablissement</label>
                 <select class="form-control selectpicker" name="etab" onchange="loadEtab(this)" id="" title="etablissement" data-size="5" data-live-search="true">
@@ -158,35 +192,8 @@
             
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                @if ($offre->img_offre)
-                    fichier Ar
-                    <img class="img-fluid" src="{{ asset('storage/' . $offre->img_offre) }}">
-                @endif
-                </div>
-                <div class="col-md-6 form-group">
-                    <label for="">Fichier de publication AR</label>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="customFile" name="photo">
-                        <label class="custom-file-label" for="customFile">Choisir fichier</label>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    @if ($offre->img_offre2)
-                    fichier Fr
-                    <img class="img-fluid" src="{{ asset('storage/' . $offre->img_offre2) }}">
-                    @endif
-                </div>
-            <div class="col-md-6 form-group">
-                <label for="">Fichier de publication FR</label>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile" name="photo2">
-                    <label class="custom-file-label" for="customFile">Choisir fichier</label>
-                </div>
-            </div>
-        </div>
-        @if ($user_type === "admin" || $user_type === "publisher")
+        
+        @if ($user_type !== "content")
         <div class="bg-white" id="last" style="display: none;">
             <h6 class="bold mb-3">Les informations sur l’établissment</h6>
             <div class="row">

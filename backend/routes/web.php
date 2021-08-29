@@ -56,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/settings/profile',[ProfileController::class, 'index'])->name('profile');
     Route::get('/settings/abonnement',[ProfileController::class, 'abonnement'])->name('abonnement');
     Route::get('/settings/notification',[ProfileController::class, 'notif'])->name('notification');
+    Route::get('/settings/offres',[AddOffreController::class, 'mesoffres'])->name('user.offers');
 
     Route::post('/chang_pswd',[SettingsController::class, 'EditPassword'])->name('user.password');
     Route::post('/chang_email',[SettingsController::class, 'editemail'])->name('user.email');

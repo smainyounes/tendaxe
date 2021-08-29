@@ -44,27 +44,27 @@ class NotifMailCommand extends Command
     {
         $notifs = Notif::where("frequence", "everyday")->with('user', 'secteur', 'wilaya', 'keyword', 'statut')->get();
         
-        if($notifs->count() > 0){
+        if($notifs->isNotEmpty()){
             foreach($notifs as $notif){
                 $offres = Offre::whereDate('created_at', Carbon::yesterday());
                 // $offres = new Offre();
 
-                if($notif->wilaya){
+                if($notif->wilaya->isNotEmpty()){
                     $offres = $offres->whereIn('wilaya', $notif->wilaya()->pluck('wilaya'));
                 }
 
-                if($notif->statut){
+                if($notif->statut->isNotEmpty()){
                     $offres = $offres->whereIn('statut', $notif->statut()->pluck('statut'));
                 }
 
-                if($notif->secteur){
+                if($notif->secteur->isNotEmpty()){
                     $sect_ids = $notif->secteur()->pluck('secteurs.id');
                     $offres = $offres->whereHas('secteur', function($q) use($sect_ids) {
                         $q->whereIn('secteur_id', $sect_ids);
                     });
                 }
 
-                if($notif->keyword){
+                if($notif->keyword->isNotEmpty()){
                     $keywords = $notif->keyword()->pluck('keyword');
                     $offres = $offres->where(function ($q) use ($keywords) {
                         collect($keywords)->each(function ($keyword) use ($q) {
@@ -80,7 +80,7 @@ class NotifMailCommand extends Command
                     $expired = false;
                 }
 
-                if($offres->count() > 0){
+                if($offres->isNotEmpty()){
                     Mail::to($notif->user->email)->send(new NotifMail($offres, $expired));
                 }
             }
