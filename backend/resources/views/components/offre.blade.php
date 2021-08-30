@@ -57,7 +57,7 @@
                     @endif
                 </div>
             @endif
-            <div class="my-3 d-flex">
+            <div class="mb-2 d-flex">
                 <span class="mx-auto mt-2"> <img src="{{ asset('img/icons/play.png') }}"> {{ $offre->date_pub }}</span>
                 <span class="mx-auto mt-2"> <img src="{{ asset('img/icons/stop.png') }}"> {{ $offre->date_limit }}</span>
                 <div>
