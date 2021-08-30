@@ -104,8 +104,9 @@
 
 		<section id="latest" class="container my-5">
 			<h3 class="text-center mb-4 bold">Dernier appels</h3>
-			@foreach (App\Models\Offre::latest()->take(4)->get() as $item)
-			<div class="my-2">
+			@foreach (App\Models\Offre::where('etat', 'active')->latest()->take(4)->get() as $item)
+			<x-offre :exp="false" :offre="$item" />
+			{{-- <div class="my-2">
 				<div class="bg-white px-3 pt-3 border rounded">
 					<div class="row mb-3">
 						<div class="col-9 col-md-10 pr-0 bold">
@@ -137,7 +138,7 @@
 							<a href="{{ route('detail', $item) }}" class="btn btn-sm btn-primary ml-auto">Detail</a>
 						</div>
 				</div>
-			</div>
+			</div> --}}
 			@endforeach
 			
 			<div class="text-right">
