@@ -138,4 +138,41 @@
 
         <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 
+		@if (Auth::check() && (Auth::user()->type_user === 'admin' || Auth::user()->type_user === 'publisher'))
+			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalCenterTitle">Confirmation</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					</div>
+					<div class="modal-body">
+					Voulez vous supprimer cet offre?
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">non</button>
+					<form method="POST" action="{{ (Auth::user()->type_user !== 'content') ? route('admin.offre.destroy') : route('rep.offre.destroy') }}">
+						@csrf
+						@method('DELETE')
+						<input type="number" name="offre" id="offre_id" hidden>
+						<button class="btn btn-primary">Oui</button>
+					</form>
+					</div>
+				</div>
+				</div>
+		  	</div>
+	  
+		  <script type="text/javascript">
+	  
+			  $('#exampleModalCenter').on('show.bs.modal', function (event) {
+				  var button = $(event.relatedTarget) // Button that triggered the modal
+				  var id = button.data('id') 
+				  
+				  $('#offre_id').val(id);
+			  });
+		  </script>
+		@endif
+
     </body>
