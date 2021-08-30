@@ -61,12 +61,18 @@ class SearchOffreController extends Controller
             $offres = $offres->where('titre', 'LIKE', "%{$request->keyword}%");
         }
 
-        if($request->has('wilaya') && $request->wilaya){
-            $offres = $offres->where('wilaya', $request->wilaya);
+        if($request->has('annonceur')){
+            $offres = $offres->whereHas('adminetab', function($q) use($request) {
+                $q->where('nom_etablissement', 'LIKE', "%{$request->annonceur}%");
+            });
         }
 
-        if($request->has('statut') && $request->statut){
-            $offres = $offres->where('statut', $request->statut);
+        if($request->has('wilaya') && $request->wilaya[0]){
+            $offres = $offres->whereIn('wilaya', $request->wilaya);
+        }
+
+        if($request->has('statut') && $request->statut[0]){
+            $offres = $offres->whereIn('statut', $request->statut);
         }
 
         if($request->has('type') && $request->type){
@@ -83,6 +89,8 @@ class SearchOffreController extends Controller
                     break;
                 case '3months': $offres = $offres->whereBetween('date_pub', [Carbon::now()->subMonth(3), Carbon::now()]);
                     break;
+                case 'custom': $offres = $offres->whereDate('date_pub', $request->custom_pub);
+                    break;
             }
         }
 
@@ -96,12 +104,15 @@ class SearchOffreController extends Controller
                     break;
                 case '3months': $offres = $offres->whereBetween('date_limit', [Carbon::now()->subMonth(3), Carbon::now()]);
                     break;
+                case 'custom': $offres = $offres->whereDate('date_limit', $request->custom_limit);
+                    break;
             }
         }
 
-        $offres = $offres->latest('date_pub')->paginate(10);
+        $offres = $offres->latest('date_pub')->paginate(15);
 
         //dd($offres);
+        $request->flash();
 
         return view('offers.search', [
             'secteurs' => $secteurs,

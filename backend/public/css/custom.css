@@ -184,3 +184,7 @@ a:hover {
     text-decoration: none;
     background-color: #40a3b9;
 }
+
+.border {
+    border: 1px solid #bdbdbd !important;
+}
