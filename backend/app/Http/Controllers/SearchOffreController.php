@@ -109,7 +109,7 @@ class SearchOffreController extends Controller
             }
         }
 
-        $offres = $offres->latest('date_pub')->paginate(15);
+        $offres = $offres->latest('date_pub')->paginate(15)->withQueryString();
 
         //dd($offres);
         $request->flash();

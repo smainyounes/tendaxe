@@ -38,7 +38,7 @@ class UsersController extends Controller
                     ->orWhere('phone', 'LIKE', "%{$request->keyword}%");
         }
 
-        $users = $users->latest()->paginate(10);
+        $users = $users->latest()->paginate(10)->withQueryString();
 
         session()->flashInput($request->input());
 
