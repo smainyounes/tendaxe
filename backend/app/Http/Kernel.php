@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'SubscribedUser' => \App\Http\Middleware\SubscribedUser::class,
         'publisher' => \App\Http\Middleware\publisher::class,
         'adminpanel' => \App\Http\Middleware\adminpanel::class,
+        'EmailVerified' => \App\Http\Middleware\EmailVerified::class,
     ];
 }
