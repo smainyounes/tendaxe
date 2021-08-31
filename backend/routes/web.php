@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FavoritController;
 use App\Http\Controllers\ProfileController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\SearchOffreController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SettingsController;
 use App\Http\Controllers\Admin\AbonnementController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,23 @@ use App\Http\Controllers\Admin\AbonnementController;
 Route::get('/test', function () {
     return view('user.notif');
 });
+// email verification
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
 
 Route::get('/suspended', function () {
     return view('suspended');
@@ -45,9 +64,9 @@ Route::get('/help',function () {
     return view('help');
 })->name('help');
 
-Route::get('/search',[SearchOffreController::class, 'index'])->name('search');
+Route::get('/search',[SearchOffreController::class, 'index'])->name('search')->middleware('EmailVerified');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'EmailVerified'])->group(function () {
     Route::get('/add',[AddOffreController::class, 'index'])->name('offre.add');
     Route::post('/add',[AddOffreController::class, 'store']);
 
@@ -84,7 +103,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 
-Route::get('/detail/{offre_id}',[SearchOffreController::class, 'detail'])->name('detail');
+Route::get('/detail/{offre_id}',[SearchOffreController::class, 'detail'])->name('detail')->middleware('EmailVerified');
 
 
 // adminpanel (both admin & publisher can access those routes)
