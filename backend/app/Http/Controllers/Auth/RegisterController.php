@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Notif;
 use App\Models\Abonnement;
 use Illuminate\Http\Request;
 use App\Models\Etablissement;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
@@ -76,6 +78,8 @@ class RegisterController extends Controller
                 'user_id' => $user->id,
             ]);
 
+            event(new Registered($user));
+            
             // login and redirect to profile
             Auth::attempt($request->only('email', 'password'));
             return redirect()->route('search');
