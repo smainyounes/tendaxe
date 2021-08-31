@@ -61,6 +61,7 @@ class RegisterController extends Controller
                 'commune' => $request->commune,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'etat' => 'active',
             ]);
 
             $abonnement = Abonnement::create([
