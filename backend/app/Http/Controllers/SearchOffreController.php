@@ -12,6 +12,7 @@ class SearchOffreController extends Controller
 {
     public function index(Request $request)
     {
+        // dd(Auth::user()->current_abonnement);
         $expired = true;
         if(Auth::check()){
             if(Auth::user()->type_user === "content"){
@@ -21,8 +22,12 @@ class SearchOffreController extends Controller
                 $expired = false;
                 $secteurs = Secteur::all();
             }else{
-                $secteurs = Auth::user()->secteur;
-                $expired = ((Auth::user()->etat === "desactive") || (Carbon::createFromFormat('Y-m-d', Auth::user()->exp)->isPast()));
+                $expired = ((Auth::user()->etat === "desactive") || !(Auth::user()->current_abonnement));
+                if($expired || Auth::user()->current_abonnement->nom_abonnement === 'gratuit'){
+                    $secteurs = Secteur::all();
+                }else{
+                    $secteurs = Auth::user()->current_abonnement->secteur;
+                }
             }
         }else{
             $secteurs = Secteur::all();
@@ -56,12 +61,18 @@ class SearchOffreController extends Controller
             $offres = $offres->where('titre', 'LIKE', "%{$request->keyword}%");
         }
 
-        if($request->has('wilaya') && $request->wilaya){
-            $offres = $offres->where('wilaya', $request->wilaya);
+        if($request->has('annonceur')){
+            $offres = $offres->whereHas('adminetab', function($q) use($request) {
+                $q->where('nom_etablissement', 'LIKE', "%{$request->annonceur}%");
+            });
         }
 
-        if($request->has('statut') && $request->statut){
-            $offres = $offres->where('statut', $request->statut);
+        if($request->has('wilaya') && $request->wilaya[0]){
+            $offres = $offres->whereIn('wilaya', $request->wilaya);
+        }
+
+        if($request->has('statut') && $request->statut[0]){
+            $offres = $offres->whereIn('statut', $request->statut);
         }
 
         if($request->has('type') && $request->type){
@@ -78,6 +89,8 @@ class SearchOffreController extends Controller
                     break;
                 case '3months': $offres = $offres->whereBetween('date_pub', [Carbon::now()->subMonth(3), Carbon::now()]);
                     break;
+                case 'custom': $offres = $offres->whereDate('date_pub', $request->custom_pub);
+                    break;
             }
         }
 
@@ -91,12 +104,15 @@ class SearchOffreController extends Controller
                     break;
                 case '3months': $offres = $offres->whereBetween('date_limit', [Carbon::now()->subMonth(3), Carbon::now()]);
                     break;
+                case 'custom': $offres = $offres->whereDate('date_limit', $request->custom_limit);
+                    break;
             }
         }
 
-        $offres = $offres->latest('date_pub')->paginate(10);
+        $offres = $offres->latest('date_pub')->paginate(15)->withQueryString();
 
         //dd($offres);
+        $request->flash();
 
         return view('offers.search', [
             'secteurs' => $secteurs,
@@ -111,11 +127,14 @@ class SearchOffreController extends Controller
         if(Auth::check() && Auth::user()->type_user === "admin"){
             $offre = Offre::withTrashed()->where('id', $offre_id)->with('secteur','user')->first();
         }else{
-            $offre = Offre::where('etat', 'active')->where('id', $offre_id)->with('secteur','user')->first();
+            $offre = Offre::where('id', $offre_id)->with('secteur','user')->first();
         }
 
-        if(!$offre)
-            return abort(404);
+        if($offre->etat === "desactive"){
+            if(Auth::check() && Auth::id() != $offre->user_id){
+                return abort(404);
+            }
+        }
 
         $img = null;
         $etab = null;
@@ -130,7 +149,7 @@ class SearchOffreController extends Controller
             $etab = $offre->user->etablissement;
         }
 
-        if($offre->user->type_user === "admin" || $offre->user->type_user === "publisher"){
+        if($offre->user->type_user !== "content"){
             if( $offre->adminetab->category === "AUTRE"){
                 $img = $offre->adminetab->logo;
             }else{
@@ -174,29 +193,41 @@ class SearchOffreController extends Controller
         }
 
         // check expiration date
-        if(Auth::check()){
-            $expired = Carbon::createFromFormat('Y-m-d', Auth::user()->exp)->isPast();
-        }
-
-        // check sectors
-        if($offre && !$expired && Auth::check()){
-            // get user sectors
-            $user_sec = [];
-            foreach(Auth::user()->secteur as $sec){
-                $user_sec[] = $sec->id;
+        if(Auth::check() && Auth::user()->type_user === 'abonné'){
+            
+            if($offre && $offre->user_id == Auth::id()){
+                return false;
             }
 
-            // get offre sectors
-            $offre_sec = [];
-            foreach($offre->secteur as $sec){
-                $offre_sec[] = $sec->id;
-            }
+            $current = Auth::user()->current_abonnement;
 
-            if(count(array_intersect($user_sec,$offre_sec)) > 0){
-                $expired = false;
+            if($current){
+                if($current->nom_abonnement === "gratuit"){
+                    return false;
+                }
+
+                if($offre){
+
+                    // get current use secteurs
+                    $user_sec = [];
+                    foreach($current->secteur as $sec){
+                        $user_sec[] = $sec->id;
+                    }
+
+                    // get offre sectors
+                    $offre_sec = [];
+                    foreach($offre->secteur as $sec){
+                        $offre_sec[] = $sec->id;
+                    }
+
+                    // check if he can see or not
+                    return count(array_intersect($user_sec,$offre_sec)) <= 0;
+
+                }
+
             }else{
-                $expired = true;
-            }
+                return false;
+            }            
         }
 
         return $expired;

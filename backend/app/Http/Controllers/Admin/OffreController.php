@@ -86,8 +86,8 @@ class OffreController extends Controller
 
         // validation
         $this->validate($request, [
-            'titre' => 'required|max:255',
-            'description' => 'max:5000',
+            'titre' => 'required',
+            'description' => 'nullable',
             'date_pub' => 'required|date',
             'date_lim' => 'required|date',
             'secteur' => 'required|array',
@@ -98,8 +98,8 @@ class OffreController extends Controller
             'etab' => 'required|numeric',
             'journal_ar' => 'required|numeric',
             'journal_fr' => 'required|numeric',
-            'photo' => 'required_if:description,value|mimes:jpeg,jpg,png|max:10000', // max 10000kb
-            'photo2' => 'required_if:description,value|mimes:jpeg,jpg,png|max:10000', // max 10000kb
+            'photo' => 'required_if:description,value|mimes:jpeg,jpg,png|max:100000', // max 10000kb
+            'photo2' => 'required_if:description,value|mimes:jpeg,jpg,png|max:100000', // max 10000kb
             ]);
         
         // update common infos
@@ -286,8 +286,8 @@ class OffreController extends Controller
     {
         // validation
         $this->validate($request, [
-            'titre' => 'required|max:255',
-            'description' => 'max:5000',
+            'titre' => 'required',
+            'description' => 'nullable',
             'date_pub' => 'required|date',
             'date_lim' => 'required|date',
             'secteur' => 'required|array',
@@ -298,8 +298,8 @@ class OffreController extends Controller
             'etab' => 'required|numeric',
             'journal_ar' => 'required|numeric',
             'journal_fr' => 'required|numeric',
-            'photo' => 'required_if:description,value|mimes:jpeg,jpg,png|max:10000', // max 10000kb
-            'photo2' => 'required_if:description,value|mimes:jpeg,jpg,png|max:10000', // max 10000kb
+            'photo' => 'required_if:description,value|mimes:jpeg,jpg,png|max:100000', // max 10000kb
+            'photo2' => 'required_if:description,value|mimes:jpeg,jpg,png|max:100000', // max 10000kb
             ]);
         
         // check if new jornal is sent

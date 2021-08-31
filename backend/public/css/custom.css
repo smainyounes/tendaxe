@@ -104,15 +104,15 @@ a.text-primary:hover {
     margin-top: 90px;
 }
 
-.inner {
+/* .inner {
     max-height: 340px !important;
-}
+} */
 
 .btn-light {
     background-color: #e5e5e5 !important;
 }
 
-@media only screen and (max-width: 768px) {
+/* @media only screen and (max-width: 768px) {
     .hide-md {
         display: none;
     }
@@ -123,7 +123,7 @@ a.text-primary:hover {
     .inner {
         position: absolute;
     }
-}
+} */
 
 @media only screen and (max-width: 768px) {
     #navbarSupportedContent {
@@ -168,4 +168,23 @@ a:hover {
     color: #fff;
     background-color: #11a3ab;
     border-color: #11a3ab;
+}
+
+.pagination {
+    flex-wrap: wrap !important;
+}
+
+.dropdown-menu {
+    max-width: 60%;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #40a3b9;
+}
+
+.border {
+    border: 1px solid #bdbdbd !important;
 }

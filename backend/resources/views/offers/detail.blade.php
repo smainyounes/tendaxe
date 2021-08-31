@@ -13,9 +13,7 @@
                     <img class="img-fluid mb-4" src="{{ asset('img/icons/lock3.png') }}">
                     <h6 class="bold mb-4">Réservé aux abonnés</h6>
                 @else
-                    @if ($offre->user->type_user === "abonné")
-                        <img class="img-fluid mb-4" src="{{ asset('img/user.png') }}">
-                    @elseif($img === "default")
+                    @if($img === "default")
                         <img class="img-fluid mb-4" src="{{ asset('img/2.png') }}">
                         <h6 class="bold mb-4">{{ $etab->nom_etablissement }}</h6>
                     @elseif ($img)
@@ -93,18 +91,20 @@
                     <h4 class="bold text-dark">{{ $offre->titre }}</h4>
                 </div>
                 @auth
-                <form class="col-sm-1" method="POST" action="{{ route('favorit.toggle', $offre) }}">
-                    @csrf
-                    @if ($offre->isFavorited())
-                        <button class="text-sm-right" style="background: none; border: none;">
-                            <img src="{{ asset('img/icons/starfill.png') }}">
-                        </button>
-                    @else
-                        <button class="text-sm-right" style="background: none; border: none;">
-                            <img src="{{ asset('img/icons/star.png') }}">
-                        </button>
-                    @endif
-                </form>
+                @if (!$expired)
+                    <form class="col-sm-1" method="POST" action="{{ route('favorit.toggle', $offre) }}">
+                        @csrf
+                        @if ($offre->isFavorited())
+                            <button class="text-sm-right" style="background: none; border: none;">
+                                <img src="{{ asset('img/icons/starfill.png') }}">
+                            </button>
+                        @else
+                            <button class="text-sm-right" style="background: none; border: none;">
+                                <img src="{{ asset('img/icons/star.png') }}">
+                            </button>
+                        @endif
+                    </form>
+                @endif
                 @endauth
             </div>
             <div class="">

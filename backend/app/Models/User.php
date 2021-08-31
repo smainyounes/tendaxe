@@ -33,7 +33,6 @@ class User extends Authenticatable
         'commune',
         'secteurs',
         'type_user',
-        'exp',
         'etat',
     ];
 
@@ -56,52 +55,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function Expired(Offre $offre = null)
+    public function abonnement()
     {
-        $expired = true;
+        return $this->hasMany(Abonnement::class);
+    }
 
-        //check if admin
-        if(Auth::check() && Auth::user()->type_user === 'admin'){
-            return false;
-        }
-
-        // check if account suspended
-        if(Auth::check() && Auth::user()->etat === 'desactive'){
-            return true;
-        }
-
-        // check if content creator & owner
-        if(Auth::check() && (Auth::user()->type_user === 'content' || Auth::user()->type_user === 'publisher')){
-            return $offre->user_id != Auth::id();
-        }
-
-        // check expiration date
-        if(Auth::check()){
-            $expired = Carbon::createFromFormat('Y-m-d', Auth::user()->exp)->isPast();
-        }
-
-        // check sectors
-        if($offre && !$expired && Auth::check()){
-            // get user sectors
-            $user_sec = [];
-            foreach(Auth::user()->secteur as $sec){
-                $user_sec[] = $sec->id;
-            }
-
-            // get offre sectors
-            $offre_sec = [];
-            foreach($offre->secteur as $sec){
-                $offre_sec[] = $sec->id;
-            }
-
-            if(count(array_intersect($user_sec,$offre_sec)) > 0){
-                $expired = false;
-            }else{
-                $expired = true;
-            }
-        }
-
-        return $expired;
+    public function current_abonnement()
+    {
+        return $this->hasOne(Abonnement::class)
+            // ->where('date_debut', '<=', Carbon::now())
+            // ->where('date_fin', '>=', Carbon::now())
+            ->whereRaw('(now() between date_debut and date_fin)')
+            ->latest();
     }
 
     public function offre()
@@ -109,18 +74,13 @@ class User extends Authenticatable
         return $this->hasMany(Offre::class);
     }
 
-    public function usersecteur()
-    {
-        return $this->hasMany(UserSecteur::class);
-    }
-
-    public function secteur()
-    {
-        return $this->belongsToMany(Secteur::class, 'user_secteur');
-    }
-
     public function etablissement()
     {
         return $this->belongsto(Etablissement::class);
+    }
+
+    public function notif()
+    {
+        return $this->hasOne(Notif::class)->latest();
     }
 }

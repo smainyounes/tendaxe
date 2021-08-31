@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offre;
+use App\Models\Adminetab;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
@@ -28,8 +30,8 @@ class AddOffreController extends Controller
         if(Auth::user()->type_user === 'content'){
              // validation
             $this->validate($request, [
-                'titre' => 'required|max:255',
-                'description' => 'max:5000',
+                'titre' => 'required',
+                'description' => 'nullable',
                 'date_pub' => 'required|date',
                 'date_lim' => 'required|date',
                 'secteur' => 'required|array',
@@ -39,8 +41,8 @@ class AddOffreController extends Controller
                 'prix' => 'nullable|numeric',
                 'journal_ar' => 'required|numeric',
                 'journal_fr' => 'required|numeric',
-                'photo' => 'required_if:description,value|mimes:jpeg,jpg,png|max:10000', // max 10000kb
-                'photo2' => 'required_if:description,value|mimes:jpeg,jpg,png|max:10000', // max 10000kb
+                'photo' => 'required_if:description,value|mimes:jpeg,jpg,png|max:100000', // max 10000kb
+                'photo2' => 'mimes:jpeg,jpg,png|max:100000', // max 10000kb
                 ]);
             
             // check if new jornal is sent
@@ -125,6 +127,122 @@ class AddOffreController extends Controller
             $offre->secteur()->sync($request->secteur);
 
             return redirect()->route('rep.offers');
+        }
+
+        if(Auth::user()->type_user === 'abonné'){
+            $this->validate($request, [
+                'titre' => 'required',
+                'description' => 'nullable',
+                'date_pub' => 'required|date',
+                'date_lim' => 'required|date',
+                'secteur' => 'required|array',
+                'statut' => 'required|max:255',
+                'wilaya_offre' => 'max:255',
+                'photo' => 'required_if:description,value|mimes:jpeg,jpg,png|max:100000', // max 10000kb
+                ]);
+            
+            // add new etab
+            if($request->etab == 0){
+                // create the new etablissement
+
+                $this->validate($request, [
+                    'nom_etab' => 'max:255',
+                    // 'category' => 'required|max:255',
+                    'wilaya_etab' => 'max:255',
+                    'commune_etab' => 'max:255',
+                    'email_etab' => 'max:255',
+                    'fix' => 'max:255',
+                    'fax' => 'max:255',
+                    'logo' => 'mimes:jpeg,jpg,png|max:10000',
+                ]);
+
+                $fileName = null;
+
+                if ($request->hasFile('logo')) {
+                    $image      = $request->file('logo');
+                    $fileName   = time() . '.' . $image->getClientOriginalExtension();
+
+                    $img = Image::make($image->getRealPath());
+                    $img->resize(150, 150);
+
+                    $img->stream(); // <-- Key point
+
+                    // dd($fileName);
+                    Storage::disk('local')->put('public/logo/' . $fileName, $img);
+                }
+
+
+                $etab = Adminetab::create([
+                    'nom_etablissement' => $request->nom_etab,
+                    'category' => "AUTRE",
+                    'wilaya' => ($request->wilaya_etab !== "Aucun") ? $request->wilaya_etab : null,
+                    'commune' => ($request->commune_etab !== "Aucun") ? $request->commune_etab : null,
+                    'email' => $request->email_etab,
+                    'fix' => $request->fix,
+                    'fax' => $request->fax,
+                    'logo' => $fileName,
+                ]);
+
+                // dd($etab);
+
+                if(!$etab){
+                    // etab not inserted delete the img
+                    Storage::delete('public/logo/' . $fileName);
+
+                    return back()->with('error', 'etab not inserted');
+                }
+
+            $etab_id = $etab->id;
+            }else{
+                $etab_id = $request->etab;
+            }
+
+            $fileName = null;
+
+            // upload offer img
+            if ($request->hasFile('photo')) {
+                $image      = $request->file('photo');
+                $fileName   = time() . '.' . $image->getClientOriginalExtension();
+
+                $img = Image::make($image->getRealPath());
+                $img->resize(1200, 1200, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+
+                $img->stream(); // <-- Key point
+
+                // dd($fileName);
+                Storage::disk('local')->put('public/' . $fileName, $img);
+            }
+
+            if($request->wilaya_offre === "Aucun"){
+                $wilaya = ($request->wilaya_etab !== "Aucun") ? $request->wilaya_etab : null;
+                if($request->etab != 0){
+                    // get etab wilaya
+                    $wilaya = DB::table('adminetabs')->where('id', $request->etab)->pluck('wilaya')[0];
+                }
+            }else{
+                $wilaya = $request->wilaya_offre;
+            }
+    
+            $offre = Offre::create([
+                'user_id' => Auth::id(),
+                'titre' => $request->titre,
+                'statut' => $request->statut,
+                'type' => "national",
+                'wilaya' => $wilaya,
+                'description' => $request->description,
+                'date_pub' => $request->date_pub,
+                'date_limit' => $request->date_lim,
+                'img_offre' => $fileName,
+                'adminetab_id' => $etab_id,
+            ]);
+
+            $offre->secteur()->sync($request->secteur);
+
+            return redirect()->route('user.offers')->with('success', 'offre ajouté');
+
         }
     }
 
@@ -343,5 +461,14 @@ class AddOffreController extends Controller
         $offre->delete();
 
         return back()->with('status', 'offre supprimer');
+    }
+
+    public function MesOffres()
+    {
+        $offres = Auth::user()->offre()->paginate(10);
+        // dd($offres);
+        return view('user.mes_offres', [
+            "offres" => $offres,
+        ]);
     }
 }

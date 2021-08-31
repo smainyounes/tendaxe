@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\SearchOffreController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SettingsController;
+use App\Http\Controllers\Admin\AbonnementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,10 @@ use App\Http\Controllers\Auth\SettingsController;
 // Route::get('/test', function () {
 //     return base_path();
 // });
+
+Route::get('/test', function () {
+    return view('user.notif');
+});
 
 Route::get('/suspended', function () {
     return view('suspended');
@@ -48,12 +53,24 @@ Route::middleware(['auth'])->group(function () {
 
     // Route::delete('/offre',[AddOffreController::class, 'destroy'])->name('offre.destroy');
 
-    Route::get('/profile',[ProfileController::class, 'index'])->name('profile');
+    Route::get('/settings/profile',[ProfileController::class, 'index'])->name('profile');
+    Route::get('/settings/abonnement',[ProfileController::class, 'abonnement'])->name('abonnement');
+    Route::get('/settings/notification',[ProfileController::class, 'notif'])->name('notification');
+    Route::get('/settings/offres',[AddOffreController::class, 'mesoffres'])->name('user.offers');
 
     Route::post('/chang_pswd',[SettingsController::class, 'EditPassword'])->name('user.password');
+    Route::post('/chang_email',[SettingsController::class, 'editemail'])->name('user.email');
+    Route::post('/chang_phone',[SettingsController::class, 'editphone'])->name('user.phone');
 
     Route::post('/favorit/{offre}',[FavoritController::class, 'toggle'])->name('favorit.toggle');
     Route::get('/favorit',[FavoritController::class, 'index'])->name('offre.favorit');
+
+    Route::post('/settings/notif/',[SettingsController::class, 'Editnotif'])->name('user.notif');
+    Route::delete('/settings/notif/wilaya/{wilaya}',[SettingsController::class, 'deleteWilaya'])->name('user.notif.wilaya');
+    Route::delete('/settings/notif/sect/{secteur}',[SettingsController::class, 'deleteSecteur'])->name('user.notif.secteur');
+    Route::delete('/settings/notif/keyword/{keyword}',[SettingsController::class, 'deleteKeyword'])->name('user.notif.keyword');
+    Route::delete('/settings/notif/statut/{statut}',[SettingsController::class, 'deletestatut'])->name('user.notif.statut');
+
 
 });
 
@@ -99,11 +116,16 @@ Route::group(['prefix' => 'admin',  'middleware' => 'adminpanel'], function()
 Route::group(['prefix' => 'admin',  'middleware' => 'admin'], function() {
     Route::get('/users',[UsersController::class, 'index'])->name('admin.users');
 
-    Route::post('/users/secteur/{user}',[UsersController::class, 'update_secteurs'])->name('admin.user.secteurs');
-    Route::post('/users/exp/{user}',[UsersController::class, 'update_exp'])->name('admin.user.exp');
     Route::post('/users/etat/{user}',[UsersController::class, 'update_etat'])->name('admin.user.etat');
     Route::post('/users/password/{user}',[UsersController::class, 'update_password'])->name('admin.user.password');
-    
+    Route::post('/users/detail/{user}',[UsersController::class, 'update_details'])->name('admin.user.details');
+    Route::delete('/abonnement',[AbonnementController::class, 'destroy'])->name('admin.abonnement.destroy');
+    Route::post('/abonnement/add/{user}',[AbonnementController::class, 'store'])->name('admin.abonnement.store');
+    Route::post('/abonnement/edit',[AbonnementController::class, 'edit'])->name('admin.abonnement.edit');
+   
+    Route::get('/abonnement/{abonnement}',[AbonnementController::class, 'detail'])->name('admin.abonnement.detail');
+
+
     Route::get('/users/add',[UsersController::class, 'addform'])->name('admin.user.add');
     Route::post('/users/add',[UsersController::class, 'store']);
 
@@ -120,6 +142,10 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin'], function() {
 
     Route::get('/offers/pending',[OffreController::class, 'pending'])->name('admin.pending');
     Route::post('/offers/accept',[OffreController::class, 'accept'])->name('admin.offre.accept');
+
+    Route::post('/admin/notif/{notif}',[UsersController::class, 'Editnotif'])->name('admin.notif');
+    Route::delete('/notif/sect/{user}/{secteur}',[UsersController::class, 'deleteSecteur'])->name('admin.notif.secteur');
+
 });
 
 Route::group(['prefix' => 'representant',  'middleware' => 'ContentCreator'], function()
