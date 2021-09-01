@@ -115,7 +115,7 @@
 				</div>
 				<div class="col-md-4 tendaxe mt-md-3 mb-2">
 					<p class="text-white">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis in nibh massa eget. Lorem velit, commodo vitae nulla sed volutpat rhoncus sed.
+						TendAxe est un platforme profissionnel pour les appels d’offres et les consultation sur le marche publique et prive
 					</p>
 					<div class="text-md-left text-center">
 						<a href="{{ route('help') }}" class="text-primary">Aide | Documents utiles | CGU</a>
@@ -131,6 +131,9 @@
 					</div>
 					<div class="my-3">
 						<img src="{{ asset('img/icons/fb.png') }}"> <span class="ml-3 text-white"> tendaxe </span>
+					</div>
+					<div class="my-3">
+						<img src="{{ asset('img/icons/indic.png') }}"> <span class="ml-3 text-white"> LOT N 141 P 10  Rue Aouicha Amer BOUINAN- BLIDA   </span>
 					</div>
 				</div>
 			</div>

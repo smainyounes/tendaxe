@@ -188,3 +188,7 @@ a:hover {
 .border {
     border: 1px solid #bdbdbd !important;
 }
+
+.text-gray {
+    color: #4f4f4f;
+}

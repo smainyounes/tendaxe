@@ -9,7 +9,7 @@
 					<div class="text-white">
 						<div id="wlc" class="h3 bold mb-4">Bienvenue sur TendAxe</div>
 						<div class="h5">
-							TendAxe est votre profissionnel pour les appels d’offres et les consultation sur le marche publique et prive
+							TendAxe est votre platforme profissionnel pour les appels d’offres et les consultation sur le marché publique et privé
 						</div>
 					</div>
 				</div>
@@ -19,54 +19,73 @@
 			</div>
 			<div class="container mx-auto text-white text-center">
 				<h3 class="bold">Pourquoi TendAxe?</h3>
-				<p class="hide-md">TendAxe caractérisé exceptionnellement par une stratégie tés fiable dans la collection des consultations afin d’avoire le plus grand nombre d'opportunités</p>
-				<p>Avec l’abonnement a notre site internet, vous pouvez consulter tous les appels d’offres et les consultation dans votre domain d’activite et optenu tout les informations relatives ( resultats delais .... )</p>
+				<p class="hide-md">Avec l’abonnement a notre site internet, vous pouvez consulter tous les appels d’offres nationaux et internationaux dans votre domain d’activité et optenu tout les informations relatives a l’appel d’offre, ses résultats, ses delais, et également optenir les coupies certifiées conformes qui serons publiées dans les sources officiels (la press national, BOMOT, BOASEM ...).</p>
+				<p>TendAxe arrive en exclusivite de donner la possibilite de publier votre appels d’offres, demmende d’achat et sous-traitance(projet deuxiem main); un service juridique mis a votre disposition et une assitance pour vos projets.</p>
 			</div>
 	</header>
 
 		<section class="container my-5">
 			<div class="row">
-				<div class="col-md-4">
-					<div class="d-flex">
-						<img src="{{ asset('img/icons/doc2.png') }}" width="40px" height="40px">
-						<small class="ml-3">
-							Nous publions chaque jour, tous les appels d’offres et consultation disponibles sur le marché algérien. L’information est traitée et catégorisée
-						</small>
+				<div class="col-md-4 px-0">
+					<div class="mb-3">
+						<img src="{{ asset('img/icons/annouce2.png') }}" width="40px" height="40px">
+						<span class="ml-3 bold">Soyez informe</span>
+						<div class="mt-2">
+							<small>
+								Nous publions chaque jour tout les appels d'offres, consultation et ses résultats (attribution annulation, Mise à jour ... ) disponible dans le marché algérien
+							</small>
+						</div>
 					</div>
-					<div class="d-flex mt-4">
-						<img src="{{ asset('img/icons/search.png') }}" width="40px" height="33px">
-						<small class="ml-3">
-							Trouvez facilement les annonces qui vous conviennent à l’aide d’un moteur de recherche ergonomique et système de filtrage efficace (Mots clés, secteurs d’activités, Annonceurs, lieux…)
-						</small>
+					<div class="mb-3">
+						<img src="{{ asset('img/icons/search3.png') }}" width="40px" height="40px">
+						<span class="ml-3 bold">Découvrez de nouveaux fournisseurs</span>
+						<div class="mt-2">
+							<small>
+								Publiez vos demandes achats, appels d'offres et sous-traitance sur notre plateforme et recevez des offres de fournisseurs qualifiés
+							</small>
+						</div>
 					</div>
-					<div class="d-flex mt-4">
-						<img src="{{ asset('img/icons/copy.png') }}" width="40px" height="33px">
-						<small class="ml-3">
-							Consulter toutes les offres d'avantages proposées par tous les abonnés et Trouver des projet deuxième main en tant que sous-traitance depuis le moins disant
-						</small>
+					<div class="mb-3">
+						<img src="{{ asset('img/icons/two_hands.png') }}" width="40px" height="40px">
+						<span class="ml-3 bold">trouvez des sous-traitances</span>
+						<div class="mt-2">
+							<small>
+								Consulter toutes les offres d'avantages proposées par des entreprise ou des ordinaires et Trouver des projet deuxième main en tant que sous-traitance
+							</small>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-4 d-flex align-items-center justify-content-center my-2">
 					<img class="img-fluid" src="{{ asset('img/figure1.png') }}">
 				</div>
-				<div class="col-md-4">
-					<div class="d-flex">
-						<img class="" src="{{ asset('img/icons/bell.png') }}" width="40px" height="40px">
-						<small class="ml-3">
-							Soyez informé des opportunités grâce à un système de notification avancé (synthèse quotidienne de ce que vous intéresse sera envoyé par un mail )
-						</small>
+				<div class="col-md-4 px-0">
+					<div class="mb-3">
+						<img src="{{ asset('img/icons/email.png') }}" width="40px" height="40px">
+						<span class="ml-3 bold">Service d’Alerte E-mail</span>
+						<div class="mt-2">
+							<small>
+								Vous recevrez deux bulletins d’alerte: <br>
+								un à Midi pour assurer la rapidité de l’information, et deuxième en fin de journee pour vous résumer l’intégralité des annonces publiées.
+							</small>
+						</div>
 					</div>
-					<div class="d-flex mt-4">
-						<img src="{{ asset('img/icons/7.png') }}" width="40px" height="20px">
-						<small class="ml-3">
-							TendAxe est partout avec vous : une accessibilité 24/24 ,7/7 sur ordinateur, tablette, mobile
-						</small>
+					<div class="mb-3">
+						<img src="{{ asset('img/icons/notifbell.png') }}" width="40px" height="40px">
+						<span class="ml-3 bold">Service de notification</span>
+						<div class="mt-2">
+							<small>
+								Favorisez vos appels d’offre ainsi que les organismes désirés et vous serez notifiés de leurs résultats dans le but de suivre leurs évolutions par étapes et leur publication respectivement.
+							</small>
+						</div>
 					</div>
-					<div class="d-flex mt-4">
-						<img src="{{ asset('img/icons/up.png') }}" width="40px" height="40px">
-						<small class="ml-3">
-							Publiez votre appel d’offres ou demande d’achat ou de sous-traitance en quelques clics et ciblez des fournisseurs qualifiés nationaux et internationaux.
-						</small>
+					<div class="mb-3">
+						<img src="{{ asset('img/icons/doc_search.png') }}" width="40px" height="40px">
+						<span class="ml-3 bold">Systeme de recherches Avancé</span>
+						<div class="mt-2">
+							<small>
+								TendAxe met entre vos mains un moteur recherche avancé, qui offre une multitudes de critères pour vous simplifier la recherche de marchés publics.
+							</small>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -79,24 +98,30 @@
 					<div class="d-flex">
 						<span class="bold mr-4 h4">1.</span>
 						<p>
-							Inscrivez gratuitement en tant que nouvel utilisateur et bénéficier de 5 jour d’essai gratuitement (nom de l'entreprise, numéro de téléphone et confirmation, e-mail, mot de passe et certains champs)
+							Inscrivez gratuitement en tant que nouveau utilisateur et bénéficier de 3 jour d’essai gratuits (nom, prénom, e-mail, numéro de téléphone et certains champs).
 						</p>
 					</div>
 					<div class="d-flex">
 						<span class="bold mr-4 h4">2.</span>
 						<p>
-							Connectez-vous avec votre e-mail et votre mot de passe
+							validez votre e-mail (cliquez sur le lien recevé par votre e-mail).
+						</p>
+					</div>
+					<div class="d-flex">
+						<span class="bold mr-4 h4">3.</span>
+						<p>
+							Connectez-vous avec votre e-mail et votre mot de passe.
 						</p>
 					</div>
 					<div class="h5 ml-5">
-						Vous pouvez consulter gratuitement tous les appels d'offres pendant une durée de 5 jour
+						Vous pouvez consulter gratuitement tous les appels d'offres pendant une durée de 3 jour
 					</div>
 				</div>
 				<div class="col-md-4 text-center">
 					<a href="{{ route('register') }}" class="btn btn-lg btn-primary">
 						<b>Inscrivez-vous gratuitement</b>
 						<br>
-						avec 5 jours d’essai
+						avec 3 jours d’essai
 					</a>
 				</div>
 			</div>
@@ -158,7 +183,7 @@
 				<div class="col-md-4 text-center px-4 my-2">
 					<div class="bg-white p-3 border h-100">
 						<img class="img-fluid mx-auto my-3" src="{{ asset('img/icons/building.png') }}">
-						<div class="h4 bold">+<span class="counter">100000</span></div>
+						<div class="h4 bold">+<span class="counter">10000</span></div>
 						<small class="bold">
 							Entreprises sur l’annuaire
 							(disponible bientôt)
@@ -168,7 +193,7 @@
 				<div class="col-md-4 text-center px-4 my-2 ">
 					<div class="bg-white p-3 border h-100">
 						<img class="img-fluid mx-auto my-3" src="{{ asset('img/icons/annouce.png') }}">
-						<div class="h4 bold"><span class="counter">170</span></div>
+						<div class="h4 bold">+<span class="counter">170</span></div>
 						<small class="bold">sources d’annonces</small>
 					</div>
 				</div>
@@ -217,8 +242,8 @@
 						</div>
 						<div class="my-2">
 							<ul class="">
-								<li>Choisissez un secteur parmi les secteurs pour le package</li>
-								<li>Toutes les options et fonctionnalités énumérées ci-dessus</li>
+								<li>Choisissez 1 secteur</li>
+								<li>Toutes les fonctionnalités énumérées ci-dessus</li>
 							</ul>
 						</div>
 						<div class="text-center mt-auto px-2">
@@ -235,8 +260,8 @@
 						</div>
 						<div class="my-2">
 							<ul class="">
-								<li>Choisissez quatre secteurs parmi tous les secteurs</li>
-								<li>Toutes les options et fonctionnalités énumérées ci-dessus</li>
+								<li>Choisissez 3 secteurs</li>
+								<li>Toutes les fonctionnalités énumérées ci-dessus</li>
 							</ul>
 						</div>
 						<div class="text-center mt-auto px-2">
@@ -249,12 +274,12 @@
 						<div class="bg-yellow mb-3 rounded-top" style="height: 6px"></div>
 						<div class="text-center bold">Pack gold</div>
 						<div class="h1 text-center text-green my-4">
-							<span>26000</span> DZD/an
+							<span>24000</span> DZD/an
 						</div>
 						<div class="my-2">
 							<ul class="">
-								<li>Choisissez six secteurs parmi tous les secteurs</li>
-								<li>Toutes les options et fonctionnalités énumérées ci-dessus</li>
+								<li>Choisissez 10 secteurs </li>
+								<li>Toutes les fonctionnalités énumérées ci-dessus</li>
 							</ul>
 						</div>
 						<div class="text-center mt-auto px-2">
@@ -267,12 +292,12 @@
 						<div class="bg-red mb-3 rounded-top" style="height: 6px"></div>
 						<div class="text-center bold">pack platine</div>
 						<div class="h1 text-center text-green my-4">
-							<span>34000</span> DZD/an
+							<span>28000</span> DZD/an
 						</div>
 						<div class="my-2">
 							<ul class="">
-								<li>Sélection de tous les secteurs sans exception</li>
-								<li>Toutes les options et fonctionnalités énumérées ci-dessus</li>
+								<li>Choisissez 10 secteurs</li>
+								<li>Toutes les fonctionnalités énumérées ci-dessus</li>
 							</ul>
 						</div>
 						<div class="text-center mt-auto px-2">
@@ -283,13 +308,15 @@
 				<div class="col-md-4 col-sm-6 p-2" data-aos="fade-up" data-aos-duration="900">
 					<div class="bg-white mx-auto pb-2 rounded-bottom h-100 border d-flex flex-column" style="max-width: 280px">
 						<div class="bg-blue mb-3 rounded-top" style="height: 6px"></div>
-						<div class="text-center bold">Forfait pour enchères publiques</div>
+						<div class="text-center bold">pack ultra</div>
 						<div class="h1 text-center text-green my-4">
-							<span>9000</span> DZD/an
+							<span>36000</span> DZD/an
 						</div>
 						<div class="my-2">
 							<ul class="">
-								<li>Voir toutes les annonces de ventes aux enchères dans tous les secteurs et tous les états pour un an 9000.00 AD</li>
+								<li>Touts les secteurs</li>
+								<li>Toutes les fonctionnalités énumérées ci-dessus</li>
+								<li>Assistance juridique</li>
 							</ul>
 						</div>
 						<div class="text-center mt-auto px-2">
@@ -297,6 +324,36 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="text-center">
+				Forfait de toutes les annonces de ventes aux enchères dans tous les secteurs et tous les états pour un an 9000.00 DZD
+			</div>
+		</section>
+
+		<section id="payement" class="container my-5">
+			<h4 class="bold">Payement</h4>
+			<ul>
+				<li>Payez les frais de l’abonnement choisis Par un dépôt ou virement sur le compte postal:
+					LABOUDI Abdelwahab - CCP: 0020888454/45</li>
+				<li>Veuillez envoyer une copie de la preuve de paiement par Viber à l'un des numéros suivants: 0665379954
+					Ou Via l'e-mail suivant: contact.TendAxe@gmail.com</li>
+				<li>Payez en espèces ou par chèque en vous rendant dans nos bureaux situés à l'adresse suivante:
+					Rue les frères mostapha Bouinan-Blida</li>
+				<li>Votre compte sera activé dés la réception de votre reçu payment.</li>
+			</ul>
+		</section>
+
+		<section id="acheteurs" class="container my-5">
+			<h1 class="bold text-center text-gray">Notre acheteurs active</h1>
+			<div class="text-center my-5">
+				<img class="img-fluid" src="{{ asset('img/acheteurs/1.png') }}" alt="">
+			</div>
+			<div class="row my-4">
+				@for ($i = 2; $i <= 13; $i++)
+					<div class="col-sm-6 col-md-2 p-3 text-center">
+						<img class="img-fluid" src="{{ asset('img/acheteurs/'.$i.'.png') }}" alt="">
+					</div>
+				@endfor
 			</div>
 		</section>
 
