@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -41,6 +42,7 @@ class AdminController extends Controller
             'password' => Hash::make($request->password),
             'type_user' => $request->type_admin,
             'etat' => "active",
+            'email_verified_at' => Carbon::now(),
         ]);
 
         if($user){
