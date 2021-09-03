@@ -156,41 +156,79 @@
         @if ($user->type_user === "abonné")
             <hr>
             <h4>Nouvel Abonnement</h4>
-            <form action="{{ route('admin.abonnement.store', $user) }}" method="POST">
-                @csrf
-                <div class="row">
-                    <div class="col-md-6 form-group">
-                        <label for="">Abonnement choisi</label>
-                        <select class="form-control selectpicker" name="nom_abonnement" onchange="abonnement_check(this, 'new')" id="">
-                            <option value="gratuit">gratuit</option>
-                            <option value="bronze" selected>Bronze</option>
-                            <option value="silver">Silver</option>
-                            <option value="gold">Gold</option>
-                            <option value="platine">Platine</option>
-                            <option value="ultra">Ultra</option>
-                        </select>
+            @if ($user->pending_abonnement)
+                <form action="{{ route('admin.abonnement.edit') }}" method="POST">
+                    @csrf
+                    <input type="number" name="abonnement_id" value="{{ $user->pending_abonnement->id }}" hidden>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="">Abonnement choisi</label>
+                            <select class="form-control selectpicker" name="nom_abonnement" onchange="abonnement_check(this, 'new')" id="">
+                                <option value="bronze" {{ ($user->pending_abonnement->nom_abonnement === 'bronze') ? 'selected' : '' }}>Bronze</option>
+                                <option value="silver" {{ ($user->pending_abonnement->nom_abonnement === 'silver') ? 'selected' : '' }}>Silver</option>
+                                <option value="gold" {{ ($user->pending_abonnement->nom_abonnement === 'gold') ? 'selected' : '' }}>Gold</option>
+                                <option value="platine" {{ ($user->pending_abonnement->nom_abonnement === 'platine') ? 'selected' : '' }}>Platine</option>
+                                <option value="ultra" {{ ($user->pending_abonnement->nom_abonnement === 'ultra') ? 'selected' : '' }}>Ultra</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Secteurs</label>
+                            <select name="secteurs[]" class="form-control mb-2 selectpicker" multiple title="Secteur" data-live-search="true" id="new_sec" required>
+                                @foreach (App\Models\Secteur::All() as $sect)
+                                    <option value="{{ $sect->id }}" {{ ($user->pending_abonnement->secteur->contains($sect)) ? 'selected' : '' }} data-tokens="{{ $sect->secteur }}">{{ $sect->secteur }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Date debut</label>
+                            <input class="form-control" type="date" name="date_debut" value="{{ $date_debut }}">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Date fin</label>
+                            <input class="form-control" type="date" name="date_fin" value="{{ date('Y-m-d', strtotime($date_debut . ' +1 years')) }}">
+                        </div>
                     </div>
-                    <div class="col-md-6 form-group">
-                        <label for="">Secteurs</label>
-                        <select name="secteurs[]" class="form-control mb-2 selectpicker" multiple title="Secteur" data-live-search="true" id="new_sec" required>
-                            @foreach (App\Models\Secteur::All() as $sect)
-                                <option value="{{ $sect->id }}" data-tokens="{{ $sect->secteur }}">{{ $sect->secteur }}</option>
-                            @endforeach
-                        </select>
+                    <div class="text-right">
+                        <button class="btn btn-info">Renouvlé</button>
                     </div>
-                    <div class="col-md-6 form-group">
-                        <label for="">Date debut</label>
-                        <input class="form-control" type="date" name="date_debut" value="{{ $date_debut }}">
+                </form>
+            @else
+                <form action="{{ route('admin.abonnement.store', $user) }}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="">Abonnement choisi</label>
+                            <select class="form-control selectpicker" name="nom_abonnement" onchange="abonnement_check(this, 'new')" id="">
+                                <option value="gratuit">gratuit</option>
+                                <option value="bronze" selected>Bronze</option>
+                                <option value="silver">Silver</option>
+                                <option value="gold">Gold</option>
+                                <option value="platine">Platine</option>
+                                <option value="ultra">Ultra</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Secteurs</label>
+                            <select name="secteurs[]" class="form-control mb-2 selectpicker" multiple title="Secteur" data-live-search="true" id="new_sec" required>
+                                @foreach (App\Models\Secteur::All() as $sect)
+                                    <option value="{{ $sect->id }}" data-tokens="{{ $sect->secteur }}">{{ $sect->secteur }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Date debut</label>
+                            <input class="form-control" type="date" name="date_debut" value="{{ $date_debut }}">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Date fin</label>
+                            <input class="form-control" type="date" name="date_fin" value="{{ date('Y-m-d', strtotime($date_debut . ' +1 years')) }}">
+                        </div>
                     </div>
-                    <div class="col-md-6 form-group">
-                        <label for="">Date fin</label>
-                        <input class="form-control" type="date" name="date_fin" value="{{ date('Y-m-d', strtotime($date_debut . ' +1 years')) }}">
+                    <div class="text-right">
+                        <button class="btn btn-info">Renouvlé</button>
                     </div>
-                </div>
-                <div class="text-right">
-                    <button class="btn btn-info">Renouvlé</button>
-                </div>
-            </form>
+                </form>
+            @endif
 
             <hr>
 
