@@ -26,7 +26,7 @@
 
 		<section class="container my-5">
 			<div class="row">
-				<div class="col-md-4 px-0">
+				<div class="col-md-4 px-md-0">
 					<div class="mb-3">
 						<img src="{{ asset('img/icons/annouce2.png') }}" width="40px" height="40px">
 						<span class="ml-3 bold">Soyez informe</span>
@@ -58,7 +58,7 @@
 				<div class="col-md-4 d-flex align-items-center justify-content-center my-2">
 					<img class="img-fluid" src="{{ asset('img/figure1.png') }}">
 				</div>
-				<div class="col-md-4 px-0">
+				<div class="col-md-4 px-md-0">
 					<div class="mb-3">
 						<img src="{{ asset('img/icons/email.png') }}" width="40px" height="40px">
 						<span class="ml-3 bold">Service d’Alerte E-mail</span>
@@ -229,7 +229,7 @@
 							</ul>
 						</div>
 						<div class="text-center mt-auto px-2">
-							<button class="btn btn-primary bold w-100" data-toggle="modal" data-target="#exampleModal">Demander</button>
+							<a href="{{ route('register') }}" class="btn btn-primary bold w-100">Demander</a>
 						</div>
 					</div>
 				</div>
@@ -247,7 +247,12 @@
 							</ul>
 						</div>
 						<div class="text-center mt-auto px-2">
-							<button class="btn btn-primary bold w-100" data-toggle="modal" data-target="#exampleModal">Demander</button>
+							@auth
+								<button class="btn btn-primary bold w-100" data-abonnement="bronze" data-toggle="modal" data-target="#exampleModal">Demander</button>
+							@endauth
+							@guest
+								<a href="{{ route('register') }}" class="btn btn-primary bold w-100">Demander</a>
+							@endguest
 						</div>
 					</div>
 				</div>
@@ -265,7 +270,12 @@
 							</ul>
 						</div>
 						<div class="text-center mt-auto px-2">
-							<button class="btn btn-primary bold w-100" data-toggle="modal" data-target="#exampleModal">Demander</button>
+							@guest
+								<a href="{{ route('register') }}" class="btn btn-primary bold w-100">Demander</a>
+							@endguest
+							@auth
+								<button class="btn btn-primary bold w-100" data-abonnement="silver" data-toggle="modal" data-target="#exampleModal">Demander</button>
+							@endauth
 						</div>
 					</div>
 				</div>
@@ -278,12 +288,17 @@
 						</div>
 						<div class="my-2">
 							<ul class="">
-								<li>Choisissez 10 secteurs </li>
+								<li>Choisissez 6 secteurs </li>
 								<li>Toutes les fonctionnalités énumérées ci-dessus</li>
 							</ul>
 						</div>
 						<div class="text-center mt-auto px-2">
-							<button class="btn btn-primary bold w-100" data-toggle="modal" data-target="#exampleModal">Demander</button>
+							@guest
+								<a href="{{ route('register') }}" class="btn btn-primary bold w-100">Demander</a>
+							@endguest
+							@auth
+								<button class="btn btn-primary bold w-100" data-abonnement="gold" data-toggle="modal" data-target="#exampleModal">Demander</button>
+							@endauth
 						</div>
 					</div>
 				</div>
@@ -301,7 +316,12 @@
 							</ul>
 						</div>
 						<div class="text-center mt-auto px-2">
-							<button class="btn btn-primary bold w-100" data-toggle="modal" data-target="#exampleModal">Demander</button>
+							@guest
+								<a href="{{ route('register') }}" class="btn btn-primary bold w-100">Demander</a>
+							@endguest
+							@auth
+								<button class="btn btn-primary bold w-100" data-abonnement="platine" data-toggle="modal" data-target="#exampleModal">Demander</button>
+							@endauth
 						</div>
 					</div>
 				</div>
@@ -320,7 +340,12 @@
 							</ul>
 						</div>
 						<div class="text-center mt-auto px-2">
-							<button class="btn btn-primary bold w-100" data-toggle="modal" data-target="#exampleModal">Demander</button>
+							@guest
+								<a href="{{ route('register') }}" class="btn btn-primary bold w-100">Demander</a>
+							@endguest
+							@auth
+								<button class="btn btn-primary bold w-100" data-abonnement="ultra" data-toggle="modal" data-target="#exampleModal">Demander</button>
+							@endauth
 						</div>
 					</div>
 				</div>
@@ -357,32 +382,98 @@
 			</div>
 		</section>
 
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<!-- demander Modal -->
+		<div class="modal fade" id="exampleModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-dialog-centered" role="document">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+		        <h5 class="modal-title" id="exampleModalLabel">Demander un Pack</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
-		      <div class="modal-body">
-		       	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		       	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		       	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		       	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		       	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		       	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Save changes</button>
-		      </div>
+			  <form action="">
+				  <div class="modal-body">
+					   <div class="form-group">
+						   <select class="form-control selectpicker" onchange="UpdateMaxSect(this)" name="pack" id="pack">
+								<option value="bronze">Bronze</option>
+								<option value="silver">Silver</option>
+								<option value="gold">Gold</option>
+								<option value="platine">Platine</option>
+								<option value="ultra">Ultra</option>
+						   </select>
+					   </div>
+					   <div class="form-group">
+						   <select class="form-control selectpicker" multiple data-title="Secteurs" name="secteurs[]" id="sect">
+								@foreach (App\Models\Secteur::All() as $sect)
+									<option value="{{ $sect->id }}" data-tokens="{{ $sect->secteur }}">{{ $sect->secteur }}</option>
+								@endforeach
+						   </select>
+					   </div>
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+					<button type="button" class="btn btn-primary" id="demander" onclick="demander_pack($(this))">Demander</button>
+					<button class="btn btn-info" type="button" id="loading" disabled style="display: none">
+						<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+						Demander
+					</button>
+					  
+				  </div>
+			  </form>
 		    </div>
 		  </div>
 		</div>
 
+		<!-- success Modal -->
+		<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+			<div class="modal-content">
+				
+				<div class="modal-body" id="resultat_demande">
+					<h5 class="bold mb-4">
+						voila les details de l'abonnement choisis:
+					</h5>
+					<div class="mb-2">
+						<b>Le pack: </b>
+						<span id="selected_pack"></span>
+					</div>
+					<div class="bold">Les secteurs:</div>
+					<ul class="" id="selected_secteurs">
+						
+					</ul>
+
+					<div>
+						votre demande va etre pris en charge par les administrateurs
+					</div>
+					<div class="mt-3 text-right">
+						<button type="button" class="btn btn-primary px-4" data-dismiss="modal">OK</button>
+					</div>
+				</div>
+				
+			</div>
+			</div>
+		</div>
+
+		<!-- Error Modal -->
+		<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalCenterTitle">Erreur</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+				Votre demande n'a pas été effectuer, veuillez réessayer plus tard.
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-primary px-3" data-dismiss="modal">Ok</button>
+				</div>
+			</div>
+			</div>
+		</div>
 		<script type="text/javascript">
     		// navbar
 			$(".navbar").removeClass("bg-light");
@@ -416,5 +507,83 @@
     			AOS.init();
     		});
 
+			$('#exampleModal').on('show.bs.modal', function (event) {
+				var button = $(event.relatedTarget) // Button that triggered the modal
+				var id = button.data('abonnement') 
+				$('#pack').selectpicker('val', id).change();
+			});
+
+			$('#exampleModal').on('hidden.bs.modal', function (e) {
+				$('#demander').show();
+				$('#loading').hide();
+
+				$('#sect').prop('disabled', false);
+  				$('#sect').selectpicker('refresh');
+			});
+
+			function UpdateMaxSect(e) {
+				// console.log(e.value);
+				$('#sect').selectpicker('deselectAll')
+
+				var max = 1;
+				switch(e.value){
+					case 'bronze': max = 1;
+						break;
+					case 'silver': max = 3;
+						break;
+					case 'gold': max = 6;
+						break;
+					case 'platine': max = 10;
+						break;
+					case 'ultra': max = false;
+						$('#sect').selectpicker('selectAll');
+						break;
+				}
+
+				$('#sect').data('max-options', max).selectpicker('refresh');
+			}
+
+			function demander_pack(e) {
+				$('#demander').hide();
+				$('#loading').show();
+
+				$('#sect').prop('disabled', true);
+  				$('#sect').selectpicker('refresh');
+				
+				$.ajax({
+					type: 'post',
+					url: "{{ route('user.pack.add') }}",
+					data: {
+						"_token" : "{{ csrf_token() }}",
+						"secteurs": $('#sect').val(),
+						"nom_abonnement": $('#pack').val(),
+					},
+					error: function () {
+						// error
+
+						$('#exampleModal').modal('hide');
+						$('#errorModal').modal('show');
+
+					},
+					success: function(res){
+						console.log(res);
+						// console.log(data);
+						
+						if(res){
+							// insert data to success model
+							$('#selected_pack').text(res.data.abonnement);
+							var secteurs = "";
+							for(var k in res.data.secteurs){
+								secteurs += '<li>'+ res.data.secteurs[k].secteur +'</li>';
+							}
+							console.log(secteurs);
+							$('#selected_secteurs').html(secteurs);
+							$('#exampleModal').modal('hide');
+							$('#successModal').modal('show');
+						}
+				}});
+
+
+			}
     	</script>
 @endsection
