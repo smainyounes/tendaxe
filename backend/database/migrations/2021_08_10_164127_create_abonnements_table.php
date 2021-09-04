@@ -19,6 +19,7 @@ class CreateAbonnementsTable extends Migration
             $table->string('nom_abonnement');
             $table->date('date_debut');
             $table->date('date_fin');
+            $table->string('etat')->default('active');
             $table->timestamps();
         });
     }

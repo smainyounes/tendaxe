@@ -85,6 +85,7 @@ Route::middleware(['auth', 'EmailVerified'])->group(function () {
     Route::get('/settings/notification',[ProfileController::class, 'notif'])->name('notification');
     Route::get('/settings/offres',[AddOffreController::class, 'mesoffres'])->name('user.offers');
 
+    Route::post('/pack',[SettingsController::class, 'DemandeAbonnement'])->name('user.pack.add');
     Route::post('/chang_pswd',[SettingsController::class, 'EditPassword'])->name('user.password');
     Route::post('/chang_email',[SettingsController::class, 'editemail'])->name('user.email');
     Route::post('/chang_phone',[SettingsController::class, 'editphone'])->name('user.phone');

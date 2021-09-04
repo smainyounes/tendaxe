@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Statut;
 use App\Models\Wilaya;
 use App\Models\Keyword;
+use App\Models\Abonnement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -184,5 +186,45 @@ class SettingsController extends Controller
         }
 
         return 'error';
+    }
+    
+    public function DemandeAbonnement(Request $request)
+    {        
+        $this->validate($request, [
+            "secteurs" => "required|array",
+            'nom_abonnement' => 'required|in:bronze,silver,gold,platine,ultra',
+        ]);
+
+        // check if exists
+
+        if(Auth::user()->pending_abonnement){
+            // it exsits so update
+            $abonnement = Auth::user()->pending_abonnement;
+            $abonnement->nom_abonnement = $request->nom_abonnement;
+
+            $abonnement->secteur()->sync($request->secteurs);
+
+            $abonnement->save();
+        }else{
+            // it doesnt exsit so create
+            $abonnement = Abonnement::create([
+                'user_id' => Auth::id(),
+                'nom_abonnement' => $request->nom_abonnement,
+                'date_debut' => Carbon::today(),
+                'date_fin' => Carbon::today(),
+                'etat' => 'pending',
+            ]);
+
+            $abonnement->secteur()->sync($request->secteurs);
+        }
+
+        return response()->json([
+            'status' => true,
+            'data' => [
+                'abonnement' => $abonnement->nom_abonnement,
+                'secteurs' => $abonnement->secteur,
+            ],
+        ]);
+        
     }
 }

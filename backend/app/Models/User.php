@@ -58,7 +58,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function abonnement()
     {
-        return $this->hasMany(Abonnement::class);
+        return $this->hasMany(Abonnement::class)->where('etat', 'active');
     }
 
     public function current_abonnement()
@@ -67,6 +67,14 @@ class User extends Authenticatable implements MustVerifyEmail
             // ->where('date_debut', '<=', Carbon::now())
             // ->where('date_fin', '>=', Carbon::now())
             ->whereRaw('(now() between date_debut and date_fin)')
+            ->where('etat', 'active')
+            ->latest();
+    }
+
+    public function pending_abonnement()
+    {
+        return $this->hasOne(Abonnement::class)
+            ->where('etat', 'pending')
             ->latest();
     }
 
