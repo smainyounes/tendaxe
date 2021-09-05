@@ -137,27 +137,15 @@ class SearchOffreController extends Controller
         }
 
         $img = null;
-        $etab = null;
+        $etab = $offre->adminetab;
 
-        if($offre->user->type_user === "content"){
-            if( $offre->user->etablissement->category === "AUTRE"){
-                $img = $offre->user->etablissement->logo;
-            }else{
-                $img = "default";
-            }
 
-            $etab = $offre->user->etablissement;
+        if( $offre->adminetab->category === "AUTRE"){
+            $img = $offre->adminetab->logo;
+        }else{
+            $img = "default";
         }
 
-        if($offre->user->type_user !== "content"){
-            if( $offre->adminetab->category === "AUTRE"){
-                $img = $offre->adminetab->logo;
-            }else{
-                $img = "default";
-            }
-
-            $etab = $offre->adminetab;
-        }
 
         // dd($offre->journalar);
 
