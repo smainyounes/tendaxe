@@ -15,14 +15,10 @@
                 @if ($expired)
                     <img class="" src="{{ asset('img/icons/lock2.png') }}" width="64px">
                 @else
-                    @if ($offre->user->type_user !== "content")
-                        @if ($offre->adminetab->category !== "AUTRE")
-                            <img class="" src="{{ asset('img/1.png') }}" width="64px">
-                        @else
-                            <img class="rounded-circle" src="{{ asset('storage/logo/'.$offre->adminetab->logo) }}" width="64px">
-                        @endif
-                    @else ($offre->user->etablissement_id && $offre->user->etablissement->category === "AUTRE")
-                        <img class="rounded-circle" src="{{ asset('storage/logo/'.$offre->user->etablissement->logo) }}" width="64px">
+                    @if ($offre->adminetab->category !== "AUTRE")
+                        <img class="" src="{{ asset('img/1.png') }}" width="64px">
+                    @else
+                        <img class="rounded-circle" src="{{ asset('storage/logo/'.$offre->adminetab->logo) }}" width="64px">
                     @endif
                 @endif
 
@@ -35,11 +31,7 @@
                     <img src="{{ asset('img/icons/lock.png') }}">
                     Réservé aux abonnés
                 @else
-                    @if ($offre->user->type_user === "content")
-                        {{ $offre->user->etablissement->nom_etablissement }}
-                    @else
-                        {{ $offre->adminetab->nom_etablissement }}
-                    @endif
+                    {{ $offre->adminetab->nom_etablissement }}   
                 @endif
             </div>
             <div class="mb-2">

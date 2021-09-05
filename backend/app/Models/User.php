@@ -22,7 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'etablissement_id',
+        'adminetab_id',
         'nom',
         'prenom',
         'email',
@@ -85,7 +85,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function etablissement()
     {
-        return $this->belongsto(Etablissement::class);
+        return $this->belongsto(Adminetab::class);
+    }
+
+    public function adminetab()
+    {
+        return $this->belongsto(Adminetab::class);
     }
 
     public function notif()
