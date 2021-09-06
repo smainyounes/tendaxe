@@ -3,7 +3,12 @@
 @section('title', 'profile')
     
 @section('content')
-    <div class="container main">
+    <div class="container-fluid p-5" style="background: url({{ asset('img/banner/laptop_typing.jpg') }}) no-repeat center center; margin-top: 66px; background-size: cover;">
+        <div class="container">
+            <h2 class="text-white bold my-4"> Mon Profile </h2>
+        </div>
+    </div>
+    <div class="container mt-5">
         @if(count($errors)>0)
             @foreach($errors->all() as $error)
             <div class="alert alert-danger" role="alert">

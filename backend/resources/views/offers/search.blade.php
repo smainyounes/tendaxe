@@ -3,17 +3,21 @@
 @section('title', 'Offres')
     
 @section('content')
-    <div class="container main">
+    <div class="container-fluid p-5" style="background: url({{ asset('img/banner/offers.jpg') }}) no-repeat center center; margin-top: 66px; background-size: cover;">
+        <div class="container">
+            <h3 class="text-white bold my-4">Liste d'annonces</h3>
+        </div>
+    </div>
+    <div class="container">
         <x-alert />
-        <h1 class="bold text-center">List d’annonces</h1>
-        <div class="text-right">
+        {{-- <div class="mt-3 mb-1 text-right">
             @auth
                 <a href="{{ route('offre.add') }}" class="btn btn-primary">Ajouter Offre</a>
             @endauth
             @guest
                 <a href="{{ route('register') }}" class="btn btn-primary">Ajouter Offre</a>
             @endguest
-        </div>
+        </div> --}}
         <div class="row">
             <div class="col-md-3">
                 <form class="bg-white p-2 border rounded mt-2" method="GET" action="{{ route('search') }}">
@@ -90,8 +94,9 @@
                 @else
                     <h3 class="text-center">Pas de resultat</h3>
                 @endif
-
-                {{ $offres->links() }}
+                <div class="mt-5">
+                    {{ $offres->links() }}
+                </div>
             </div>
         </div>
     </div>
