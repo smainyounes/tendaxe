@@ -373,9 +373,16 @@
 			<div class="text-center my-5">
 				<img class="img-fluid" src="{{ asset('img/acheteurs/1.png') }}" alt="">
 			</div>
-			<div class="row my-4">
-				@for ($i = 2; $i <= 13; $i++)
-					<div class="col-sm-6 col-md-2 p-3 text-center">
+			<div class="row justify-content-center my-4">
+			@for ($i = 2; $i <= 8; $i++)
+				<div class="col text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/'.$i.'.png') }}" alt="">
+				</div>
+			@endfor
+			</div>
+			<div class="row justify-content-center my-4">
+				@for ($i = 9; $i <= 15; $i++)
+					<div class="col text-center">
 						<img class="img-fluid" src="{{ asset('img/acheteurs/'.$i.'.png') }}" alt="">
 					</div>
 				@endfor
