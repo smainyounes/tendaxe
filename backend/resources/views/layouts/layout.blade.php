@@ -70,7 +70,7 @@
 				@auth
 					@if (Auth::user()->type_user === 'abonné')
 					<li class="nav-item px-2">
-						<a class="nav-link" href="{{ route('offre.favorit') }}">favoris</a>
+						<a class="nav-link" href="{{ route('offre.favorit') }}">Favories</a>
 					</li>
 					@endif					
 					<li class="nav-item px-2 dropdown">
@@ -106,7 +106,7 @@
 
         @yield('content')
 
-        <footer class="footer bg-dark px-5 pt-5 pb-2">
+        <footer class="footer bg-dark mt-5 px-5 pt-5 pb-2">
 			<div class="row">
 				<div class="col-md-2">
 					<div class="h2 text-md-left text-center">
@@ -118,7 +118,7 @@
 						TendAxe est un platforme profissionnel pour les appels d’offres et les consultation sur le marche publique et prive
 					</p>
 					<div class="text-md-left text-center">
-						<a href="{{ route('help') }}" class="text-primary">Aide | Documents utiles | CGU</a>
+						<a href="{{ route('docs') }}" class="text-primary">Aide | Documents utiles | CGU</a>
 					</div>
 				</div>
 				<div class="offset-md-3 col-md-3 text-md-left text-center">

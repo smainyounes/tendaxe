@@ -35,6 +35,11 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 Route::get('/test', function () {
     return view('user.notif');
 });
+
+Route::get('/documents', function () {
+    return view('docs');
+})->name('docs');
+
 // email verification
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
@@ -90,8 +95,8 @@ Route::middleware(['auth', 'EmailVerified'])->group(function () {
     Route::post('/chang_email',[SettingsController::class, 'editemail'])->name('user.email');
     Route::post('/chang_phone',[SettingsController::class, 'editphone'])->name('user.phone');
 
-    Route::post('/favorit/{offre}',[FavoritController::class, 'toggle'])->name('favorit.toggle');
-    Route::get('/favorit',[FavoritController::class, 'index'])->name('offre.favorit');
+    Route::post('/favories/{offre}',[FavoritController::class, 'toggle'])->name('favorit.toggle');
+    Route::get('/favories',[FavoritController::class, 'index'])->name('offre.favorit');
 
     Route::post('/settings/notif/',[SettingsController::class, 'Editnotif'])->name('user.notif');
     Route::delete('/settings/notif/wilaya/{wilaya}',[SettingsController::class, 'deleteWilaya'])->name('user.notif.wilaya');

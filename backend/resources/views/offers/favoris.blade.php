@@ -3,9 +3,13 @@
 @section('title', 'Favoris')
 
 @section('content')
-    <div class="container main">
+    <div class="container-fluid p-5" style="background: url({{ asset('img/banner/laptop_typing.jpg') }}) no-repeat center center; margin-top: 66px; background-size: cover;">
+        <div class="container">
+            <h2 class="text-white bold my-4"> Favories </h2>
+        </div>
+    </div>
+    <div class="container mt-5">
         <x-alert />
-        <h1 class="bold text-center">List favoris</h1>
         
         @if ($offres->count())
             @foreach ($offres as $offre)
