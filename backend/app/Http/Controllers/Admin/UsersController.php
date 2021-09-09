@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Notif;
+use App\Models\Adminetab;
 use Illuminate\Http\Request;
-use App\Models\Etablissement;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
@@ -184,7 +186,7 @@ class UsersController extends Controller
 
             }
 
-        $etab = Etablissement::create([
+        $etab = Adminetab::create([
             'nom_etablissement' => ($request->category === "AUTRE") ? $request->nom_etab : $nom_etab,
             'category' => $request->category,
             'wilaya' => ($request->wilaya_etab !== "Aucun") ? $request->wilaya_etab : null,
@@ -205,9 +207,10 @@ class UsersController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'etablissement_id' => $etab->id,
+            'adminetab_id' => $etab->id,
             'type_user' => 'content',
             'etat' => 'active',
+            'email_verified_at' => Carbon::now(),
         ]);
 
         if(!$user){

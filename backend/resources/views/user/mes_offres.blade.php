@@ -10,7 +10,7 @@
             </div>
             @if (Auth::user()->etat === "active")
                 <div class="col-md-6 text-right">
-                    <a class="btn btn-sm btn-primary px-3" href="{{ route('offre.add') }}">Ajouter</a>
+                    <a class="btn btn-sm btn-primary px-3" href="{{ route('offre.add') }}">Ajouter un offre</a>
                 </div>
             @endif
         </div>

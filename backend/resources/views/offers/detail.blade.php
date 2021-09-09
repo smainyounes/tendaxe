@@ -84,9 +84,10 @@
                     </ul>
                 </div>
             </div>
+            <hr>
         </div>
         <div class="col-md-9">
-            <div class="row mb-5">
+            <div class="row ">
                 <div class="col-sm-11">
                     <h4 class="bold text-dark">{{ $offre->titre }}</h4>
                 </div>
@@ -109,6 +110,7 @@
             </div>
             <div class="">
                 @if ($offre->statut === "Appel d'offres & Consultation")
+                <hr class="my-4">
                     <div class="m-2">
                         <span>
                             <img class="mr-3" src="{{ asset('img/icons/indic.png') }}">
@@ -141,6 +143,9 @@
                 @endif
             </div>
             
+            <hr class="my-4">
+
+
             @if (!$expired && $offre->description)
                 <div class="my-4">
                     <p>
@@ -158,12 +163,30 @@
                 @if ($offre->img_offre)
                     <div class="my-4">
                         <img class="img-fluid" src="{{ asset('storage/' . $offre->img_offre) }}">
+                        <div class="d-flex justify-content-around mt-3">
+                            <a href="#" onclick="PrintImage('{{  asset('storage/' . $offre->img_offre) }}'); return false;">
+                                <img src="{{ asset('img/icons/printer.png') }}" alt="">
+                            </a>
+                            <a href="{{ asset('storage/' . $offre->img_offre) }}" download>
+                                <img src="{{ asset('img/icons/download.png') }}" alt="">
+                            </a>
+                        </div>
                     </div>
+                    <hr>
                 @endif
                 @if ($offre->img_offre2)
                     <div class="my-4">
                         <img class="img-fluid" src="{{ asset('storage/' . $offre->img_offre2) }}">
+                        <div class="d-flex justify-content-around mt-3">
+                            <a href="#" onclick="PrintImage('{{  asset('storage/' . $offre->img_offre2) }}'); return false;">
+                                <img src="{{ asset('img/icons/printer.png') }}" alt="">
+                            </a>
+                            <a href="{{ asset('storage/' . $offre->img_offre2) }}" download>
+                                <img src="{{ asset('img/icons/download.png') }}" alt="">
+                            </a>
+                        </div>
                     </div>
+                    <hr>
                 @endif
                
             @endif
@@ -183,6 +206,7 @@
                         </div>
                         @endif
                     </div>
+                    <hr>
                 @endif
             @endauth
 
@@ -191,7 +215,7 @@
                     <button class="btn btn-lg btn-primary">
                         <b>Inscrivez-vous gratuitement</b>
                         <br>
-                        avec 5 jours d’essai
+                        avec 3 jours d’essai
                     </button>
                 </div>
             @endguest
@@ -202,4 +226,27 @@
         </div>
     </div>		
 </div>
+
+<script>
+
+    function ImagetoPrint(source)
+    {
+        return "<html><head><scri"+"pt>function step1(){\n" +
+                "setTimeout('step2()', 10);}\n" +
+                "function step2(){window.print();window.close()}\n" +
+                "</scri" + "pt></head><body onload='step1()'>\n" +
+                "<img src='" + source + "' /></body></html>";
+    }
+
+    function PrintImage(source)
+    {
+        var Pagelink = "about:blank";
+        var pwa = window.open(Pagelink, "_new");
+        pwa.document.open();
+        pwa.document.write(ImagetoPrint(source));
+        pwa.document.close();
+    }
+
+</script>
+
 @endsection

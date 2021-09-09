@@ -12,7 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use ChristianKuri\LaravelFavorite\Traits\Favoriteability;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, Favoriteability;
 
@@ -22,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'etablissement_id',
+        'adminetab_id',
         'nom',
         'prenom',
         'email',
@@ -34,6 +34,7 @@ class User extends Authenticatable
         'secteurs',
         'type_user',
         'etat',
+        'email_verified_at',
     ];
 
     /**
@@ -57,7 +58,7 @@ class User extends Authenticatable
 
     public function abonnement()
     {
-        return $this->hasMany(Abonnement::class);
+        return $this->hasMany(Abonnement::class)->where('etat', 'active');
     }
 
     public function current_abonnement()
@@ -66,6 +67,14 @@ class User extends Authenticatable
             // ->where('date_debut', '<=', Carbon::now())
             // ->where('date_fin', '>=', Carbon::now())
             ->whereRaw('(now() between date_debut and date_fin)')
+            ->where('etat', 'active')
+            ->latest();
+    }
+
+    public function pending_abonnement()
+    {
+        return $this->hasOne(Abonnement::class)
+            ->where('etat', 'pending')
             ->latest();
     }
 
@@ -76,7 +85,12 @@ class User extends Authenticatable
 
     public function etablissement()
     {
-        return $this->belongsto(Etablissement::class);
+        return $this->belongsto(Adminetab::class);
+    }
+
+    public function adminetab()
+    {
+        return $this->belongsto(Adminetab::class);
     }
 
     public function notif()

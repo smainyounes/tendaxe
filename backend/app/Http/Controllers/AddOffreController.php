@@ -100,9 +100,8 @@ class AddOffreController extends Controller
             }
 
             $wilaya = null;
-
             if($request->wilaya_offre === "Aucun"){
-                $wilaya = Auth::user()->etablissement()->wilaya;
+                $wilaya = Auth::user()->adminetab->wilaya;
                 
             }else{
                 $wilaya = $request->wilaya_offre;
@@ -122,6 +121,7 @@ class AddOffreController extends Controller
                 'img_offre2' => $fileName2,
                 'journalar_id' => $id_ar,
                 'journalfr_id' => $id_fr,
+                'adminetab_id' => Auth::user()->adminetab_id,
             ]);
 
             $offre->secteur()->sync($request->secteur);

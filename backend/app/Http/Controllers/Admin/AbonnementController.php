@@ -71,8 +71,9 @@ class AbonnementController extends Controller
 
         $abonnement->date_debut = $request->date_debut;
         $abonnement->date_fin = $request->date_fin;
-
-        $abonnement->secteur()->detach();
+        $abonnement->etat = "active";
+        
+        // $abonnement->secteur()->detach();
         $abonnement->secteur()->sync($request->secteurs);
 
         $abonnement->save();

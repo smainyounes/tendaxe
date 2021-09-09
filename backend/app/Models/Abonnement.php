@@ -14,6 +14,7 @@ class Abonnement extends Model
         'nom_abonnement',
         'date_debut',
         'date_fin',
+        'etat',
     ];
 
     public function secteur()

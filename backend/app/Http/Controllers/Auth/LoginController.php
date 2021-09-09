@@ -23,7 +23,7 @@ class LoginController extends Controller
         
         // login
         if(!Auth::attempt($request->only('email', 'password'), $request->remember)){
-            return back()->with('status', 'mauvais e-mail ou mot de passe');
+            return back()->with('error', 'mauvais e-mail ou mot de passe');
         }
 
         if(Auth::user()->type_user === "admin"){

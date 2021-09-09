@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FavoritController;
 use App\Http\Controllers\ProfileController;
@@ -13,6 +14,8 @@ use App\Http\Controllers\SearchOffreController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SettingsController;
 use App\Http\Controllers\Admin\AbonnementController;
+use App\Http\Controllers\Auth\PasswordResetController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +36,35 @@ Route::get('/test', function () {
     return view('user.notif');
 });
 
+Route::get('/documents', function () {
+    return view('docs');
+})->name('docs');
+
+// email verification
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+// password reset
+Route::get('/forgot-password',[PasswordResetController::class, 'GetPasswordLinkForm'])->name('password.request')->middleware('guest');
+Route::post('/forgot-password',[PasswordResetController::class, 'GetPasswordLink'])->name('password.email')->middleware('guest');
+
+Route::get('/reset-password/{token}',[PasswordResetController::class, 'PasswordResetForm'])->middleware('guest')->name('password.reset');
+Route::post('/reset-password',[PasswordResetController::class, 'PasswordReset'])->middleware('guest')->name('password.update');
+
+
 Route::get('/suspended', function () {
     return view('suspended');
 })->name('suspended');
@@ -45,9 +77,9 @@ Route::get('/help',function () {
     return view('help');
 })->name('help');
 
-Route::get('/search',[SearchOffreController::class, 'index'])->name('search');
+Route::get('/search',[SearchOffreController::class, 'index'])->name('search')->middleware('EmailVerified');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'EmailVerified'])->group(function () {
     Route::get('/add',[AddOffreController::class, 'index'])->name('offre.add');
     Route::post('/add',[AddOffreController::class, 'store']);
 
@@ -58,12 +90,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/settings/notification',[ProfileController::class, 'notif'])->name('notification');
     Route::get('/settings/offres',[AddOffreController::class, 'mesoffres'])->name('user.offers');
 
+    Route::post('/pack',[SettingsController::class, 'DemandeAbonnement'])->name('user.pack.add');
     Route::post('/chang_pswd',[SettingsController::class, 'EditPassword'])->name('user.password');
     Route::post('/chang_email',[SettingsController::class, 'editemail'])->name('user.email');
     Route::post('/chang_phone',[SettingsController::class, 'editphone'])->name('user.phone');
 
-    Route::post('/favorit/{offre}',[FavoritController::class, 'toggle'])->name('favorit.toggle');
-    Route::get('/favorit',[FavoritController::class, 'index'])->name('offre.favorit');
+    Route::post('/favories/{offre}',[FavoritController::class, 'toggle'])->name('favorit.toggle');
+    Route::get('/favories',[FavoritController::class, 'index'])->name('offre.favorit');
 
     Route::post('/settings/notif/',[SettingsController::class, 'Editnotif'])->name('user.notif');
     Route::delete('/settings/notif/wilaya/{wilaya}',[SettingsController::class, 'deleteWilaya'])->name('user.notif.wilaya');
@@ -84,7 +117,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 
-Route::get('/detail/{offre_id}',[SearchOffreController::class, 'detail'])->name('detail');
+Route::get('/detail/{offre_id}',[SearchOffreController::class, 'detail'])->name('detail')->middleware('EmailVerified');
 
 
 // adminpanel (both admin & publisher can access those routes)

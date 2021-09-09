@@ -19,8 +19,8 @@
                                         </div>
                                         <div class="my-2">
                                             <ul class="">
-                                                <li>Choisissez un secteur parmi les secteurs pour le package</li>
-                                                <li>Toutes les options et fonctionnalités énumérées ci-dessus</li>
+                                                <li>Choisissez 1 secteur</li>
+                                                <li>Toutes les fonctionnalités énumérées ci-dessus</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -34,8 +34,8 @@
                                         </div>
                                         <div class="my-2">
                                             <ul class="">
-                                                <li>Choisissez quatre secteurs parmi tous les secteurs</li>
-                                                <li>Toutes les options et fonctionnalités énumérées ci-dessus</li>
+                                                <li>Choisissez 3 secteurs</li>
+                                                <li>Toutes les fonctionnalités énumérées ci-dessus</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -45,12 +45,12 @@
                                         <div class="bg-yellow mb-3 rounded-top" style="height: 6px"></div>
                                         <div class="text-center bold">Pack gold</div>
                                         <div class="h1 text-center text-green my-4">
-                                            <span>26000</span> DZD/an
+                                            <span>24000</span> DZD/an
                                         </div>
-                                        <div class="my-2 px-2">
-                                            <ul class="pl-3">
-                                                <li>Choisissez six secteurs parmi tous les secteurs</li>
-                                                <li>Toutes les options et fonctionnalités énumérées ci-dessus</li>
+                                        <div class="my-2">
+                                            <ul class="">
+                                                <li>Choisissez 6 secteurs </li>
+                                                <li>Toutes les fonctionnalités énumérées ci-dessus</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -60,18 +60,31 @@
                                         <div class="bg-red mb-3 rounded-top" style="height: 6px"></div>
                                         <div class="text-center bold">pack platine</div>
                                         <div class="h1 text-center text-green my-4">
-                                            <span>34000</span> DZD/an
+                                            <span>28000</span> DZD/an
                                         </div>
                                         <div class="my-2">
                                             <ul class="">
-                                                <li>Sélection de tous les secteurs sans exception</li>
-                                                <li>Toutes les options et fonctionnalités énumérées ci-dessus</li>
+                                                <li>Choisissez 10 secteurs</li>
+                                                <li>Toutes les fonctionnalités énumérées ci-dessus</li>
                                             </ul>
                                         </div>
                                     </div>
                                     @break
                                 @case('ultra')
-                                    
+                                    <div class="bg-white mx-auto pb-2 rounded-bottom h-100 border d-flex flex-column" style="max-width: 280px">
+                                        <div class="bg-blue mb-3 rounded-top" style="height: 6px"></div>
+                                        <div class="text-center bold">pack ultra</div>
+                                        <div class="h1 text-center text-green my-4">
+                                            <span>36000</span> DZD/an
+                                        </div>
+                                        <div class="my-2">
+                                            <ul class="">
+                                                <li>Touts les secteurs</li>
+                                                <li>Toutes les fonctionnalités énumérées ci-dessus</li>
+                                                <li>Assistance juridique</li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                     @break
                                 @case('gratuit')
                                 @default
@@ -85,6 +98,7 @@
                                                 <li>Sélection illimitée de secteurs</li>
                                             </ul>
                                         </div>
+                                      
                                     </div>
                             @endswitch
                         </div>

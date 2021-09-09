@@ -31,6 +31,7 @@ class CreateOffresTable extends Migration
             $table->foreignId('journalar_id')->nullable()->constrained();
             $table->foreignId('journalfr_id')->nullable()->constrained();
             $table->string('etat')->default('pending');
+            $table->foreignId('adminetab_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
