@@ -150,6 +150,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'admin'], function() {
     Route::get('/users',[UsersController::class, 'index'])->name('admin.users');
 
     Route::post('/users/etat/{user}',[UsersController::class, 'update_etat'])->name('admin.user.etat');
+    Route::post('/users/email/{user}',[UsersController::class, 'Email_Verify'])->name('admin.user.email');
     Route::post('/users/password/{user}',[UsersController::class, 'update_password'])->name('admin.user.password');
     Route::post('/users/detail/{user}',[UsersController::class, 'update_details'])->name('admin.user.details');
     Route::delete('/abonnement',[AbonnementController::class, 'destroy'])->name('admin.abonnement.destroy');

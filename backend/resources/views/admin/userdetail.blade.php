@@ -63,7 +63,7 @@
         @endif
         
         {{-- etat --}}
-        <h4>Etat</h4>
+        <h4>Etat compte</h4>
         <form action="{{ route('admin.user.etat', $user) }}" method="POST" class="row">
             @csrf
             <div class="col-6">
@@ -79,6 +79,20 @@
         
         <hr>
 
+        <h4>Etat email verification</h4>
+        <form action="{{ route('admin.user.email', $user) }}" method="POST" class="row">
+            @csrf
+            <div class="col-md-6">
+                <select class="form-control selectpicker" name="verification" >
+                    <option value="on" {{ ($user->email_verified_at) ?? 'selected' }}>On</option>
+                    <option value="off" {{ (!$user->email_verified_at) ? 'selected' : '' }}>Off</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-info">Changer</button>
+            </div>
+        </form>
+        <hr>
         {{-- user infos --}}
         <h4>Utilisateur</h4>
         <form action="{{ route('admin.user.details', $user) }}" method="POST">

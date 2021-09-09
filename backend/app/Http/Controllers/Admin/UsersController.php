@@ -79,6 +79,25 @@ class UsersController extends Controller
         ]);
     }
 
+    public function Email_Verify(Request $request, User $user)
+    {
+        $this->validate($request, [
+            'verification' => 'required|in:on,off',
+        ]);
+
+        if($request->verification === 'on'){
+            $user->email_verified_at = Carbon::now();
+        }
+
+        if($request->verification === 'off'){
+            $user->email_verified_at = NULL;
+        }
+
+        $user->save();
+
+        return back()->with('success', 'etat email verification a été changer avec succés');
+    }
+
     public function update_details(User $user, Request $request)
     {
         $this->validate($request, [
