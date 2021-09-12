@@ -14,6 +14,7 @@ use App\Http\Controllers\SearchOffreController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SettingsController;
 use App\Http\Controllers\Admin\AbonnementController;
+use App\Http\Controllers\Auth\DeviceManagerController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -77,9 +78,13 @@ Route::get('/help',function () {
     return view('help');
 })->name('help');
 
-Route::get('/search',[SearchOffreController::class, 'index'])->name('search')->middleware('EmailVerified');
+Route::get('/search',[SearchOffreController::class, 'index'])->name('search')->middleware('EmailVerified', 'SessionLimiter');
 
-Route::middleware(['auth', 'EmailVerified'])->group(function () {
+Route::get('/device_manager',[DeviceManagerController::class, 'index'])->name('device_manager')->middleware('auth');
+Route::post('/device_manager/logout/all',[DeviceManagerController::class, 'logout_all'])->name('device_manager.logout.all')->middleware('auth');
+Route::post('/device_manager/logout/{device_id}',[DeviceManagerController::class, 'logout_single'])->name('device_manager.logout.single')->middleware('auth');
+
+Route::middleware(['auth', 'EmailVerified', 'SessionLimiter'])->group(function () {
     Route::get('/add',[AddOffreController::class, 'index'])->name('offre.add');
     Route::post('/add',[AddOffreController::class, 'store']);
 
@@ -117,7 +122,7 @@ Route::middleware(['guest'])->group(function () {
 });
 
 
-Route::get('/detail/{offre_id}',[SearchOffreController::class, 'detail'])->name('detail')->middleware('EmailVerified');
+Route::get('/detail/{offre_id}',[SearchOffreController::class, 'detail'])->name('detail')->middleware('EmailVerified', 'SessionLimiter');
 
 
 // adminpanel (both admin & publisher can access those routes)

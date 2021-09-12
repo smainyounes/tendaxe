@@ -201,6 +201,10 @@
                             <label for="">Date fin</label>
                             <input class="form-control" type="date" name="date_fin" value="{{ date('Y-m-d', strtotime($date_debut . ' +1 years')) }}">
                         </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Nombre d'utilisateurs</label>
+                            <input class="form-control" type="number" name="session_limit" min="1" value="1">
+                        </div>
                     </div>
                     <div class="text-right">
                         <button class="btn btn-info">Renouvlé</button>
@@ -236,6 +240,10 @@
                         <div class="col-md-6 form-group">
                             <label for="">Date fin</label>
                             <input class="form-control" type="date" name="date_fin" value="{{ date('Y-m-d', strtotime($date_debut . ' +1 years')) }}">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Nombre d'utilisateurs</label>
+                            <input class="form-control" type="number" name="session_limit" min="1" value="1">
                         </div>
                     </div>
                     <div class="text-right">
@@ -304,6 +312,10 @@
                         <div class="col-md-6 form-group">
                             <label for="">Date fin</label>
                             <input id="date_fin" class="form-control" type="date" name="date_fin" value="">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="">Nombre d'utilisateurs</label>
+                            <input class="form-control" type="number" name="session_limit" id="session_limit" min="1">
                         </div>
                     </div>
                     <div class="text-right">
@@ -516,6 +528,7 @@
                     $('#nom_abonnement').selectpicker('refresh');
                     $('#date_debut').val(data.date_debut);
                     $('#date_fin').val(data.date_fin);
+                    $('#session_limit').val(data.session_limit);
                     
                     var secteur = [];
                     for(var k in data.secteur){

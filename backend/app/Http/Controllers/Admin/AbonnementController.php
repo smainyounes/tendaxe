@@ -22,6 +22,7 @@ class AbonnementController extends Controller
             'secteurs' => 'required|array',
             'date_debut' => 'required|date',
             'date_fin' => 'required|date',
+            'session_limit' => 'required|numeric',
         ]);
 
         $a = Abonnement::create([
@@ -29,6 +30,7 @@ class AbonnementController extends Controller
             'nom_abonnement' => $request->nom_abonnement,
             'date_debut' => $request->date_debut,
             'date_fin' => $request->date_fin,
+            'session_limit' => $request->session_limit,
         ]);
 
         $a->secteur()->sync($request->secteurs);
@@ -61,6 +63,7 @@ class AbonnementController extends Controller
             'secteurs' => 'array',
             'date_debut' => 'required|date',
             'date_fin' => 'required|date',
+            'session_limit' => 'required|numeric',
             'abonnement_id' => 'required|numeric',
         ]);
 
@@ -71,6 +74,7 @@ class AbonnementController extends Controller
 
         $abonnement->date_debut = $request->date_debut;
         $abonnement->date_fin = $request->date_fin;
+        $abonnement->session_limit = $request->session_limit;
         $abonnement->etat = "active";
         
         // $abonnement->secteur()->detach();
