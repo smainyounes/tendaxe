@@ -164,6 +164,9 @@
                     <div class="my-4">
                         <img class="img-fluid" src="{{ asset('storage/' . $offre->img_offre) }}">
                         <div class="d-flex justify-content-around mt-3">
+                            <a href="#" onclick="share()">
+                                <img src="{{ asset('img/icons/share.png') }}" alt="">
+                            </a>
                             <a href="#" onclick="PrintImage('{{  asset('storage/' . $offre->img_offre) }}'); return false;">
                                 <img src="{{ asset('img/icons/printer.png') }}" alt="">
                             </a>
@@ -178,6 +181,9 @@
                     <div class="my-4">
                         <img class="img-fluid" src="{{ asset('storage/' . $offre->img_offre2) }}">
                         <div class="d-flex justify-content-around mt-3">
+                            <a href="#" onclick="share()">
+                                <img src="{{ asset('img/icons/share.png') }}" alt="">
+                            </a>
                             <a href="#" onclick="PrintImage('{{  asset('storage/' . $offre->img_offre2) }}'); return false;">
                                 <img src="{{ asset('img/icons/printer.png') }}" alt="">
                             </a>
@@ -212,11 +218,11 @@
 
             @guest
                 <div class="my-4 text-center">
-                    <button class="btn btn-lg btn-primary">
+                    <a href="{{ route('register') }}" class="btn btn-lg btn-primary">
                         <b>Inscrivez-vous gratuitement</b>
                         <br>
                         avec 3 jours d’essai
-                    </button>
+                    </a>
                 </div>
             @endguest
            
@@ -227,7 +233,47 @@
     </div>		
 </div>
 
+{{-- share modal --}}
+<div class="modal fade" id="share" tabindex="-1" role="dialog" aria-labelledby="shareTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="shareTitle">Partager</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body d-flex justify-content-around">
+            <!-- Sharingbutton Facebook -->
+            <a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u={{ urlencode(route('detail', $offre)) }}" target="_blank" rel="noopener" aria-label="">
+                <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/></svg>
+                </div>
+                </div>
+            </a>
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>  
+
 <script>
+
+    function share() {
+        if(navigator.share){
+            navigator.share({
+                title: '{{ $offre->titre }}',
+                url: '{{ route('detail', $offre) }}'
+            }).then(() => {
+                $('#share').modal('hide');
+            });
+        }else{
+            $('#share').modal('show');
+        }
+    }
 
     function ImagetoPrint(source)
     {
