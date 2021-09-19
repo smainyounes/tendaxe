@@ -1,44 +1,69 @@
 @extends('layouts.layout')
 
-@section('title', 'Detail Offre')
+@section('title', $offre->titre)
     
 @section('content')
-<div class="container main">
+<div class="container-lg main">
     <x-alert />
-    <div class="row pt-5">
-        <div class="col-md-3">
+
+    <div class="row pt-4 mb-4">
+        <div class="offset-sm-3 pr-3 pr-md-0 col-sm-8 col-10">
+            <h4 class="font-weight-600 text-dark text-22" style="">{{ $offre->titre }}</h4>
+        </div>
+        @auth
+        @if (!$expired)
+            <form class="col-1" method="POST" action="{{ route('favorit.toggle', $offre) }}">
+                @csrf
+                @if ($offre->isFavorited())
+                    <button class="text-sm-right" style="background: none; border: none;">
+                        <img src="{{ asset('img/icons/starfill.png') }}">
+                    </button>
+                @else
+                    <button class="text-sm-right" style="background: none; border: none;">
+                        <img src="{{ asset('img/icons/star.png') }}">
+                    </button>
+                @endif
+            </form>
+        @endif
+        @endauth
+    </div>
+    <hr class="show-md">
+    <div class="row pt-4 pt-md-2">
+        <div class="col-md-3 border-right">
             <div class="text-center">
-                <h6 class="bold mb-4">L’Annonceur:</h6>
+                <h6 class="bold mb-4">Infos d’annonceur:</h6>
                 @if ($expired)
                     <img class="img-fluid mb-4" src="{{ asset('img/icons/lock3.png') }}">
                     <h6 class="bold mb-4">Réservé aux abonnés</h6>
                 @else
                     @if($img === "default")
                         <img class="img-fluid mb-4" src="{{ asset('img/2.png') }}">
-                        <h6 class="bold mb-4">{{ $etab->nom_etablissement }}</h6>
+                        <h6 class="bold mb-3">{{ $etab->nom_etablissement }}</h6>
                     @elseif ($img)
                     <img class="img-fluid mb-4 rounded-circle" src="{{ asset('storage/logo/' . $img) }}">
-                    <h6 class="bold mb-4">{{ $etab->nom_etablissement }}</h6>
+                    <h6 class="bold mb-3">{{ $etab->nom_etablissement }}</h6>
                     @endif
                 @endif
                 
             </div>
+            <hr>
             <div>
+                <h6 class="text-center my-3 bold">Infos d’annonce</h6>
                 <div class="mb-2">
-                    <span class="bold">Identifiant: </span>
+                    <span class="font-weight-600">Identifiant: </span>
                     {{ $offre->id }}
                 </div>
                 <div class="mb-2">
-                    <span class="bold">Statut: </span>
+                    <span class="font-weight-600">Statut: </span>
                     {{ $offre->statut }}
                 </div>
                 <div class="mb-2">
-                    <span class="bold">Type: </span>
+                    <span class="font-weight-600">Type: </span>
                     {{ $offre->type }}
                 </div>
                 @if ($offre->wilaya)
                     <div class="mb-2">
-                        <span class="bold">Wilaya: </span>
+                        <span class="font-weight-600">Wilaya: </span>
                         @if ($expired)
                             <img src="{{ asset('img/icons/lock.png') }}">
                             Réservé aux abonnés
@@ -51,49 +76,47 @@
                 @if (!$expired && $etab)
                     @if ($etab->fix)
                         <div class="mb-2">
-                            <span class="bold">fix: </span>
+                            <span class="font-weight-600">fix: </span>
                             {{ $etab->fix }}
                         </div>
                     @endif
                     @if ($etab->fax)
                         <div class="mb-2">
-                            <span class="bold">fax: </span>
+                            <span class="font-weight-600">fax: </span>
                             {{ $etab->fax }}
                         </div>
                     @endif
                     @if ($etab->email)
                         <div class="mb-2">
-                            <span class="bold">Email ou siteweb: </span>
+                            <span class="font-weight-600">Email ou siteweb: </span>
                             {{ $etab->email }}
                         </div>
                     @endif
                 @endif
 
                 <div class="mb-2">
-                    <b>Date publication:</b>  {{ $offre->date_pub }}
+                    <b class="font-weight-600">Date publication:</b>  {{ $offre->date_pub }}
                 </div>
                 <div class="mb-2">
-                    <b>Date d'échéance:</b>  {{ $offre->date_limit }}
+                    <b class="font-weight-600">Date d'échéance:</b>  {{ $offre->date_limit }}
                 </div>
                 <div class="mb-2">
-                    <b>Secteur</b>
-                    <ul class="pl-2 mt-2" style="list-style: none;">
+                    <b class="font-weight-600">Secteur</b>
+                    <ul class="pl-4 mt-2" style="">
                         @foreach ($offre->secteur as $item)
                             <li>{{ $item->secteur }}</li>
                         @endforeach                        
                     </ul>
                 </div>
             </div>
-            <hr>
-        </div>
-        <div class="col-md-9">
-            <div class="row ">
-                <div class="col-sm-11">
-                    <h4 class="bold text-dark">{{ $offre->titre }}</h4>
+            {{-- <div class="row pt-4 mb-4">
+                <div class="col-10">
+                    <h4 class="font-weight-600 h5 text-dark" style="">{{ $offre->titre }}</h4>
                 </div>
                 @auth
                 @if (!$expired)
-                    <form class="col-sm-1" method="POST" action="{{ route('favorit.toggle', $offre) }}">
+                <div class="col-2">
+                    <form class="" method="POST" action="{{ route('favorit.toggle', $offre) }}">
                         @csrf
                         @if ($offre->isFavorited())
                             <button class="text-sm-right" style="background: none; border: none;">
@@ -105,22 +128,26 @@
                             </button>
                         @endif
                     </form>
+                </div>
                 @endif
                 @endauth
-            </div>
+            </div> --}}
+        </div>
+        <div class="col-md-9">
+            
             <div class="">
                 @if ($offre->statut === "Appel d'offres & Consultation")
-                <hr class="my-4">
+                <hr class="mb-4 mt-0">
                     <div class="m-2">
                         <span>
                             <img class="mr-3" src="{{ asset('img/icons/indic.png') }}">
-                            <b>Adress de retrait du cahier des charges: </b>
+                            <b class="font-weight-600">Adress de retrait du cahier des charges: </b>
 
                             @if ($expired)
                                 <img class="mx-2" src="{{ asset('img/icons/lock.png') }}">
                                 Réservé aux abonnés
                             @else
-                                bureau de marché de {{ $etab->category }} de la wilaya {{ $offre->wilaya }}
+                                bureau de marché de {{ $etab->nom_etablissement }}
                             @endif
                         </span>
                     </div>
@@ -143,7 +170,7 @@
                 @endif
             </div>
             
-            <hr class="my-4">
+            <hr class="mb-4 mt-0">
 
 
             @if (!$expired && $offre->description)
@@ -217,13 +244,15 @@
             @endauth
 
             @guest
+                <hr>
                 <div class="my-4 text-center">
                     <a href="{{ route('register') }}" class="btn btn-lg btn-primary">
                         <b>Inscrivez-vous gratuitement</b>
                         <br>
-                        avec 3 jours d’essai
+                        avec <span class="">3</span> jours d’essai
                     </a>
                 </div>
+                <hr>
             @endguest
            
             <div class="my-4">

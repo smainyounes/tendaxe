@@ -1,5 +1,9 @@
 @extends('layouts.profile')
 
+@section('title', 'Notifications')
+
+@section('link_notif', 'text-info')
+
 @section('profile')
     <div class="container-fluid">
         <h5>Notifications</h5>
@@ -34,7 +38,7 @@
                 {{-- keyword --}}
                 <div class="row">
                     <div class="col-md-4">
-                        <label for="">Mots clés</label>
+                        <label class="font-weight-500" for="">Mots clés</label>
                         <input class="form-control bg-light" type="text" name="keyword">
                     </div>
                     <div class="col-md-8">
@@ -61,6 +65,7 @@
                 {{-- secteurs --}}
                 <div class="row">
                     <div class="col-md-4">
+                        <label class="font-weight-500" for="">Secteurs</label>
                         <select class="form-control selectpicker" multiple data-live-search="true" name="secteur[]" id="">
                             {{-- get user secteur --}}
                             @foreach (Auth::user()->current_abonnement->secteur as $sect)
@@ -92,6 +97,7 @@
                 {{-- wilaya --}}
                 <div class="row">
                     <div class="col-md-4">
+                        <label class="font-weight-500" for="">Wilaya</label>
                         <select class="form-control wil1 selectpicker" multiple data-live-search="true" name="wilaya[]" id=""></select>
                     </div>
                     <div class="col-md-8">
@@ -115,6 +121,7 @@
                 <hr>
                 <div class="row">
                     <div class="col-md-4">
+                        <label class="font-weight-500" for="">Statuts</label>
                         <select name="statut[]" class="form-control mb-2 selectpicker" multiple title="statut" data-live-search="true">
                             <option value="Mise en demeure et résiliation" data-tokens="Mise en demeure et résiliation">Mise en demeure et résiliation</option>
                             <option value="Adjudication" data-tokens="Adjudication">Adjudication</option>

@@ -1,7 +1,9 @@
 @extends('layouts.profile')
 
 @section('title', 'Mes Offres')
-    
+
+@section('link_my_offers', 'text-info')
+
 @section('profile')
     <div class="container-fluid">
         <div class="row">

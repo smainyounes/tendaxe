@@ -4,4 +4,6 @@ $('[data-toggle="slide-collapse"]').on('click', function() {
     $navMenuCont.animate({'width':'toggle'}, 350);
 });
 
-$('input[type="date"]').flatpickr();
+$('input[type="date"]').flatpickr({
+    "locale": "fr"
+});

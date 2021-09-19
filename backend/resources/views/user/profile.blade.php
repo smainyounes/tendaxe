@@ -1,5 +1,7 @@
 @extends('layouts.profile')
-    
+
+@section('link_profile', 'text-info')
+
 @section('profile')
     <div class="container-fluid">
         <h5 class="mb-4">Modifier mon profile</h5>

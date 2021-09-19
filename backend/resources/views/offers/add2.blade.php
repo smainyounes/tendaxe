@@ -23,26 +23,28 @@
                     @csrf
                     <div class="form-group">
                         <label for="">Intitulé de Projet</label>
-                        <input class="form-control bg-light" type="text" name="titre" required>
+                        <input class="form-control bg-light" type="text" name="titre" value="{{ old('titre') }}" required>
                     </div>
                     <div class="form-group">
                         <label for="">Description</label>
-                        <textarea class="form-control bg-light" style="resize: none;" name="description" id="" rows="6"></textarea>
+                        <textarea class="form-control bg-light" style="resize: none;" name="description" id="" rows="6">
+                            {{ old('titre') }}
+                        </textarea>
                     </div>
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label for="">Date publication</label>
-                            <input class="form-control bg-light" type="date" name="date_pub" required>
+                            <input class="form-control bg-light" type="date" name="date_pub"  value="{{ old('date_pub') }}" required>
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="">Date d'échéance</label>
-                            <input class="form-control bg-light" type="date" name="date_lim" required>
+                            <input class="form-control bg-light" type="date" name="date_lim"  value="{{ old('date_lim') }}" required>
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="">Secteurs</label>
                             <select name="secteur[]" class="form-control bg-light mb-2 selectpicker" data-size="5" multiple title="Secteur" data-live-search="true" required>
                                 @foreach (App\Models\Secteur::All() as $sect)
-                                    <option value="{{ $sect->id }}" data-tokens="{{ $sect->secteur }}" >{{ $sect->secteur }}</option>
+                                    <option value="{{ $sect->id }}" data-tokens="{{ $sect->secteur }}" {{ (old('secteur') && in_array($sect->id, old('secteur'))) ? 'selected':''  }}>{{ $sect->secteur }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -50,14 +52,14 @@
                             <label for="">Statut</label>
                             <select name="statut" class="form-control bg-light mb-2 selectpicker" data-size="5" title="statut" data-live-search="true" required>
                                 <option value="Appel d'offres & Consultation" data-tokens="Appel d'offres & Consultation" selected>Appel d'offres & Consultation</option>
-                                <option value="Attribution de marché" data-tokens="Attribution de marché">Attribution de marché</option>
-                                <option value="Sous-traitance" data-tokens="Sous-traitance">Sous-traitance</option>
-                                <option value="Prorogation de délai" data-tokens="Prorogation de délai">Prorogation de délai</option>
-                                <option value="Annulation" data-tokens="Annulation">Annulation</option>
-                                <option value="Infructuosité" data-tokens="Infructuosité">Infructuosité</option>
-                                <option value="Adjudication" data-tokens="Adjudication">Adjudication</option>
-                                <option value="Vente aux enchères" data-tokens="Vente aux enchères">Vente aux enchères</option>
-                                <option value="Mise en demeure et résiliation" data-tokens="Mise en demeure et résiliation">Mise en demeure et résiliation</option>
+                                <option value="Attribution de marché" data-tokens="Attribution de marché" {{ (old('statut') && in_array('Attribution de marché', old('statut'))) ? 'selected':''  }}>Attribution de marché</option>
+                                <option {{ (old('statut') && in_array('Sous-traitance', old('statut'))) ? 'selected':''  }} value="Sous-traitance" data-tokens="Sous-traitance">Sous-traitance</option>
+                                <option {{ (old('statut') && in_array('Prorogation de délai', old('statut'))) ? 'selected':''  }} value="Prorogation de délai" data-tokens="Prorogation de délai">Prorogation de délai</option>
+                                <option {{ (old('statut') && in_array('Annulation', old('statut'))) ? 'selected':''  }} value="Annulation" data-tokens="Annulation">Annulation</option>
+                                <option {{ (old('statut') && in_array('Infructuosité', old('statut'))) ? 'selected':''  }} value="Infructuosité" data-tokens="Infructuosité">Infructuosité</option>
+                                <option {{ (old('statut') && in_array('Adjudication', old('statut'))) ? 'selected':''  }} value="Adjudication" data-tokens="Adjudication">Adjudication</option>
+                                <option {{ (old('statut') && in_array('Vente aux enchères', old('statut'))) ? 'selected':''  }} value="Vente aux enchères" data-tokens="Vente aux enchères">Vente aux enchères</option>
+                                <option {{ (old('statut') && in_array('Mise en demeure et résiliation', old('statut'))) ? 'selected':''  }} value="Mise en demeure et résiliation" data-tokens="Mise en demeure et résiliation">Mise en demeure et résiliation</option>
                             </select>
                         </div>
 
@@ -78,7 +80,7 @@
                                 <option value="0">Autre</option>
                                 {{-- get all etabs inserted by the admin --}}
                                 @foreach (App\Models\Adminetab::All() as $etab)
-                                <option value="{{ $etab->id }}">{{ $etab->nom_etablissement }}</option>
+                                <option value="{{ $etab->id }}" {{ (old('etab') && in_array($etab->id, old('etab'))) ? 'selected' : '' }}>{{ $etab->nom_etablissement }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -211,4 +213,10 @@
         };
 
     </script>
+
+    @if (old('wilaya_offre'))
+    <script>
+        $('.wil1').val("{{ old('wilaya_offre') }}").selectpicker('refresh');
+    </script>
+    @endif
 @endsection
