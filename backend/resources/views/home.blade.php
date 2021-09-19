@@ -7,49 +7,61 @@
 			<div class="container mx-auto row mt-5 pt-5">
 				<div class="col-md-6">
 					<div class="text-white">
-						<div id="wlc" class="h3 bold mb-4">Bienvenue sur TendAxe</div>
-						<div class="h5">
-							TendAxe est votre platforme profissionnel pour les appels d’offres et les consultation sur le marché publique et privé
+						<div id="wlc" class="h3 font-weight-600 mb-md-4 text-24">Bienvenue sur TendAxe</div>
+						<div class="h5 text-18">
+							TendAxe est votre platforme <span class="">profissionnel</span> pour les appels d’offres et les <span class="">consultations</span> sur le marché publique et privé
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 text-center text-md-right">
-					<a class="btn btn-primary btn-lg mt-4" href="{{ route('search') }}">Voir appels d'offres  <img class="pl-4" src="{{ asset('img/icons/arrow.png') }}"></a>
-				</div>
 			</div>
-			<div class="container mx-auto text-white text-center">
-				<h3 class="bold">Pourquoi TendAxe?</h3>
-				<p class="hide-md">Avec l’abonnement a notre site internet, vous pouvez consulter tous les appels d’offres nationaux et internationaux dans votre domain d’activité et optenu tout les informations relatives a l’appel d’offre, ses résultats, ses delais, et également optenir les coupies certifiées conformes qui serons publiées dans les sources officiels (la press national, BOMOT, BOASEM ...).</p>
-				<p>TendAxe arrive en exclusivite de donner la possibilite de publier votre appels d’offres, demmende d’achat et sous-traitance(projet deuxiem main); un service juridique mis a votre disposition et une assitance pour vos projets.</p>
+			<div class="container text-right">
+				<a class="btn btn-primary btn-lg mr-4 font-weight-600" href="{{ route('search') }}">Voir appels d'offres  <img class="pl-4" src="{{ asset('img/icons/arrow.png') }}"></a>
+			</div>
+			<div class="container mx-auto text-white text-center hide-md">
+				<h3 class="font-weight-600 text-26">Pourquoi TendAxe?</h3>
+				<p class="font-weight-500 text-15">Avec l’abonnement à notre site internet, vous pouvez consulter tous les appels d’offres et les consultations dans votre domain d’activité et optenu tout les informations relatives a l’appel d’offre, ses résultats, ses delais, et également optenir les coupies certifiées conformes qui seront publiées dans les sources officiels (la press national, BOMOT, BOASEM ...).</p>
+				<p class="font-weight-500 text-15">TendAxe arrive en exclusivité de donner la possibilité de publier votre appels d’offres, demmande d’achat et sous-traitance(projet deuxiem main)et des petits marchés à travers des entreprises ou des ordinaires; un service juridique mis a votre disposition et une assitance pour vos projets.</p>
+			</div>
+			<div class="container mx-auto text-white text-center show-md">
+				<h3 class="font-weight-600 text-26">Pourquoi TendAxe?</h3>
+				<p class="font-weight-500 text-15">Avec l’abonnement a notre site internet, vous pouvez consulter tous les appels d’offres nationaux et internationaux dans votre domain d’activité et optenu tout les informations relatives a l’appel d’offre (attribution, mise à jour, prologation de délais, annulation ...)</p>
+				<p class="font-weight-500 text-15">TendAxe arrive en exclusivite de donner la possibilite de publier votre appels d’offres, demmende d’achat et sous-traitance par des entreprises ou des ordinaires</p>
 			</div>
 	</header>
 
 		<section class="container my-5">
-			<div class="row">
+			<div class="row mx-0">
 				<div class="col-md-4 px-md-0">
 					<div class="mb-3">
-						<img src="{{ asset('img/icons/annouce2.png') }}" width="40px" height="40px">
-						<span class="ml-3 bold">Soyez informe</span>
+						<div class="d-flex align-items-center">
+							<img src="{{ asset('img/icons/annouce2.png') }}" width="40px" height="40px">
+							<span class="ml-3 font-weight-700">Soyez informe</span>
+
+						</div>
 						<div class="mt-2">
-							<small>
+							<small class="font-weight-500">
 								Nous publions chaque jour tout les appels d'offres, consultation et ses résultats (attribution annulation, Mise à jour ... ) disponible dans le marché algérien
 							</small>
 						</div>
 					</div>
 					<div class="mb-3">
-						<img src="{{ asset('img/icons/search3.png') }}" width="40px" height="40px">
-						<span class="ml-3 bold">Découvrez de nouveaux fournisseurs</span>
+						<div class="d-flex align-items-center">
+							<img src="{{ asset('img/icons/search3.png') }}" width="40px" height="40px">
+							<span class="ml-3 font-weight-700">Découvrez de nouveaux fournisseurs</span>
+						</div>
 						<div class="mt-2">
-							<small>
+							<small class="font-weight-500">
 								Publiez vos demandes achats, appels d'offres et sous-traitance sur notre plateforme et recevez des offres de fournisseurs qualifiés
 							</small>
 						</div>
 					</div>
 					<div class="mb-3">
-						<img src="{{ asset('img/icons/two_hands.png') }}" width="40px" height="40px">
-						<span class="ml-3 bold">trouvez des sous-traitances</span>
+						<div class="d-flex align-items-center">
+							<img src="{{ asset('img/icons/two_hands.png') }}" width="40px" height="40px">
+							<span class="ml-3 font-weight-700">trouvez des sous-traitances</span>
+						</div>
 						<div class="mt-2">
-							<small>
+							<small class="font-weight-500">
 								Consulter toutes les offres d'avantages proposées par des entreprise ou des ordinaires et Trouver des projet deuxième main en tant que sous-traitance
 							</small>
 						</div>
@@ -60,29 +72,35 @@
 				</div>
 				<div class="col-md-4 px-md-0">
 					<div class="mb-3">
-						<img src="{{ asset('img/icons/email.png') }}" width="40px" height="40px">
-						<span class="ml-3 bold">Service d’Alerte E-mail</span>
+						<div class="d-flex align-items-center">
+							<img src="{{ asset('img/icons/email.png') }}" width="40px" height="40px">
+							<span class="ml-3 font-weight-700">Service d’Alerte E-mail</span>
+						</div>
 						<div class="mt-2">
-							<small>
+							<small class="font-weight-500">
 								Vous recevrez deux bulletins d’alerte: <br>
 								un à Midi pour assurer la rapidité de l’information, et deuxième en fin de journee pour vous résumer l’intégralité des annonces publiées.
 							</small>
 						</div>
 					</div>
 					<div class="mb-3">
-						<img src="{{ asset('img/icons/notifbell.png') }}" width="40px" height="40px">
-						<span class="ml-3 bold">Service de notification</span>
+						<div class="d-flex align-items-center">
+							<img src="{{ asset('img/icons/notifbell.png') }}" width="40px" height="40px">
+							<span class="ml-3 font-weight-700">Service de notification</span>
+						</div>
 						<div class="mt-2">
-							<small>
+							<small class="font-weight-500">
 								Favorisez vos appels d’offre ainsi que les organismes désirés et vous serez notifiés de leurs résultats dans le but de suivre leurs évolutions par étapes et leur publication respectivement.
 							</small>
 						</div>
 					</div>
 					<div class="mb-3">
-						<img src="{{ asset('img/icons/doc_search.png') }}" width="40px" height="40px">
-						<span class="ml-3 bold">Systeme de recherches Avancé</span>
+						<div class="d-flex align-items-center">
+							<img src="{{ asset('img/icons/doc_search.png') }}" width="40px" height="40px">
+							<span class="ml-3 font-weight-700">Systeme de recherches Avancé</span>
+						</div>
 						<div class="mt-2">
-							<small>
+							<small class="font-weight-500">
 								TendAxe met entre vos mains un moteur recherche avancé, qui offre une multitudes de critères pour vous simplifier la recherche de marchés publics.
 							</small>
 						</div>
@@ -92,43 +110,46 @@
 		</section>
 
 		<section id="howto" class="my-5">
-			<h3 class="text-center bold">Comment s'inscrire</h3>
+			<h3 class="text-center font-weight-600">Comment s'inscrire</h3>
 			<div class="container row mt-4 mx-auto">
 				<div class="col-md-8">
 					<div class="d-flex">
-						<span class="bold mr-4 h4">1.</span>
-						<p>
-							Inscrivez gratuitement en tant que nouveau utilisateur et bénéficier de 3 jour d’essai gratuits (nom, prénom, e-mail, numéro de téléphone et certains champs).
+						<span class="bold mr-4 h4">1</span>
+						<p class="font-weight-500">
+							Inscrivez gratuitement en tant que nouveau <span class="">utilisateur remplissant le formulaire d'inscription (nom, prénom, e-mail, numéro de téléphone et certains champs) et bénéficiez de 3 jours d'éssai gratuit.</span>
 						</p>
 					</div>
 					<div class="d-flex">
-						<span class="bold mr-4 h4">2.</span>
-						<p>
-							validez votre e-mail (cliquez sur le lien recevé par votre e-mail).
-						</p>
-					</div>
-					<div class="d-flex">
-						<span class="bold mr-4 h4">3.</span>
-						<p>
+						<span class="bold mr-4 h4">2</span>
+						<p class="font-weight-500">
 							Connectez-vous avec votre e-mail et votre mot de passe.
 						</p>
 					</div>
-					<div class="h5 ml-5">
-						Vous pouvez consulter gratuitement tous les appels d'offres pendant une durée de 3 jour
+					<div class="d-flex">
+						<span class="bold mr-4 h4">3</span>
+						<p class="font-weight-500">
+							choisissez le pack qui vous conviendrez (bronz, silver, gold, platine, Ultra).
+						</p>
+					</div>
+					<div class="d-flex">
+						<span class="bold mr-4 h4">4</span>
+						<p class=" font-weight-500">
+							votre compte professionnel annuel sera activé dés la réception de votre reçu de payement
+						</p>
 					</div>
 				</div>
-				<div class="col-md-4 text-center">
+				<div class="col-md-4 text-center d-flex align-items-center justify-content-center">
 					<a href="{{ route('register') }}" class="btn btn-lg btn-primary">
 						<b>Inscrivez-vous gratuitement</b>
 						<br>
-						avec 3 jours d’essai
+						avec <span class="">3</span> jours d’essai
 					</a>
 				</div>
 			</div>
 		</section>
 
 		<section id="latest" class="container my-5">
-			<h3 class="text-center mb-4 bold">Dernier appels</h3>
+			<h3 class="text-center  mb-4 font-weight-600">Derniers annonces</h3>
 			@foreach (App\Models\Offre::where('etat', 'active')->latest()->take(4)->get() as $item)
 			<x-offre :exp="false" :offre="$item" />
 			{{-- <div class="my-2">
@@ -167,7 +188,7 @@
 			@endforeach
 			
 			<div class="text-right">
-				<a href="{{ route('search') }}" class="btn btn-primary">Tous les appels d’offre <img class="pl-4" src="{{ asset('img/icons/arrow.png') }}"></a>
+				<a href="{{ route('search') }}" class="btn btn-primary font-weight-600">Tous les appels d’offre <img class="pl-4" src="{{ asset('img/icons/arrow.png') }}"></a>
 			</div>
 		</section>
 
@@ -201,8 +222,8 @@
 		</section>
 
 		<section id="offers" class="container my-5">
-			<h3 class="bold text-center mb-3">Nos forfaits</h3>
-			<ul>
+			<h3 class="font-weight-600 text-center mb-3">Nos forfaits</h3>
+			<ul class="font-weight-500">
 				<li>
 					Consulter tous les types d'annonces proposées (appels d'offres, consultations, annonces de subventions temporaires, annonces d'annulation, notifications, annonces de prolongation et de retard des délais, annonce d'offres ...)
 				</li>
@@ -218,31 +239,32 @@
 			</ul>
 			<div class="row my-4">
 				<div class="col-md-4 col-sm-6 p-2" data-aos="fade-up">
-					<div class="bg-white mx-auto pb-2 rounded-bottom h-100 border d-flex flex-column" style="max-width: 280px">
+					<div class="bg-white mx-auto pb-2 rounded h-100 border d-flex flex-column" style="max-width: 280px">
 						<div class="bg-light-gray mb-3 rounded-top" style="height: 6px"></div>
 						<div class="text-center bold">Forfait gratuit à vie</div>
-						<div class="h1 text-center text-green my-4">0.00 DZD</div>
+						<div class="h1 text-center text-green my-4">0 DA</div>
 						<div class="my-2">
 							<ul class="">
 								<li>Découvrez le site pendant une période illimitée sans passer en revue tous les détails</li>
-								<li>Sélection illimitée de secteurs</li>
+								<li class="">publiez vos offres et vos appels d'achat d'une façon illimité</li>
 							</ul>
 						</div>
-						<div class="text-center mt-auto px-2">
+						{{-- <div class="text-center mt-auto px-2">
 							<a href="{{ route('register') }}" class="btn btn-primary bold w-100">Demander</a>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-6 p-2" data-aos="fade-up" data-aos-duration="700">
-					<div class="bg-white mx-auto pb-2 rounded-bottom h-100 border d-flex flex-column" style="max-width: 280px">
+					<div class="bg-white mx-auto pb-2 rounded h-100 border d-flex flex-column" style="max-width: 280px">
 						<div class="bg-orange mb-3 rounded-top" style="height: 6px"></div>
 						<div class="text-center bold">Pack de bronze</div>
 						<div class="h1 text-center text-green my-4">
-							<span>11000</span> DZD/an
+							<span>11000</span> DA/an
 						</div>
 						<div class="my-2">
 							<ul class="">
 								<li>Choisissez 1 secteur</li>
+								<li>Un utilisateur</li>
 								<li>Toutes les fonctionnalités énumérées ci-dessus</li>
 							</ul>
 						</div>
@@ -257,15 +279,16 @@
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-6 p-2" data-aos="fade-up" data-aos-duration="900">
-					<div class="bg-white mx-auto pb-2 rounded-bottom h-100 border d-flex flex-column" style="max-width: 280px">
+					<div class="bg-white mx-auto pb-2 rounded h-100 border d-flex flex-column" style="max-width: 280px">
 						<div class="bg-light-gray mb-3 rounded-top" style="height: 6px"></div>
 						<div class="text-center bold">pack Silver</div>
 						<div class="h1 text-center text-green my-4">
-							<span>19000</span> DZD/an
+							<span>19000</span> DA/an
 						</div>
 						<div class="my-2">
 							<ul class="">
 								<li>Choisissez 3 secteurs</li>
+								<li>Deux utilisateurs</li>
 								<li>Toutes les fonctionnalités énumérées ci-dessus</li>
 							</ul>
 						</div>
@@ -280,15 +303,16 @@
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-6 p-2" data-aos="fade-up">
-					<div class="bg-white mx-auto pb-2 rounded-bottom h-100 border d-flex flex-column" style="max-width: 280px">
+					<div class="bg-white mx-auto pb-2 rounded h-100 border d-flex flex-column" style="max-width: 280px">
 						<div class="bg-yellow mb-3 rounded-top" style="height: 6px"></div>
 						<div class="text-center bold">Pack gold</div>
 						<div class="h1 text-center text-green my-4">
-							<span>24000</span> DZD/an
+							<span>24000</span> DA/an
 						</div>
 						<div class="my-2">
 							<ul class="">
 								<li>Choisissez 6 secteurs </li>
+								<li>Trois utilisateurs</li>
 								<li>Toutes les fonctionnalités énumérées ci-dessus</li>
 							</ul>
 						</div>
@@ -303,15 +327,16 @@
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-6 p-2" data-aos="fade-up" data-aos-duration="700">
-					<div class="bg-white mx-auto pb-2 rounded-bottom h-100 border d-flex flex-column" style="max-width: 280px">
+					<div class="bg-white mx-auto pb-2 rounded h-100 border d-flex flex-column" style="max-width: 280px">
 						<div class="bg-red mb-3 rounded-top" style="height: 6px"></div>
 						<div class="text-center bold">pack platine</div>
 						<div class="h1 text-center text-green my-4">
-							<span>28000</span> DZD/an
+							<span>28000</span> DA/an
 						</div>
 						<div class="my-2">
 							<ul class="">
 								<li>Choisissez 10 secteurs</li>
+								<li>Trois utilisateurs</li>
 								<li>Toutes les fonctionnalités énumérées ci-dessus</li>
 							</ul>
 						</div>
@@ -326,15 +351,16 @@
 					</div>
 				</div>
 				<div class="col-md-4 col-sm-6 p-2" data-aos="fade-up" data-aos-duration="900">
-					<div class="bg-white mx-auto pb-2 rounded-bottom h-100 border d-flex flex-column" style="max-width: 280px">
+					<div class="bg-white mx-auto pb-2 rounded h-100 border d-flex flex-column" style="max-width: 280px">
 						<div class="bg-blue mb-3 rounded-top" style="height: 6px"></div>
 						<div class="text-center bold">pack ultra</div>
 						<div class="h1 text-center text-green my-4">
-							<span>36000</span> DZD/an
+							<span>36000</span> DA/an
 						</div>
 						<div class="my-2">
 							<ul class="">
 								<li>Touts les secteurs</li>
+								<li>Quatre utilisateurs</li>
 								<li>Toutes les fonctionnalités énumérées ci-dessus</li>
 								<li>Assistance juridique</li>
 							</ul>
@@ -350,42 +376,91 @@
 					</div>
 				</div>
 			</div>
-			<div class="text-center">
-				Forfait de toutes les annonces de ventes aux enchères dans tous les secteurs et tous les états pour un an 9000.00 DZD
-			</div>
 		</section>
 
 		<section id="payement" class="container my-5">
-			<h4 class="bold">Payement</h4>
-			<ul>
-				<li>Payez les frais de l’abonnement choisis Par un dépôt ou virement sur le compte postal:
-					LABOUDI Abdelwahab - CCP: 0020888454/45</li>
-				<li>Veuillez envoyer une copie de la preuve de paiement par Viber à l'un des numéros suivants: 0665379954
-					Ou Via l'e-mail suivant: contact.TendAxe@gmail.com</li>
+			<h4 class="bold ">Payement</h4>
+			<ul class="font-weight-500">
+				<li>Payez les frais de l’abonnement choisis Par un dépôt ou virement sur le compte postal: 
+					<br>
+					nom: <b>HAMMOU</b> prénom: <b>KACEM AMINE - CCP: 0022782357/14</b>
+				</li>
+				<li>Veuillez envoyer une copie de la preuve de paiement par Viber à l'un des numéros suivants:<b> 07 78 33 00 81 </b> Ou Via l'e-mail suivant: <b>tendaxe@gmail.com</b></li>
 				<li>Payez en espèces ou par chèque en vous rendant dans nos bureaux situés à l'adresse suivante:
-					Rue les frères mostapha Bouinan-Blida</li>
+					Rue Aouicha Amer</li>
 				<li>Votre compte sera activé dés la réception de votre reçu payment.</li>
 			</ul>
 		</section>
 
-		<section id="acheteurs" class="container my-5">
-			<h1 class="bold text-center text-gray">Notre acheteurs active</h1>
+		<section id="acheteurs" class="container" style="margin-top: 30vh; margin-bottom: 20vh;">
+			<h1 class="font-weight-600 text-center text-gray">Nos acheteurs actifs</h1>
 			<div class="text-center my-5">
 				<img class="img-fluid" src="{{ asset('img/acheteurs/1.png') }}" alt="">
 			</div>
-			<div class="row justify-content-center my-4">
+			<div class="row justify-content-center my-4 hide-md">
 			@for ($i = 2; $i <= 8; $i++)
 				<div class="col text-center">
 					<img class="img-fluid" src="{{ asset('img/acheteurs/'.$i.'.png') }}" alt="">
 				</div>
 			@endfor
 			</div>
-			<div class="row justify-content-center my-4">
+			<div class="row justify-content-center my-4 hide-md">
 				@for ($i = 9; $i <= 15; $i++)
 					<div class="col text-center">
 						<img class="img-fluid" src="{{ asset('img/acheteurs/'.$i.'.png') }}" alt="">
 					</div>
 				@endfor
+			</div>
+
+			{{-- mobile acheteurs --}}
+			<div class="row show-md justify-content-center">
+				<div class="col-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/9.png') }}" alt="">
+				</div>
+				<div class="col-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/14.png') }}" alt="">
+				</div>
+				
+			</div>
+			<div class="row show-md">
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/4.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/5.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/6.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/7.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/8.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/2.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/10.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/11.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/3.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/15.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/12.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/13.png') }}" alt="">
+				</div>
+				
+
 			</div>
 		</section>
 
@@ -439,19 +514,22 @@
 				
 				<div class="modal-body" id="resultat_demande">
 					<h5 class="bold mb-4">
-						voila les details de l'abonnement choisis:
+						voila les détails de l'abonnement choisie:
 					</h5>
 					<div class="mb-2">
 						<b>Le pack: </b>
 						<span id="selected_pack"></span>
 					</div>
 					<div class="bold">Les secteurs:</div>
-					<ul class="" id="selected_secteurs">
+					<ul class="mb-0" id="selected_secteurs">
 						
 					</ul>
-
-					<div>
-						votre demande va etre pris en charge par les administrateurs
+					<div class="">
+						<b>Prix:</b>
+						<span id="prix"></span>
+					</div>
+					<div class="mt-4">
+						votre demande va prendre en charge <span class="">par les administrateurs dés la réception de votre reçu de payement ( par viber 0778  33 00 81 , notre e-mail tendaxe@gmail.com ou à travers une présence au niveau de notre bureau )</span>
 					</div>
 					<div class="mt-3 text-right">
 						<button type="button" class="btn btn-primary px-4" data-dismiss="modal">OK</button>
@@ -488,6 +566,8 @@
 			$(".navbar").addClass("navbar-dark");
 			$("#logo").addClass("text-white");
 			
+			$("#custom-toggle-icon").attr("src","{{ asset('img/icons/navbar_button_light.png') }}");
+
     		$(window).scroll(function (event) {
     			var height = $(window).scrollTop();
 
@@ -496,11 +576,17 @@
     			        $(".navbar").addClass("navbar-dark");
 
     			        $("#logo").addClass("text-white");
+
+						$("#custom-toggle-icon").attr("src","{{ asset('img/icons/navbar_button_light.png') }}");
+
     			    }else{
     			    	$(".navbar").addClass("bg-light shadow navbar-light");
     			    	$(".navbar").removeClass("navbar-dark");
 
     			        $("#logo").removeClass("text-white");
+
+						$("#custom-toggle-icon").attr("src","{{ asset('img/icons/navbar_button_dark.png') }}");
+
     			    }
 
     		});
@@ -533,21 +619,28 @@
 				$('#sect').selectpicker('deselectAll')
 
 				var max = 1;
+				var prix = "";
 				switch(e.value){
 					case 'bronze': max = 1;
+									prix = "11000 DA/an";
 						break;
 					case 'silver': max = 3;
+									prix = "19000 DA/an";
 						break;
 					case 'gold': max = 6;
+									prix = "24000 DA/an";
 						break;
 					case 'platine': max = 10;
+									prix = "28000 DA/an";
 						break;
 					case 'ultra': max = false;
+									prix = "36000 DA/an";
 						$('#sect').selectpicker('selectAll');
 						break;
 				}
 
 				$('#sect').data('max-options', max).selectpicker('refresh');
+				$('#prix').text(prix);
 			}
 
 			function demander_pack(e) {

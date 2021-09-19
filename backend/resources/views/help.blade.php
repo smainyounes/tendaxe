@@ -3,165 +3,163 @@
 @section('title', 'Aide')
     
 @section('content')
-    <div class="container-fluid p-5" style="background: url({{ asset('img/banner/laptop_showing.jpg') }}) no-repeat center center; margin-top: 66px; background-size: cover;">
-      <div class="container">
+    <div class="container-fluid px-md-5 py-5" style="background: url({{ asset('img/banner/laptop_showing.jpg') }}) no-repeat center center; margin-top: 66px; background-size: cover;">
+      <div class="">
           <h3 class="text-white bold my-4">Aide</h3>
       </div>
     </div>
-    <div class="container">
-      <x-alert />
-        <div class="accordion mt-5" id="accordionExample">
-            <div class="my-3">
-              <div class="border-0" id="headingOne">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="bold m-0">POUR QUOI JE CHOISIS TENDAXE</h5>
-                    <button class="btn btn-link float-right" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <img src="{{ asset('img/icons/up_button.png') }}" alt="">
-                    </button>
-                </div>
-              </div>
-          
-              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <div class="card-body">
-                  La plateforme Tenders-Dz offre à ses clients de nombreux avantages et fonctionnalités qui facilitent la navigation et vous rapproche encore plus des Marchés Publics. En utilisant la plateforme Tenders-dz vous serez toujours à publication quotidienne des appels d'offre parus dans les journaux dans les 48 Villes (wilayas) : Est Ouest et Nord algérien, mais aussi les consultations publiées dans les différentes APC en Algérie.
-                  <br>
-                  <br>
-                  sans oublier les résultats d'appels Attribution, Annulation, d'offre Infructuosité, Mise en demeure. Et pour vous donner plus d'opportunité de marchés Tenders-dz assure une publication quotidienne des ventes aux enchères et des avis d'adjudication des 48 villes Algériennes.                  
-                </div>
-              </div>
-            </div>
-            <div class="my-3">
-              <div class="border-0" id="heading2">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="bold m-0">NOS SOURCES DE DONNEES</h5>
-                    <button class="btn btn-link float-right" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
-                        <img src="{{ asset('img/icons/up_button.png') }}" alt="">
-                    </button>
-                </div>
-              </div>
-          
-              <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
-                <div class="card-body">
-                  <div>
-                    <p class="mb-5">
-                      ttChaque jour, TendAxe publie l’ensemble des annonces d’achat et vente (Appel d’offres, Consultations, Prorogations de délais, Attributions, Annulations, Informations, Ventes aux enchères, Adjudications) de plusieurs sources :
-                    </p>
+    <div class="container main">
+      <h5 class="bold mb-4">Pourquoi je choisis TendAxe ?</h5>
+      <p class="pl-2">
+        La plateforme <span>TendAxe</span> offre à ses clients de nombreux avantages et fonctionnalités qui facilitent la navigation et vous rapproche encore plus des Marchés Publics. En utilisant la plateforme <span>TendAxe</span> vous serez toujours à publication quotidienne des appels d'offre parus dans les journaux dans les 58 Villes (wilayas) : Est Ouest et Nord Algérien, mais aussi les consultations publiées dans les différentes APC en Algérie.
+        <br>
+        sans oublier les résultats d'appels Attribution, Annulation, d'offre Infructuosité <span>et mise en demeure; et</span> pour vous donner plus d'opportunité de marchés <span>TendAxe</span> assure une publication quotidienne des ventes aux enchères et des avis d'adjudication des 58 <span>wilayas</span> Algériennes.
+        <br>
+        TendAxe arrive en exclusivité de donner la possibilité de publier votre appels d’offres, demmande d’achat et sous-traitance(projet deuxiem main)et des petits marchés à travers des entreprises ou des ordinaires; un service juridique mis a votre disposition et une assitance pour vos projets.
+      </p>
 
-                    <ul class="mb-5">
-                      <li>la presse écrite algérienne (jusqu’à 100 journaux),</li>
-                      <li>des dizaines de sites d’acheteurs publics,</li>
-                      <li>	les revues spécialisés comme le Bulletin Officiel des Marchés de l'Opérateur Public – BOMOP et Bulletin des Appels d'Offres du Secteur de l'Energie et des Mines – BAOSEM.</li>
-                    </ul>
+      <h5 class="bold my-4">Nos sources de données</h5>
+      <div class="ml-2">
+        <p>
+          Chaque jour, TendAxe publie l’ensemble des annonces d’achat et vente (Appel d’offres, Consultations, Prorogations de délais, Attributions, Annulations, Informations, Ventes aux enchères, Adjudications) de plusieurs sources :
+          <ul class="my-4">
+            <li>la presse écrite algérienne (jusqu’à 100 journaux).</li>
+            <li>des dizaines de sites d’acheteurs publics <span>et privés.</span></li>
+            <li>les revues spécialisés comme le Bulletin Officiel des Marchés de l'Opérateur Public – BOMOP et Bulletin des Appels d'Offres du Secteur de l'Energie et des Mines – BAOSEM.</li>
+          </ul>
 
-                    <p class="mt-5 mb-3">
-                      Les acheteurs actifs sur TendAxe.com publient également des consultations exclusives directement sur le site.
-                    </p>
+          Les acheteurs actifs sur TendAxe.com publient également des consultations exclusives directement sur le site.
+        </p>
 
-                    <div class="row justify-content-center">
-                      <div class="col d-flex justify-content-center flex-column align-items-center">
-                        <img class="img-fluid my-auto" src="{{ asset('img/logos/boasem.png') }}" alt="">
-                        <span class="bold">BAOSEM</span>
-                      </div>
-                      <div class="col d-flex justify-content-center flex-column align-items-center">
-                        <img class="img-fluid my-auto" src="{{ asset('img/logos/bomop.png') }}" alt="">
-                        <span class="bold">BOMOP</span>
-                      </div>
-                      <div class="col d-flex justify-content-center flex-column align-items-center">
-                        <img class="img-fluid my-auto" src="{{ asset('img/logos/websites.png') }}" alt="">
-                        <span class="bold">Sites Web</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="my-3">
-              <div class="border-0" id="heading3">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h5 class="bold m-0">Comment s'abonner sur TendAxe ?</h5>
-                    <button class="btn btn-link float-right" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
-                        <img src="{{ asset('img/icons/up_button.png') }}" alt="">
-                    </button>
-                </div>
-              </div>
-          
-              <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
-                <div class="card-body">
-                  <div class="mb-3">
-                    <div class="bold">INSCRIPTION</div>  
-                    Inscrivez gratuitement en tant que nouveau utilisateur et bénéficier de 3 jour d’essai gratuit (Nom, Prénom, Nom de l'entreprise, numéro de téléphone, e-mail, mot de passe et certains champs
-                  </div>
-                  <div class="mb-3">
-                    <div class="bold">
-                      LE CHOIX DE LA FORMULE
-                    </div>
-                    IL existe 5 formules et chaque une a sa spécification par rapport le nombre de secteur, d’activité, le nombre d’utilisateur, voir les  ventes  à l’enchère …… clique ici pour voir les différentes  formules 
-                  </div>
-                  <div class="mb-3">
-                    <div class="bold">
-                      Payment  
-                    </div>
-                    <ul>
-                      <li>
-                        Payez les frais de l’abonnement choisis Par un dépôt ou virement sur le compte postal:
-                        <br>
-                        LABOUDI Abdelwahab - CCP: 0020888454/45
-                      </li>
-                      <li>
-                        Veuillez envoyer une copie de la preuve de paiement par Viber à l'un des numéros suivants: 0665379954
-                        <br>
-                        Ou Via l'e-mail suivant: contact.TendAxe@gmail.com
-                      </li>
-                      <li>
-                        Payez en espèces ou par chèque en vous rendant dans nos bureaux situés à l'adresse suivante:
-                        <br>
-                        Rue les frères mostapha Bouinan-Blida.
-                      </li>
-                      <li>
-                        votre compte sera activé dés la réception de votre reçu payment.
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div class="mb-3">
-                    <div class="bold">
-                      Activation 
-                    </div>
-                    activation de votre compt avec donner la possibilité avec donner la possibilité de modifier 
-                    votre système de notification
-                  </div>
-
-                </div>
-              </div>
-            </div>
+        <div class="d-flex flex-md-row flex-column align-items-center justify-content-around my-5">
+          <img class="img-fluid my-2" src="{{ asset('img/logos/boasem.png') }}" alt="">
+          <img class="img-fluid my-2" src="{{ asset('img/logos/bomop.png') }}" alt="">
+          <img class="img-fluid my-2" src="{{ asset('img/logos/presse.png') }}" alt="">
+          <img class="img-fluid my-2" src="{{ asset('img/logos/websites.png') }}" alt="">
         </div>
 
-      
-      <div class="my-5 d-flex">
-        <a href="#" class="btn btn-primary flex-fill">Offre de service</a>
-        <a href="#" class="btn btn-primary mx-2 flex-fill">Tarification CDC</a>
-        <a href="{{ route('docs') }}" class="btn btn-primary flex-fill">Document utiles</a>
       </div>
 
-      <section id="acheteurs" class="my-5">
-        <h1 class="bold text-center text-gray">Notre acheteurs active</h1>
+      <h5 class="bold my-4">Comment s'abonner sur TendAxe ?</h5>
+
+      <div class="ml-2">
+        <div class="mb-4">
+          <h6 class= "bold">Inscription</h6>
+          Inscrivez gratuitement en tant que nouveau utilisateur remplissant le formulaire d'inscription (nom, prénom, e-mail, numéro de téléphone et certains champs) et bénéficiez de 3 jours d'éssai gratuit.
+        </div>
+        
+        <div class="mb-4">
+          <h6 class="bold">Le choix de la formule</h6>
+        
+          IL existe 5 formules et chaque une a sa spécification par rapport le nombre de secteur, d’activité et nombre d’utilisateur.
+          <br>
+          <a class="bold" name="offers" href="/#offers">Clique ici</a> pour voir les différentes  formules 
+        </div>
+
+        <div class="mb-4">
+          <h6 class= "bold">Payment</h6>
+          <ul>
+            <li>Payez les frais de l’abonnement choisis Par un dépôt ou virement sur le compte postal:</li>
+            <li>nom: <b>HAMMOU</b> prénom: <b>KACEM AMINE - CCP: 0022782357/14</b></li>
+            <li>Veuillez envoyer une copie de la preuve de paiement par Viber à l'un des numéros suivants: <b>07 78 33 00 81</b> Ou Via l'e-mail suivant: <b>tendaxe@gmail.com</b></li>
+            <li>Payez en espèces ou par chèque en vous rendant dans nos bureaux situés à l'adresse suivante:
+              Rue Aouicha Amer</li>
+            <li>Votre compte sera activé dés la réception de votre reçu payment.</li>
+          </ul>
+        </div>
+
+        <div class="mb-5">
+          <h6 class="bold">Activation</h6> 
+          activation de votre compt avec la possibilité de modifier votre système de notification
+        </div>
+
+      </div>
+
+      <x-alert />
+      
+      <div class="row my-5">
+        <div class="col-4 px-1">
+          <a href="{{ route('docs') }}" class="btn btn-primary h-100 w-100 d-flex align-items-center justify-content-center">Documents utiles</a>
+        </div>
+        <div class="col-4 px-1">
+          <a href="{{ route('conditions') }}" class="btn btn-primary h-100 w-100 d-flex align-items-center justify-content-center">Conditions générales d'utilisation</a>
+        </div>
+        <div class="col-4 px-1">
+          <a href="/pdf/offre de service.pdf" class="btn btn-primary h-100 w-100 d-flex align-items-center justify-content-center" download>Offre de service</a>
+        </div>
+      </div>
+
+      <section id="acheteurs" class="" style="margin-top: 30vh; margin-bottom: 20vh;">
+        <h1 class="font-weight-600 text-center text-gray">Nos acheteurs actifs</h1>
         <div class="text-center my-5">
           <img class="img-fluid" src="{{ asset('img/acheteurs/1.png') }}" alt="">
         </div>
-        <div class="row justify-content-center my-4">
+        <div class="row justify-content-center hide-md my-4">
         @for ($i = 2; $i <= 8; $i++)
           <div class="col text-center">
             <img class="img-fluid" src="{{ asset('img/acheteurs/'.$i.'.png') }}" alt="">
           </div>
         @endfor
         </div>
-        <div class="row justify-content-center my-4">
+        <div class="row justify-content-center hide-md my-4">
           @for ($i = 9; $i <= 15; $i++)
             <div class="col text-center">
               <img class="img-fluid" src="{{ asset('img/acheteurs/'.$i.'.png') }}" alt="">
             </div>
           @endfor
         </div>
+
+        {{-- mobile acheteurs --}}
+			<div class="row show-md justify-content-center">
+				<div class="col-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/9.png') }}" alt="">
+				</div>
+				<div class="col-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/14.png') }}" alt="">
+				</div>
+				
+			</div>
+			<div class="row show-md">
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/4.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/5.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/6.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/7.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/8.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/2.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/10.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/11.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/3.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/15.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/12.png') }}" alt="">
+				</div>
+				<div class="col-3 my-3 text-center">
+					<img class="img-fluid" src="{{ asset('img/acheteurs/13.png') }}" alt="">
+				</div>
+				
+
+			</div>
+
       </section>
     </div>
 @endsection

@@ -41,6 +41,10 @@ Route::get('/documents', function () {
     return view('docs');
 })->name('docs');
 
+Route::get('/conditions', function () {
+    return view('conditions');
+})->name('conditions');
+
 // email verification
 Route::get('/email/verify', function () {
     return view('auth.verify-email');

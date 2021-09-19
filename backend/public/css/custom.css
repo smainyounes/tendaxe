@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700&display=swap");
 
 html {
     scroll-behavior: smooth;
@@ -11,8 +11,30 @@ html {
 
 header {
     min-height: 100vh;
-    background: url(../img/bg.png) no-repeat center center;
+    background: url(../img/bg.jpg) no-repeat center center;
     background-size: cover;
+}
+
+@media only screen and (max-width: 768px) {
+    .text-18 {
+        font-size: 18px;
+    }
+
+    .text-22 {
+        font-size: 22px;
+    }
+
+    .text-24 {
+        font-size: 24px;
+    }
+
+    .text-26 {
+        font-size: 26px;
+    }
+
+    .text-15 {
+        font-size: 15px;
+    }
 }
 
 .btn-primary {
@@ -41,6 +63,26 @@ header {
 
 .bold {
     font-weight: bold;
+}
+
+.font-weight-200 {
+    font-weight: 200;
+}
+
+.font-weight-400 {
+    font-weight: 400;
+}
+
+.font-weight-500 {
+    font-weight: 500;
+}
+
+.font-weight-600 {
+    font-weight: 600;
+}
+
+.font-weight-700 {
+    font-weight: 700;
 }
 
 .bg-light {
@@ -75,6 +117,10 @@ header {
     background-color: #2f80ed !important;
 }
 
+.text-red {
+    color: #eb5757;
+}
+
 .text-green {
     color: #219653 !important;
 }
@@ -101,7 +147,7 @@ a.text-primary:hover {
 }
 
 .main {
-    margin-top: 90px;
+    margin-top: 115px;
 }
 
 /* .inner {
@@ -112,18 +158,17 @@ a.text-primary:hover {
     background-color: #e5e5e5 !important;
 }
 
-/* @media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) {
     .hide-md {
         display: none;
     }
-    .dropdown-menu {
-        overflow: scroll !important;
-    }
+}
 
-    .inner {
-        position: absolute;
+@media only screen and (min-width: 768px) {
+    .show-md {
+        display: none;
     }
-} */
+}
 
 @media only screen and (max-width: 768px) {
     #navbarSupportedContent {
@@ -193,6 +238,17 @@ a:hover {
     color: #4f4f4f;
 }
 
+.navbar-collapse .dropdown-toggle::after {
+    display: none;
+}
+
+.filter-option-inner-inner {
+    font-size: small;
+}
+
+a .text {
+    font-size: small;
+}
 /* sharing button css */
 .resp-sharing-button__link,
 .resp-sharing-button__icon {

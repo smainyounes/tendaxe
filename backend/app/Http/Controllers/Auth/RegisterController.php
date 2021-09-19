@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Notif;
+use Anam\Captcha\Captcha;
 use App\Models\Abonnement;
 use Illuminate\Http\Request;
 use App\Models\Etablissement;
@@ -37,8 +38,14 @@ class RegisterController extends Controller
         // return view('auth.choice');
     }
 
-    public function store(Request $request, $choice = 1)
+    public function store(Request $request, Captcha $captcha, $choice = 1)
     {
+        $response = $captcha->check($request);
+
+        if (! $response->isVerified()) {
+            return back()->with('error', 'Captcha Non-valide!');
+        }
+
         // abonné
         if($choice == 1){
              // validation
@@ -48,7 +55,7 @@ class RegisterController extends Controller
                 'nom_entreprise' => 'required|max:255',
                 'phone' => 'required|max:255|unique:users',
                 'wilaya' => 'required|max:255',
-                'commune' => 'required|max:255',
+                // 'commune' => 'required|max:255',
                 'email' => 'required|email|max:255|unique:users',
                 'password' => 'required|confirmed'
                 ]);
@@ -60,7 +67,7 @@ class RegisterController extends Controller
                 'nom_entreprise' => $request->nom_entreprise,
                 'phone' => $request->phone,
                 'wilaya' => $request->wilaya,
-                'commune' => $request->commune,
+                'commune' => null,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'etat' => 'active',

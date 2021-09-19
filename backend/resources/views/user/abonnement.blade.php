@@ -1,5 +1,10 @@
 @extends('layouts.profile')
 
+@section('title', 'Mes Abonnements')
+
+
+@section('link_abonnement', 'text-info')
+
 @section('profile')
     <div class="container-fluid">
         <h5 class="mb-4">Mes Abonnements</h5>
