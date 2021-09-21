@@ -251,6 +251,9 @@
 					</div>
 				</div>
 			</div>
+			<div class="text-center mt-3 text-white">
+				© 2021 www.tendaxe.com - All rights reserved.
+			</div>
 		</footer>
 
         <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
