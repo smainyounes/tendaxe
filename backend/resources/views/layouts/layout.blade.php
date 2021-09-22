@@ -234,20 +234,20 @@
 					</div>
 				</div>
 				<div class="offset-md-3 col-md-3 text-md-left text-center">
-					<div class="my-3">
+					<div class="my-3 d-flex">
 						<img src="{{ asset('img/icons/cell_phone.png') }}"> <span class="ml-3 text-white">07 78 33 00 81 </span>
 					</div>
-					<div class="my-3">
+					<div class="my-3 d-flex">
 						<img src="{{ asset('img/icons/phone.png') }}"> <span class="ml-3 text-white">0 25 25 76 82</span>
 					</div>
-					<div class="my-3">
+					<div class="my-3 d-flex">
 						<img src="{{ asset('img/icons/msg.png') }}" width="22px" height="17px"> <span class="ml-3 text-white"> tendaxe@gmail.com </span>
 					</div>
-					<div class="my-3">
+					<div class="my-3 d-flex">
 						<img src="{{ asset('img/icons/fb.png') }}"> <span class="ml-3 text-white"> tendaxe </span>
 					</div>
-					<div class="my-3">
-						<img src="{{ asset('img/icons/indic.png') }}"> <span class="ml-3 text-white"> LOT N 141 P 10  Rue Aouicha Amer BOUINAN- BLIDA   </span>
+					<div class="my-3 d-flex">
+						<img width="22px" height="27px" src="{{ asset('img/icons/indic.png') }}"> <span class="ml-3 text-white"> LOT N 141 P 10  Rue Aouicha Amer BOUINAN- BLIDA   </span>
 					</div>
 				</div>
 			</div>

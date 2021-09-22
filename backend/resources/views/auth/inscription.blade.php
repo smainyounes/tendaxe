@@ -87,7 +87,7 @@
                             </div>
                         </div> --}}
                     </div>
-                    <div>
+                    <div class="mb-3">
                         @captcha()
                     </div>
                     <div class="form-group text-right">
